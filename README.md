@@ -1,17 +1,5 @@
-#基于微信公众号的课堂即时应答系统
+#课堂即时应答系统
 
-网站使用Hibernate+Spring为主要开发框架，采用Restful API设计。
+基于微信公众平台，使用mongoDB+Express+Node.Js技术架构开发。网站接收从公众号发来的消息，与其进行数据交互，完成课堂应答流程。
 
-关于Restful的介绍:http://www.ruanyifeng.com/blog/2011/09/restful.html<br>
-　　　　　　　　http://www.ruanyifeng.com/blog/2014/05/restful_api.html
-
-- 前端部分为便于组件的复用，实现样式的组件化与JS的模块化，进行前端工程化实践。
-- 开发人员严格遵守代码规范，注意为关键的函数及类添加注释，保证代码可读性。
-
-开发人员：
-
-熊贤仁（前端）：维护front_end分支<br>
-　　　　　　　　负责需求分析、交互设计、前端页面、API设计
-
-李子豪（后台）：维护back_end分支<br>
-　　　　　　　　负责数据库设计、后台API实现、数据库CRUD
+URL设计遵循Restful API设计思想，使用HTTP方法进行数据库CRUD，数据实体均使用名词表示。URL前加上/v1，表示当前API版本，便于今后的扩展。/admin表示该URL对应的页面只有管理员才能查看
