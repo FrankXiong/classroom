@@ -1,0 +1,53 @@
+{
+    "domain": "wenxin.info",
+    "is_debug": true,
+    "mongodb": {
+    "host": "121.42.189.247",
+    "port": "27017",
+    "db": "classroom"
+    },
+    "sms": {
+    "host": "121.42.189.247",
+    "port": "5001"
+    },
+    "wx": {
+        "app_id": "wx77385a01a23c3f6a",
+        "app_secret": "bee389d07fe2cae904be642a8cfa9c39",
+        "wx_menu": {
+            "button": [
+                {
+                    "type": "view",
+                    "name": "进入课堂",
+                    "url": "http://wenxin.info"
+                },
+                {
+                    "name": "更多",
+                    "sub_button": [
+                        {
+                            "type": "click",
+                            "name": "查看openid",
+                            "key": "M1_OPENID"
+                        },
+                        {
+                            "type": "click",
+                            "name": "提问",
+                            "key": "M1_QUESTION"
+                        },
+                        {
+                            "type": "view",
+                            "name": "搜索",
+                            "key": "M1_SEARCH",
+                            "url": "http://www.soso.com/"
+                        },
+                        {
+                            "type": "view",
+                            "name": "教学资源",
+                            "key": "M1_RESOURCE",
+                            "url": "http://www.imooc.com/"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

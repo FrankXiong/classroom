@@ -20,27 +20,15 @@ gulp.task('default',['clean'],function() {
     gulp.run("libs");
     gulp.run("generate");
     gulp.run("watch");
-    // gulp.run("server");
     gulp.run("openbrowser");
 });
 
 
-
-// gulp.task('css', function() {  
-//   return gulp.src('src/sass/*.css')
-//     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-//     .pipe(rename({suffix: '.min'}))
-//     .pipe(minifycss())
-//     .pipe(gulp.dest('dist/static/css'))
-//     .pipe(livereload())
-//     .pipe(notify({ message: 'CSS task complete' }));
-// });
-
 gulp.task('sass', function() {  
-  return gulp.src('src/css/*.scss')
+  return gulp.src('src/css/**/*.scss')
     .pipe(sass({ style: 'compressed' }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(minifycss())
+    // .pipe(minifycss())
     .pipe(gulp.dest('dist/static/css'))
     .pipe(livereload())
     .pipe(notify({ message: 'SASS task complete' }));
@@ -72,7 +60,7 @@ gulp.task('img', function() {
 });
 
 gulp.task('font', function() {  
-  return gulp.src('src/fonts/**/*')
+  return gulp.src('src/font/**/*')
     .pipe(gulp.dest('dist/static/font'))
     .pipe(livereload())
     .pipe(notify({ message: 'Fonts task complete' }));
@@ -106,11 +94,11 @@ gulp.task("libs", function() {
 
   gulp.src(libs.css)
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/static/css'))
+    .pipe(gulp.dest('dist/static/css/lib'))
     .pipe(notify({ message: 'Libs-Stylesheets task complete!' }));
 
   gulp.src(libs.font)
-    .pipe(gulp.dest('dist/static/fonts'))
+    .pipe(gulp.dest('dist/static/font'))
     .pipe(notify({ message: 'Libs-Fonts task complete!' }));
 });
 
@@ -139,12 +127,12 @@ gulp.task('openbrowser', function() {
 
 gulp.task('clean', function() {
   return gulp.src([
-      'dist/static/css/*.min.css',
-      'dist/static/css/*.css',
+      'dist/static/css/**/*.min.css',
+      'dist/static/css/**/*.css',
       'dist/static/img/*.*',
       'dist/static/js/**/*.js',
       'dist/static/js/**/*.min.js',
-      'dist/static/fonts/*.*',
+      'dist/static/font/*.*',
       'dist/*.html'
       ], {read: false})
     .pipe(clean({force: true}));
@@ -158,27 +146,18 @@ gulp.task('watch', function() {
     livereload.listen();
     gulp.watch(['src/**']).on('change', livereload.changed);
 
-    gulp.watch('src/images/*.*', ['img']);   
-
-    gulp.watch('src/css/**/*.css', ['css']);
-    gulp.watch('src/css/*.css', ['css']);
+    gulp.watch('src/img/*.*', ['img']);   
 
     gulp.watch('src/css/**/*.scss', ['sass']);
     gulp.watch('src/css/*.scss', ['sass']);
 
-    gulp.watch('src/javascripts/*.js', ['js']);
-    gulp.watch('src/javascripts/**/*.js', ['js']);
+    gulp.watch('src/js/*.js', ['js']);
+    gulp.watch('src/js/**/*.js', ['js']);
 
-    gulp.watch('src/views/*.html', ['html']);
-    gulp.watch('src/views/**/*.html', ['html']);
-
-    gulp.watch('src/datas/*.json', ['data']);
-    gulp.watch('src/datas/*.json', ['data']);
-
-    gulp.watch('src/fonts/*.eot', ['font']);
-    gulp.watch('src/fonts/*.svg', ['font']);
-    gulp.watch('src/fonts/*.ttf', ['font']);
-    gulp.watch('src/fonts/*.woff', ['font']);
+    gulp.watch('src/font/*.eot', ['font']);
+    gulp.watch('src/font/*.svg', ['font']);
+    gulp.watch('src/font/*.ttf', ['font']);
+    gulp.watch('src/font/*.woff', ['font']);
 
 });
 

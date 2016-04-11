@@ -1,0 +1,75 @@
+extends ../layout
+
+block content
+    
+    div.container
+        if user
+            div.weui_cells_title 个人信息
+            div.weui_cells
+                div.weui_cell.weui_cell_select.weui_select_before
+                    div.weui_cell_hd
+                        span 昵称                    
+                    div.weui_cell_bd.weui_cell_primary
+                        span #{user.name}
+                        //- input.weui_input(type="text" placeholder="请输入昵称")
+            
+            div.weui_cells
+                div.weui_cell.weui_cell_select
+                    div.weui_cell_hd
+                        span 性别                    
+                    div.weui_cell_bd.weui_cell_primary
+                        select.weui_select(name="select_gender")
+                            option(selected="" value="0") #{user.gender}
+                            option(value="1") 男
+                            option(value="2") 女
+                
+            div.weui_cells
+                div.weui_cell.weui_cell_select
+                    div.weui_cell_hd 省份
+                    div.weui_cell_bd.weui_cell_primary
+                        select.weui_select(name="select_province")
+                            option(selected="" value="1") #{user.province}
+                            option(value="2") 上海市
+                            option(value="3") 广州市
+             
+            div.weui_cells            
+                div.weui_cell.weui_cell_select
+                        div.weui_cell_hd
+                            城市
+                        div.weui_cell_bd.weui_cell_primary
+                            select.weui_select(name="select_city")
+                                option(selected="" value="1") #{user.city}
+                                option(value="2") 渝中区
+                                option(value="3") 万州区
+
+            div.weui_cells
+                div.weui_cell.weui_cell_select
+                        div.weui_cell_hd
+                            身份
+                        div.weui_cell_bd.weui_cell_primary
+                            if user.role = 0
+                                span 学生
+                            if user.role = 10
+                                span 教师
+                            if user.role = 100
+                                span 超级管理员
+        else
+            span 你还没有登录
+
+
+                        
+                    
+                
+            
+
+                
+            
+        
+        
+      
+
+        
+      
+    
+  
+                   
