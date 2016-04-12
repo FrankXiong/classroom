@@ -1,5 +1,6 @@
 var Index = require('../app/controllers/index')
 var User = require('../app/controllers/user')
+var Admin = require('../app/controllers/admin')
 
 module.exports = function(app){
    
@@ -15,4 +16,7 @@ module.exports = function(app){
     app.get('/',User.oauth)
     app.get('/wx/callback',User.callback)
     app.get('/user/:openid',User.showUserInfo)
+    app.put('/user',User.updateSelf)
+
+    app.get('/admin',Admin.admin)
 }

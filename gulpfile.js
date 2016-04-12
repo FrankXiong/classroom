@@ -70,7 +70,8 @@ gulp.task('font', function() {
 var libs = {
     js: [
         "vendor/assets/requirejs/require.js",
-        "vendor/assets/jquery/dist/jquery.js"
+        "vendor/assets/jquery/dist/jquery.js",
+        "vendor/assets/amazeui/dist/js/amazeui.js"
     ],
     css:[
         "vendor/assets/normalize-css/normalize.css",

@@ -1,7 +1,9 @@
 var wx = require('weixin-api')
 var OAuth = require('wechat-oauth')
 var config = require('config')
+var _ = require('underscore');
 var User = require('../models/user')
+
 
 var appid = config.get('wx.app_id')
 var appsecret = config.get('wx.app_secret')
@@ -32,7 +34,7 @@ exports.callback = function(req,res){
         User.findByOpenid(openid,function(err,user){
             //如果用户不存在，则注册一个新用户
             if(err || user === null){
-                console.log('user is not exit')
+                console.log('ERROR:user is not exit')
 
                 client.getUser(openid,function(err,result){
                     console.log(result)
@@ -40,11 +42,9 @@ exports.callback = function(req,res){
                     var oauthUser = result
                     var _user = new User(oauthUser)
 
-                    _user.name = oauthUser.nickname
-
                     _user.save(function(err,user){
                         if(err){
-                            console.log('user save error:' + err)
+                            console.log('ERROR:user save ' + err)
                         }else{
                             console.log('user save success')
 
@@ -56,7 +56,7 @@ exports.callback = function(req,res){
                 })
             }else{
                 console.log('user is exited')
-                console.log(user.name)
+                console.log(user.nickname)
                 req.session.user = user
                 res.redirect('/home')
             }
@@ -64,19 +64,65 @@ exports.callback = function(req,res){
     }) 
 }
 
+// 查看用户信息页
 exports.showUserInfo = function(req,res){
-    var id = req.params.id
-    console.log(id)
-    if(id){
-        User.findById(id,function(err,user){
+    var openid = req.params.openid
+    console.log(openid)
+    if(openid){
+        User.findByOpenid(openid,function(err,user){
             if(err){
                 console.log('findUserError:' + err)
             }
             res.render('user',{
-                title:user.title
+                title:'个人信息'
             })
         })        
     }else{
-        console.log("请求参数中没有openid")
+        console.log("ERROR:请求参数中没有openid")
     }
+}
+
+//用户修改自己的信息
+exports.updateSelf = function(req,res){
+    var id = req.body._id
+    console.log('user id:' + id)
+    var userObj = req.body
+    console.log('userObj:' + userObj)
+    console.log('stuid:' + userObj.stuid)
+    var _user
+
+    if(id){
+        User.findById(id,function(err,user){
+            if(err){
+                console.log(err)
+            }
+            console.log('user:' + user)
+            // 对象拷贝
+            _user = _.extend(user,userObj)
+            console.log('_user:' + _user)
+
+            _user.save(function(err,user){
+                if(err){
+                    console.log(err)
+                    res.status(500).json({msg:'服务器出了一点问题...'})
+                }
+                // 更新成功则跳转到当前用户的个人信息页
+                // res.redirect('/user/' + user.openid)
+                res.status(201).json({msg:'保存成功',data:_user})
+
+            })
+        })
+    }else{
+        console.log("ERROR:请求参数中没有id")
+    } 
+}
+
+// 检测用户终端类型：若不是微信端，则跳转到桌面端主页
+exports.wxRequired = function(req,res){
+    var user = req.session.user
+
+    if(!user.openid){
+        res.redirect('/web')
+    }
+    next()
 }

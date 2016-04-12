@@ -9,6 +9,7 @@ var logger = require('morgan')
 var wx = require('weixin-api')
 var API = require('wechat-api')
 var config = require('config')
+var multer = require('multer')
 
 var port = process.env.PORT || 3000
 var app = new express()
@@ -28,8 +29,11 @@ app.set('views','./app/views/pages')
 app.set('view engine','jade')
 
 app.use(express.static(path.join(__dirname,'dist/static')))
-app.use(bodyParser.urlencoded({extended:true}))
 app.use(cookieParser())
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(multer()) // for parsing multipart/form-data
+
 app.use(session({
     secret:'classroom',
     resave:false,

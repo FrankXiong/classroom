@@ -1,0 +1,76 @@
+div#admin-offcanvas.admin-sidebar.am-offcanvas
+    div.am-offcanvas-bar.admin-offcanvas-bar
+        ul.am-list.admin-sidebar-list
+            li
+                a(href="/admin")
+                    span.am-icon-home 
+                    span 首页
+            li.admin-parent
+                a.am-cf(data-am-collapse="{target: '#collapse-nav'}")
+                    span.am-icon-tags
+                    span 功能模块 
+                    span.am-icon-angle-right.am-fr.am-margin-right
+                ul#collapse-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+                    li
+                        a.am-cf(href="admin-begin.html")
+                            span.am-icon-check 
+                            span 上课
+                            span.am-icon-star.am-fr.am-margin-right.admin-icon-yellow
+                    li
+                        a(href="admin-answer.html")
+                            span.am-icon-comments
+                            span 答题
+                    li
+                        a(href="admin-exam.html")
+                            span.am-icon-leanpub
+                            span 考试
+                    li
+                        a(href="admin-analysis.html")
+                            span.am-icon-line-chart 
+                            span 统计分析
+                    li
+                        a(href="admin-404.html")
+                            span.am-icon-bug 
+                            span 404
+            li
+                a.am-cf(data-am-collapse="{target: '#collapse-nav'}")
+                    span.am-icon-user 学生管理
+                    span.am-icon-angle-right.am-fr.am-margin-right
+                ul#collapse-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+                    li
+                        a(href="admin-userlist.html")
+                            span.am-icon-list-ul
+                            span 查看学生列表
+                    li
+                        a(href="admin-import.html")
+                            span.am-icon-clipboard
+                            span 批量导入学生
+                    
+            li
+                a(href="#")
+                    span.am-icon-flask
+                    span 教学班管理
+            li
+                a(href="#")
+                    span.am-icon-leaf 
+                    span 课堂管理
+            li
+                a(href="#")
+                    span.am-icon-sign-out 
+                    span 注销
+
+        div.am-panel.am-panel-default.admin-sidebar-panel
+            div.am-panel-bd
+                p
+                    span.am-icon-bookmark 
+                    span 公告
+                p 时光静好，与君语；细水流年，与君同。—— Amaze UI
+            
+        div.am-panel.am-panel-default.admin-sidebar-panel
+            div.am-panel-bd
+                p
+                    span.am-icon-tag 
+                    span wiki
+                p 欢迎来到翘课吧!
+        
+      

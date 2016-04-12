@@ -1,15 +1,13 @@
 var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt');
-// var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
     openid:{
         type:String,
         unique:true
     },
-    name:{
+    nickname:{
         type:String,
-        unique:true
+        default:'unknown'
     },
     password:{
         type:String
@@ -23,18 +21,30 @@ var UserSchema = new mongoose.Schema({
         // 默认为普通用户
         default:0
     },
-    school:String,
-    major:String,
-    phone:Number,
-    avatar:String,
-    intro:String,
-    province:String,
-    city:String,
-    gender:{
+    class:{
+        type:String,
+        default:'unknown'
+    },
+    stuid:{
+        type:Number,
+        default:20130001
+    },
+    province:{
+        type:String,
+        default:'unknown'
+    },
+    city:{
+        type:String,
+        default:'unknown'
+    },
+    sex:{
         type:Number,
         //0:未知  1:男  2:女
         default:0
     },
+    phone:Number,
+    headimgurl:String,
+    intro:String,
     token:String,
     meta:{
         createAt:{
@@ -55,29 +65,9 @@ UserSchema.pre('save',function(next){
     }else{
         this.meta.updateAt = Date.now()
     }
-    // bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt){
-    //     if(err) return next(err)
-
-    //     bcrypt.hash(user.password,salt,function(err,hash){
-    //         if(err) return next(err)
-
-    //         user.password = hash
-    //         next()
-    //     })
-    // })
     next()
 });
 
-// 验证密码是否正确
-// UserSchema.methods = {
-//     comparePassword:function(_password,cb){
-//         bcrypt.compare(_password,this.password,function(err,isMatch){
-//             if(err) return cb(err)
-
-//             cb(null,isMatch)
-//         })
-//     }
-// }
 
 // 静态方法
 UserSchema.statics = {
@@ -94,7 +84,7 @@ UserSchema.statics = {
     },
     findById:function(id,cb){
         return this
-            .findOne({id:id})
+            .findOne({_id:id})
             .exec(cb)
     }
 };

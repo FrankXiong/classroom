@@ -4,72 +4,95 @@ block content
     
     div.container
         if user
-            div.weui_cells_title 个人信息
-            div.weui_cells
-                div.weui_cell.weui_cell_select.weui_select_before
-                    div.weui_cell_hd
-                        span 昵称                    
-                    div.weui_cell_bd.weui_cell_primary
-                        span #{user.name}
-                        //- input.weui_input(type="text" placeholder="请输入昵称")
-            
-            div.weui_cells
-                div.weui_cell.weui_cell_select
-                    div.weui_cell_hd
-                        span 性别                    
-                    div.weui_cell_bd.weui_cell_primary
-                        select.weui_select(name="select_gender")
-                            option(selected="" value="0") #{user.gender}
-                            option(value="1") 男
-                            option(value="2") 女
-                
-            div.weui_cells
-                div.weui_cell.weui_cell_select
-                    div.weui_cell_hd 省份
-                    div.weui_cell_bd.weui_cell_primary
-                        select.weui_select(name="select_province")
-                            option(selected="" value="1") #{user.province}
-                            option(value="2") 上海市
-                            option(value="3") 广州市
-             
-            div.weui_cells            
-                div.weui_cell.weui_cell_select
-                        div.weui_cell_hd
-                            城市
+            form#form_info
+                if user._id
+                    input(type="hidden",name="_id",value="#{user._id}")
+                div.weui_cells_title 个人信息
+                div.weui_cells
+                    div.weui_cell
                         div.weui_cell_bd.weui_cell_primary
-                            select.weui_select(name="select_city")
-                                option(selected="" value="1") #{user.city}
-                                option(value="2") 渝中区
-                                option(value="3") 万州区
+                            p 头像                   
+                        div.weui_cell_ft 
+                            img.headimg(src="#{user.headimgurl}",alt="用户头像")
 
-            div.weui_cells
-                div.weui_cell.weui_cell_select
-                        div.weui_cell_hd
-                            身份
+                    div.weui_cell
                         div.weui_cell_bd.weui_cell_primary
-                            if user.role = 0
-                                span 学生
-                            if user.role = 10
-                                span 教师
-                            if user.role = 100
-                                span 超级管理员
+                            p 昵称                    
+                        div.weui_cell_ft #{user.nickname}
+
+                    div.weui_cell.weui_cell_select.weui_select_after
+                        div.weui_cell_hd.weui_cell_primary
+                            p 性别                    
+                        div.weui_cell_ft.weui_cell_bd
+                            select#sex.weui_select(name="sex",value=user.sex)
+                                case user.sex
+                                    when 0
+                                        option.tr(selected="" value="0") 未知
+                                        option.tr(value="1") 男
+                                        option.tr(value="2") 女
+                                    when 1 
+                                        option.tr(value="1") 男
+                                        option.tr(value="2") 女
+                                    when 2 
+                                        option.tr(value="2") 女
+                                        option.tr(value="1") 男
+                                
+                                
+                    div.weui_cell
+                        div.weui_cell_hd.weui_cell_primary
+                            p 学号                    
+                        div.weui_cell_primary.weui_cell_bd
+                            input#stuid.weui_input(type="number",name="stuid",value=user.stuid,pattern="[0-9*",placeholder="请输入学号")
+                    div.weui_cell.weui_cell_select.weui_select_after
+                        div.weui_cell_hd.weui_cell_primary 
+                            p 教学班
+                        div.weui_cell_ft.weui_cell_bd
+                            select#class.weui_select(name="class",value=user.class)
+                                if user.class = unknown
+                                    option.tr(value="unknown") 请选择
+                                    option.tr(value="cxsj_yrl") 程序实践[杨瑞龙]
+                                    option.tr(value="cxsj_cb") 程序实践[陈波]   
+                                else
+                                    option.tr(value="cxsj_yrl") 程序实践[杨瑞龙]
+                                    option.tr(value="cxsj_cb") 程序实践[陈波]  
+                                
+    
+                div.weui_cells_title 地区
+                div.weui_cells
+                    div.weui_cell.weui_cell_select.weui_select_after
+                        div.weui_cell_hd.weui_cell_primary 
+                            p 省份
+                        div.weui_cell_ft.weui_cell_bd
+                            select#province.weui_select(name="province",value=user.province)
+                                option.tr(selected="" value="#{user.province}") #{user.province}
+                                option.tr(value="Shanghai") 上海市
+                                option.tr(value="Guangzhou") 广州市          
+                    div.weui_cell.weui_cell_select.weui_select_after
+                        div.weui_cell_hd.weui_cell_primary 
+                            p 城市
+                        div.weui_cell_ft.weui_cell_bd
+                            select#city.weui_select(name="city",value=user.city)
+                                option.tr(selected="" value="#{user.city}") #{user.city}
+                                option.tr(value="Yuzhong") 渝中区
+                                option.tr(value="Wanzhou") 万州区
+
+                div.weui_cells_title 其他
+                div.weui_cells
+                    div.weui_cell
+                        div.weui_cell_bd.weui_cell_primary 
+                            p 身份
+                        div.weui_cell_ft
+                            case user.role
+                                when 0
+                                    p 学生
+                                when 10 
+                                    p 教师
+                                when 100 
+                                    p 超级管理员
+                p.weui_cells_tips 提示：请尽快完善个人信息，否则你将只能使用部分功能
+
+                a#btn_save.weui_btn.weui_btn_primary.btn_lg(href="javascript:") 保存
+
         else
             span 你还没有登录
-
-
-                        
-                    
-                
-            
-
-                
-            
-        
-        
-      
-
-        
-      
-    
-  
-                   
+    script(src="/js/app/user_info.js")
