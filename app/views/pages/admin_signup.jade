@@ -1,0 +1,26 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        title #{title}
+        include ../includes/admin_head
+
+    body
+        div.header.signin-header
+            div.am-g
+                h1 翘课吧
+                p 后台管理系统
+            hr 
+
+        div.am-g
+            div.am-u-lg-6.am-u-md-8.am-u-sm-centered
+                form.am-form(method="post")
+                    label(for="email") 手机号:
+                    input#phone(type="number" name="" value="")
+                    br
+                    label(for="password") 密码:
+                    input#password(type="password" name="" value="")
+                    br
+                    br 
+                    div.am-cf
+                        input.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="注册")

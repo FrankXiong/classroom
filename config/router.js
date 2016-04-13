@@ -19,4 +19,6 @@ module.exports = function(app){
     app.put('/user',User.updateSelf)
 
     app.get('/admin',Admin.admin)
+    app.get('/admin/signin',User.showSigninPage)
+    app.get('/admin/signup',User.showSignupPage)
 }

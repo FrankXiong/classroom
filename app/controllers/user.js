@@ -126,3 +126,65 @@ exports.wxRequired = function(req,res){
     }
     next()
 }
+
+// 桌面端用户注册
+exports.signup = function(req,res){
+    var userObj = req.body
+    var name = userObj.name
+
+    User.findOne({name:name},function(err,user){
+        if(err){
+            console.log(err)
+        }
+        if(user){
+            console.log('ERROR:用户名已存在')
+            res.redirect('/signin')
+        }else{
+            var user = new User(userObj)
+            user.save(function(err,user){
+                if(err){
+                    console.log(err)
+                }
+                console.log("SUCCESS:注册成功")
+                res.redirect('/admin')
+            })
+        }
+
+    })
+
+}
+
+// 桌面端用户登录
+exports.signup = function(req,res){
+
+}
+
+exports.showSignupPage = function(req,res){
+    res.render('admin_signup',{
+        title:'注册'
+    })
+}
+
+exports.showSigninPage = function(req,res){
+    res.render('admin_signin',{
+        title:'登录'
+    })
+}
+
+exports.adminRequired = function(req,res){
+    var user = req.session.user
+    // 用户权限不够，重定向到登录页面
+    if(user.role < 10){
+        res.redirect('/signin')
+    }
+    next()
+}
+
+exports.signinRequired = function(req,res,next){
+    var user = req.session.user
+    // 用户未登录，重定向到登录页面
+    if(!user){
+        res.redirect('/signin')
+    }
+    next()
+}

@@ -2,13 +2,10 @@ html, body {
   height: 100%; }
 
 body {
-  background-color: #efeff4; }
+  background-color: #fff; }
 
 .main {
   margin-bottom: 20px; }
-
-address, blockquote, dl, fieldset, figure, hr, ol, p, pre, ul {
-  margin: 0; }
 
 .cover {
   display: block;
@@ -325,6 +322,17 @@ gallery.html css
 
 .fixed-layout .admin-sidebar.am-active {
   z-index: 1600; }
+
+.signin-header {
+  text-align: center; }
+
+.signin-header h1 {
+  font-size: 200%;
+  color: #333;
+  margin-top: 30px; }
+
+.signin-header p {
+  font-size: 14px; }
 
 /**
  * admin.css end

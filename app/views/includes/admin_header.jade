@@ -10,35 +10,46 @@ header.am-topbar.admin-header
 
     div#topbar-collapse.am-collapse.am-topbar-collapse
 
-        ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right.admin-header-list
-            li
-                a(href="javascript:;")
-                    span.am-icon-envelope-o 
-                    span 收件箱 
-                    span.am-badge.am-badge-warning 5
-            li.am-dropdown(data-am-dropdown)
-                a.am-dropdown-toggle(data-am-dropdown-toggle href="javascript:;")
-                    span.am-icon-users 
-                    span 管理员 
-                    span.am-icon-caret-down
-       
-        ul.am-dropdown-content
-            li
-                a(href="#")
-                    span.am-icon-user 
-                    span 个人资料
-            li
-                a(href="#")
-                    span.am-icon-cog 
-                    span 设置
-            li
-                a(href="#")
-                    span.am-icon-power-off 
-                    span 退出
-        
-            li.am-hide-sm-only
-                a#admin-fullscreen(href="javascript:;") 
-                    span.am-icon-arrows-alt 
-                    span.admin-fullText 开启全屏
+        if user 
+            ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right.admin-header-list
+                li
+                    a(href="javascript:;")
+                        span.am-icon-envelope-o 
+                        span 收件箱 
+                        span.am-badge.am-badge-warning 5
+                
+                li.am-dropdown(data-am-dropdown)
+                    a.am-dropdown-toggle(data-am-dropdown-toggle href="javascript:;")
+                        span.am-icon-users 
+                        span 管理员 
+                        span.am-icon-caret-down
+           
+            ul.am-dropdown-content
+                li
+                    a(href="#")
+                        span.am-icon-user 
+                        span 个人资料
+                li
+                    a(href="#")
+                        span.am-icon-cog 
+                        span 设置
+                li
+                    a(href="#")
+                        span.am-icon-power-off 
+                        span 退出
+            
+                li.am-hide-sm-only
+                    a#admin-fullscreen(href="javascript:;") 
+                        span.am-icon-arrows-alt 
+                        span.admin-fullText 开启全屏 else
+                
+        else
+            ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right
+                li
+                    a(href="/admin/signup")
+                        span  注册
+                li
+                    a(href="/admin/signin")
+                        span  登录
     
   
