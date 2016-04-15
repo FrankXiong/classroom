@@ -26,6 +26,7 @@ exports.callback = function(req,res){
 
     client.getAccessToken(code,function(err,result){
         var accessToken = result.data.access_token
+        console.log(result.data)
         var openid = result.data.openid
 
         console.log('accessToken:' + accessToken)
