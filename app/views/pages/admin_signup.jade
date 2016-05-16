@@ -15,6 +15,9 @@ html
         div.am-g
             div.am-u-lg-6.am-u-md-8.am-u-sm-centered
                 form.am-form(method="post")
+                    label(for="email") 姓名:
+                    input#name(type="text" name="" value="")
+                    br
                     label(for="email") 手机号:
                     input#phone(type="number" name="" value="")
                     br
@@ -23,4 +26,6 @@ html
                     br
                     br 
                     div.am-cf
-                        input.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="注册")
+                        input#regBtn.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="注册")
+
+        script(src="/js/lib/require.js" data-main="/js/app/reg")

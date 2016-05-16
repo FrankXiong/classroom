@@ -129,7 +129,7 @@ exports.wxRequired = function(req,res){
 }
 
 // 桌面端用户注册
-exports.signup = function(req,res){
+exports.reg = function(req,res){
     var userObj = req.body
     var name = userObj.name
 
@@ -147,7 +147,8 @@ exports.signup = function(req,res){
                     console.log(err)
                 }
                 console.log("SUCCESS:注册成功")
-                res.redirect('/admin')
+                res.status(200).json({msg:'注册成功'})
+                res.redirect('/signin')
             })
         }
 
