@@ -1,0 +1,71 @@
+var mongoose = require('mongoose');
+
+// 教学班
+var TeachClassSchema = new mongoose.Schema({
+    // 主键
+    id:{
+        type:String,
+        unique:true
+    },
+    // 课程ID
+    courseId:{
+        type:String
+    },
+    // 课程名
+    courseName:{
+        type:String
+    }, 
+    // 教师ID
+    tId:{
+        type:Number
+    },
+    // 总选课人次
+    total:{
+        type:Number
+    },
+    // 开始周次-结束周次
+    duration:{
+        type:String
+    },
+    classHours:{
+        type:Number
+    },
+    meta:{
+        createAt:{
+            type:Date,
+            default:Date.now()
+        },
+        updateAt:{
+            type:Date,
+            default:Date.now()
+        }
+    }
+});
+
+ClassSchema.pre('save',function(next){
+    var Class = this
+    if(this.isNew){
+        this.meta.createAt = this.meta.updateAt = Date.now()
+    }else{
+        this.meta.updateAt = Date.now()
+    }
+    next()
+});
+
+
+// 静态方法
+ClassSchema.statics = {
+    fetch:function(cb){
+        return this
+            .find({})
+            .sort('meta.updateAt')
+            .exec(cb)
+    },
+    findById:function(id,cb){
+        return this
+            .findOne({_id:id})
+            .exec(cb)
+    }
+};
+
+module.exports = ClassSchema;
