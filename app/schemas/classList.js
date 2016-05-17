@@ -1,35 +1,16 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
 // 教学班
-var TClassSchema = new mongoose.Schema({
-    // 主键
-    id:{
-        type:String,
-        unique:true
+var TClassListSchema = new mongoose.Schema({
+    name:{
+        type:String    
     },
-    // 课程ID
-    courseId:{
-        type:String
-    },
-    // 课程名
-    courseName:{
-        type:String
-    }, 
-    // 教师ID
-    tId:{
-        type:Number
-    },
-    // 总选课人次
-    total:{
-        type:Number
-    },
-    // 开始周次-结束周次
-    duration:{
-        type:String
-    },
-    classHours:{
-        type:Number
-    },
+    classes:[{
+        type:ObjectId,
+        ref:'Class'
+    }],
     meta:{
         createAt:{
             type:Date,
@@ -42,8 +23,8 @@ var TClassSchema = new mongoose.Schema({
     }
 });
 
-TClassSchema.pre('save',function(next){
-    var Class = this
+TClassListSchema.pre('save',function(next){
+    var TClassList = this
     if(this.isNew){
         this.meta.createAt = this.meta.updateAt = Date.now()
     }else{
@@ -54,7 +35,7 @@ TClassSchema.pre('save',function(next){
 
 
 // 静态方法
-TClassSchema.statics = {
+TClassListSchema.statics = {
     fetch:function(cb){
         return this
             .find({})
@@ -68,4 +49,4 @@ TClassSchema.statics = {
     }
 };
 
-module.exports = TClassSchema;
+module.exports = TClassListSchema;

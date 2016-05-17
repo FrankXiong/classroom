@@ -8,24 +8,26 @@ html
     body
         div.header.signin-header
             div.am-g
-                h1 翘课吧
+                h1
+                    a(href="/admin") 翘课吧 
                 p 后台管理系统
             hr 
 
         div.am-g
             div.am-u-lg-6.am-u-md-8.am-u-sm-centered
-                form.am-form(method="post")
-                    label(for="email") 姓名:
-                    input#name(type="text" name="" value="")
+                form(action="/admin/user/reg",method="POST").am-form
+                    input(type="hidden" name="role" value="10")
+                    label(for="nickname") 姓名:
+                    input#nickname(type="text" name="nickname" value="")
                     br
-                    label(for="email") 手机号:
-                    input#phone(type="number" name="" value="")
+                    label(for="phone") 手机号:
+                    input#phone(type="number" name="phone" value="")
                     br
                     label(for="password") 密码:
-                    input#password(type="password" name="" value="")
+                    input#password(type="password" name="password" value="")
                     br
                     br 
                     div.am-cf
                         input#regBtn.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="注册")
 
-        script(src="/js/lib/require.js" data-main="/js/app/reg")
+        // script(src="/js/app/reg.js")

@@ -1,0 +1,73 @@
+extends ../admin_layout
+
+block content
+    include ../includes/admin_sidebar
+
+     //- content start 
+    div.admin-content
+        div.admin-content-body
+            div.am-cf.am-padding.am-padding-bottom-0
+                div.am-fl.am-cf
+                    strong .am-text-primary.am-text-lg 教学班列表
+                hr
+
+            div.am-g
+                div.am-u-sm-12.am-u-md-6
+                    div.am-btn-toolbar
+                        div.am-btn-group.am-btn-group-xs
+                            button(type="button").am-btn.am-btn-defaultspan.am-icon-plus 新增
+                            button(type="button").am-btn.am-btn-defaultspan.am-icon-save 保存
+                            button(type="button").am-btn.am-btn-defaultspan.am-icon-archive 审核
+                            button(type="button").am-btn.am-btn-defaultspan.am-icon-trash-o 删除
+            
+                //- div.am-u-sm-12.am-u-md-3
+                //-     div.am-form-group
+                //-         select(data-am-selected="{btnSize: 'sm'}")
+                //-             option(value="option1")所有类别
+                //-             option(value="option2")IT业界
+                //-             option(value="option3")数码产品
+                //-             option(value="option3")笔记本电脑
+                //-             option(value="option3")平板电脑
+                //-             option(value="option3")只能手机
+                //-             option(value="option3")超极本
+            
+                div.am-u-sm-12.am-u-md-3
+                    div.am-input-group.am-input-group-sm
+                        input(type="text").am-form-field
+                        span.am-input-group-btn
+                            button.am-btn.am-btn-default(type="button") 搜索
+          
+            div.am-g
+                div.am-u-sm-12
+                    form.am-form
+                        table.am-table.am-table-striped.am-table-hover.table-main
+                            thead
+                                tr
+                                    th.table-check
+                                        input(type="checkbox")
+                                    th.table-id ID
+                                    th.table-title 标题
+                                    th.table-type 类别
+                                    th.table-author.am-hide-sm-only 作者
+                                    th.table-date.am-hide-sm-only 修改日期
+                                    th.table-set 操作
+                            tbody
+                                tr
+                                    td 
+                                        input(type="checkbox")
+                                    td 1
+                                    td 
+                                        a(href="#") Business management
+                                    td default
+                                    td.am-hide-sm-only 测试1号
+                                    td.am-hide-sm-only 2014年9月4日 7:28:47
+                                    td 
+                                        div.am-btn-toolbar
+                                            div.am-btn-group.am-btn-group-xs
+                                                button.am-btn.am-btn-default.am-btn-xs.am-text-secondaryspan.am-icon-pencil-square-o 编辑
+                                                button.am-btn.am-btn-default.am-btn-xs.am-hide-sm-onlyspan.am-icon-copy 复制
+                                                button.am-btn.am-btn-default.am-btn-xs.am-text-danger.am-hide-sm-onlyspan.am-icon-trash-o 删除
+                        
+                        div.am-cf 共 1 个教学班
+              
+        

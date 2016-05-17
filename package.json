@@ -28,7 +28,7 @@
   "homepage": "https://github.com/FrankXiong/classroom#readme",
   "main": "app.js",
   "dependencies": {
-    "bcrypt": "^0.8.5",
+    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
     "config": "^1.20.1",
     "connect-mongo": "^0.8.2",

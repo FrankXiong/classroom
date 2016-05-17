@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
     openid:{
-        type:String,
-        unique:true
+        type:String
     },
     nickname:{
         type:String,
@@ -65,9 +66,27 @@ UserSchema.pre('save',function(next){
     }else{
         this.meta.updateAt = Date.now()
     }
-    next()
+    bcrypt.genSalt(SALT_WORK_FACTOR,function(err,salt){
+        if(err) return next(err)
+
+        bcrypt.hash(user.password,salt,function(err,hash){
+            if(err) return next(err)
+
+            user.password = hash
+            next()
+        })
+    })
 });
 
+UserSchema.methods = {
+    comparePassword:function(_password,cb){
+        bcrypt.compare(_password,this.password,function(err,isMatch){
+            if(err) return cb(err)
+
+            cb(null,isMatch)
+        })
+    }
+}
 
 // 静态方法
 UserSchema.statics = {

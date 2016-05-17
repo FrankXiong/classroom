@@ -21,27 +21,27 @@ header.am-topbar.admin-header
                 li.am-dropdown(data-am-dropdown)
                     a.am-dropdown-toggle(data-am-dropdown-toggle href="javascript:;")
                         span.am-icon-users 
-                        span 管理员 
+                        span #{user.nickname}
                         span.am-icon-caret-down
            
-            ul.am-dropdown-content
-                li
-                    a(href="#")
-                        span.am-icon-user 
-                        span 个人资料
-                li
-                    a(href="#")
-                        span.am-icon-cog 
-                        span 设置
-                li
-                    a(href="#")
-                        span.am-icon-power-off 
-                        span 退出
-            
-                li.am-hide-sm-only
-                    a#admin-fullscreen(href="javascript:;") 
-                        span.am-icon-arrows-alt 
-                        span.admin-fullText 开启全屏 else
+                    ul.am-dropdown-content
+                        li
+                            a(href="#")
+                                span.am-icon-user 
+                                span 个人资料
+                        li
+                            a(href="#")
+                                span.am-icon-cog 
+                                span 设置
+                        li
+                            a(href="/logout")
+                                span.am-icon-power-off 
+                                span 退出
+                    
+                        li.am-hide-sm-only
+                            a#admin-fullscreen(href="javascript:;") 
+                                span.am-icon-arrows-alt 
+                                span.admin-fullText 开启全屏 else
                 
         else
             ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right

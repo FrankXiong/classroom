@@ -131,15 +131,15 @@ exports.wxRequired = function(req,res){
 // 桌面端用户注册
 exports.reg = function(req,res){
     var userObj = req.body
-    var name = userObj.name
+    var phone = userObj.phone
 
-    User.findOne({name:name},function(err,user){
+    User.findOne({phone:phone},function(err,user){
         if(err){
             console.log(err)
         }
         if(user){
             console.log('ERROR:用户名已存在')
-            res.redirect('/signin')
+            return res.redirect('/admin/signin')
         }else{
             var user = new User(userObj)
             user.save(function(err,user){
@@ -147,8 +147,7 @@ exports.reg = function(req,res){
                     console.log(err)
                 }
                 console.log("SUCCESS:注册成功")
-                res.status(200).json({msg:'注册成功'})
-                res.redirect('/signin')
+                return res.redirect('/admin/signin')
             })
         }
 
@@ -157,8 +156,41 @@ exports.reg = function(req,res){
 }
 
 // 桌面端用户登录
-exports.signup = function(req,res){
+exports.login = function(req,res){
+    var _user = req.body
+    var phone = _user.phone
+    var password = _user.password
 
+    User.findOne({phone:phone},function(err,user){
+        if(err) console.log(err)
+        //用户不存在 
+        if(!user){
+            console.log('error:用户名不存在！')
+            return res.redirect('/admin/signin')
+        }
+        //调用comparePassword方法比对密码
+        user.comparePassword(password,function(err,isMatch){
+            if(err) console.log(err)
+            if(isMatch){
+                // session存储登录信息
+                req.session.user = user
+                console.log('success:密码正确！')
+                return res.redirect('/admin')
+            }else{
+                console.log('error:密码错误！')
+                // res.status(404).send("密码错误！")
+                return res.redirect('/admin/signin')
+            }
+
+        })
+    })
+}
+
+// logout
+exports.logout = function(req,res){
+    delete req.session.user
+    // delete app.locals.user
+    res.redirect('/admin')
 }
 
 exports.showSignupPage = function(req,res){

@@ -1,0 +1,26 @@
+$(function(){
+    $('#addClassBtn').click(function(){
+        var oTClass = {
+            courseId:$('#courseId').val(),
+            courseName:$('#courseName').val(),
+            tId:$('#tId').val(),
+            total:$('#total').val(),
+            duration:$('#duration').val(),
+            classHours:$('#classHours').val(),
+            currenLesson:$('#currenLesson').val()
+        }
+        $.ajax({
+            url:"/admin/class",
+            type:"POST",
+            cache:false,
+            data:oTClass,
+            dataType:'json',
+            success:function(data){
+                alert(data.msg);
+            },
+            error:function(){
+                alert('请求出错')                
+            }
+        })
+    })
+})

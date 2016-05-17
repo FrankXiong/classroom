@@ -8,7 +8,8 @@ html
     body
         div.header.signin-header
             div.am-g
-                h1 翘课吧
+                h1 
+                    a(href="/admin") 翘课吧
                 p 后台管理系统
             hr 
 
@@ -21,12 +22,12 @@ html
                         i.am-icon-weixin.am-icon-sm 微信
                 br
                 br
-                form.am-form(method="post")
-                    label(for="email") 手机号:
-                    input#phone(type="number" name="" value="")
+                form(action="/admin/user/login",method="POST").am-form
+                    label(for="phone") 手机号:
+                    input#phone(type="number" name="phone" value="")
                     br
                     label(for="password") 密码:
-                    input#password(type="password" name="" value="")
+                    input#password(type="password" name="password" value="")
                     br
                     label(for="remember-me")
                         input#remember-me(type="checkbox") 
@@ -34,7 +35,9 @@ html
                   
                     br 
                     div.am-cf
-                        input.am-btn.am-btn-default.am-btn-sm.am-fl(type="submit" name="" value="忘记密码 ^_^? ")
-                        input.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="登 录")
+                        input.am-btn.am-btn-default.am-btn-sm.am-fl(type="button" name="" value="忘记密码 ^_^? ")
+                        input#loginBtn.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="登 录")
+
+        // script(src="/js/app/reg.js")
                         
                         
