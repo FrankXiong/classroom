@@ -29,14 +29,10 @@ html
                     label(for="password") 密码:
                     input#password(type="password" name="password" value="")
                     br
-                    label(for="remember-me")
-                        input#remember-me(type="checkbox") 
-                        span 记住密码
-                  
-                    br 
                     div.am-cf
-                        input.am-btn.am-btn-default.am-btn-sm.am-fl(type="button" name="" value="忘记密码 ^_^? ")
-                        input#loginBtn.am-btn.am-btn-primary.am-btn-sm.am-fr(type="submit" name="" value="登 录")
+                        a(href="/admin/signup")
+                            input.am-btn.am-btn-default.am-fl(type="button" name="" value="没有帐号?先去注册")
+                        input#loginBtn.am-btn.am-btn-primary.am-fr(type="submit" name="" value="登 录")
 
         // script(src="/js/app/reg.js")
                         

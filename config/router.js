@@ -29,4 +29,6 @@ module.exports = function(app){
     app.get('/admin/class/add',Class.renderAdd)
     app.get('/admin/class/list',Class.renderList)
     app.post('/admin/class/',Class.addTClass)
+    app.delete('/admin/class/list',Class.del)
+    app.get('/admin/class/update/:id',Class.update)
 }

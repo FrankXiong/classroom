@@ -8,8 +8,8 @@ block content
         div.admin-content-body
             div.am-cf.am-padding.am-padding-bottom-0
                 div.am-fl.am-cf
-                    strong .am-text-primary.am-text-lg 教学班列表
-                hr
+                    strong.am-text-primary.am-text-lg 教学班列表
+            hr
 
             div.am-g
                 div.am-u-sm-12.am-u-md-6
@@ -46,28 +46,34 @@ block content
                                     th.table-check
                                         input(type="checkbox")
                                     th.table-id ID
-                                    th.table-title 标题
-                                    th.table-type 类别
-                                    th.table-author.am-hide-sm-only 作者
-                                    th.table-date.am-hide-sm-only 修改日期
+                                    th.table-name 课程名
+                                    th.table-teacher 教师 
+                                    th.table-total.am-hide-sm-only 总选课人数
+                                    th.table-duration.am-hide-sm-only 教学周期
+                                    th.table-class-hours 总学时
                                     th.table-set 操作
                             tbody
-                                tr
-                                    td 
-                                        input(type="checkbox")
-                                    td 1
-                                    td 
-                                        a(href="#") Business management
-                                    td default
-                                    td.am-hide-sm-only 测试1号
-                                    td.am-hide-sm-only 2014年9月4日 7:28:47
-                                    td 
-                                        div.am-btn-toolbar
-                                            div.am-btn-group.am-btn-group-xs
-                                                button.am-btn.am-btn-default.am-btn-xs.am-text-secondaryspan.am-icon-pencil-square-o 编辑
-                                                button.am-btn.am-btn-default.am-btn-xs.am-hide-sm-onlyspan.am-icon-copy 复制
-                                                button.am-btn.am-btn-default.am-btn-xs.am-text-danger.am-hide-sm-onlyspan.am-icon-trash-o 删除
+                                each item in classes
+                                    tr(class="item-id-#{item.courseId}")
+
+                                        td 
+                                            input(type="checkbox")
+                                        td #{item.courseId}
+                                        td 
+                                            a(href="#") #{item.courseName}
+                                        td #{item._id}
+                                        td.am-hide-sm-only #{item.total}
+                                        td.am-hide-sm-only #{item.duration}
+                                        td #{item.classHours}
+                                        td 
+                                            div.am-btn-toolbar
+                                                div.am-btn-group.am-btn-group-xs
+                                                    a(href="/admin/class/update/#{item._id}")
+                                                        button.edit.am-btn.am-btn-default.am-btn-xs.am-text-secondary
+                                                            span.am-icon-pencil-square-o 编辑
+                                                    button.del.am-btn.am-btn-default.am-btn-xs.am-text-danger.am-hide-sm-only(data-id="#{item.courseId}")
+                                                        span.am-icon-trash-o 删除
                         
                         div.am-cf 共 1 个教学班
-              
+    script(src="/js/app/class.js")    
         
