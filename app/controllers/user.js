@@ -222,3 +222,14 @@ exports.signinRequired = function(req,res,next){
     }
     next()
 }
+
+exports.renderList = function(req,res){
+    User.fetch(function(err,users){
+        if(err) console.log(err)
+        console.log(users)
+        res.render('admin_stu_list',{
+            title:'学生列表',
+            users:users
+        })  
+    })
+}

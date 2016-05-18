@@ -20,6 +20,8 @@ module.exports = function(app){
     app.put('/user',User.updateSelf)
     app.get('/logout',User.logout)
 
+
+    // admin start
     app.get('/admin',Admin.renderIndex)
     app.get('/admin/signin',User.showSigninPage)
     app.get('/admin/signup',User.showSignupPage)
@@ -31,4 +33,7 @@ module.exports = function(app){
     app.post('/admin/class/',Class.addTClass)
     app.delete('/admin/class/list',Class.del)
     app.get('/admin/class/update/:id',Class.update)
+
+    app.get('/admin/user/list',User.renderList)
+    // admin end
 }
