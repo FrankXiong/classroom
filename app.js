@@ -11,10 +11,10 @@ var API = require('wechat-api')
 var config = require('config')
 var multer = require('multer')
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 80
 var app = new express()
 var dbUrl = 'mongodb://121.42.189.247/classroom'
-// var dbUrl = 'mongodb://localhost/classroom'
+// var dbUrl = 'mongodb://127.0.0.1/classroom'
 
 var menu_config = config.get('wx.wx_menu')
 var app_id      = config.get('wx.app_id')

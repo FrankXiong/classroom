@@ -52,7 +52,6 @@ TClassSchema.pre('save',function(next){
     next()
 });
 
-
 // 静态方法
 TClassSchema.statics = {
     fetch:function(cb){
