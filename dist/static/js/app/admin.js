@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'static/js',
+    baseUrl: '/js',
     paths:{
         jquery:'lib/jquery',
         amazeui:'lib/amazeui',
@@ -15,12 +15,12 @@ require(['jquery','request'],function($,req){
                 _id:$('#tid').val(),
                 nickname:$('#name').val(),
                 phone:$('#phone').val(),
+                password:$('#password').val(),
                 sex:$('input[name="sex"]:checked').val()
             }
-            req.post(oUserSelf,'/admin/user/self',function(data){
-                if(data.msg === 1){
-                    alert('修改信息成功')
-                }
+            console.log(oUserSelf)
+            req.put(oUserSelf,'/admin/user/self',function(data){
+                alert(data.msg)
             })
         })
     })

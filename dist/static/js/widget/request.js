@@ -22,6 +22,18 @@ define(['jquery'],function($){
                 }
             })
         },
+        put:function(data,url,cb){
+            $.ajax({
+                type:'PUT',
+                url:url,
+                data:data,
+                dataType:'json',
+                success:cb,
+                error:function(){
+                    alert('POST请求出错')                
+                }
+            })
+        },
         delete:function(url,cb){
             $.ajax({
                 type:'DELETE',

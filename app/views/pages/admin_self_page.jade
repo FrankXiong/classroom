@@ -27,7 +27,13 @@ block content
                                     div.am-u-sm-8.am-u-md-4.am-u-end.col-end
                                         input#phone(type="number" value="#{user.phone}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6 
+                                
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 密码
                                         
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#password(type="password" value="#{user.password}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6        
                                         
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 性别
@@ -42,18 +48,10 @@ block content
                                         
                                     div.am-hide-sm-only.am-u-md-6 
                                         
-                                //- div.am-g.am-margin-top
-                                //-     div.am-u-sm-4.am-u-md-2.am-text-right 密码
-                                        
-                                //-     div.am-u-sm-8.am-u-md-4
-                                //-         input#password(type="password" value="#{user.password}").am-input-sm
-                                //-     div.am-hide-sm-only.am-u-md-6
-                                        
-                                
                                 div.am-margin
                                     button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
                                     button#updateSelfBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
 
-    script(src="static/js/lib/require.js" data-main="static/js/app/admin")
+    script(src="/js/lib/require.js" data-main="/js/app/admin")
 
                             

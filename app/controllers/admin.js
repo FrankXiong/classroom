@@ -39,6 +39,18 @@ exports.renderStuList = function(req,res){
     })
 }
 
+exports.renderSelfPage = function(req,res){
+    var id = req.params.id
+    if(id){
+        User.findById(id,function(err,user){
+            res.render('admin_self_page',{
+                title:'个人信息',
+                user:user
+            })
+        })
+    }
+}
+
 // 桌面端用户注册
 exports.reg = function(req,res){
     var userObj = req.body
@@ -122,23 +134,40 @@ exports.updateStu = function(req,res){
     if(id){
         User.findById(id,function(err,user){
             res.render('admin_update_user',{
-                title:'学生信息更新',
+                title:'编辑学生信息',
                 user:user
             })
         })
     }
 }
 
-exports.renderSelfPage = function(req,res){
-    var id = req.params.id
+exports.updateSelf = function(req,res){
+    var data = req.body
+    var id = data._id
+    var _user
+
     if(id){
         User.findById(id,function(err,user){
-            res.render('admin_self_page',{
-                title:'学生信息更新',
-                user:user
+            if(err){
+                console.log(err)
+            }
+            console.log('user:' + user)
+            // 对象拷贝
+            _user = _.extend(user,data)
+            console.log('_user:' + _user)
+
+            _user.save(function(err,user){
+                if(err){
+                    console.log(err)
+                    res.status(500).json({msg:'服务器出了一点问题...'})
+                }
+                res.status(201).json({msg:'保存成功',data:_user})
+
             })
         })
-    }
+    }else{
+        console.log("ERROR:请求参数中没有id")
+    } 
 }
 
 
