@@ -26,6 +26,8 @@ module.exports = function(app){
     app.post('/admin/user/reg',Admin.reg)
     app.post('/admin/user/login',Admin.login)
     app.get('/logout',Admin.logout)
+    app.get('/admin/user/:id',Admin.renderSelfPage)
+    app.put('/admin/user/self',Admin.updateSelf)
 
     app.get('/admin/stu/list',Admin.renderStuList)
     app.delete('/admin/stu/list',Admin.delStu)

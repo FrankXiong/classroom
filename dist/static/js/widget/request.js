@@ -1,0 +1,33 @@
+define(['jquery'],function($){
+    return {
+        get:function(url,cb,param){
+            $.ajax({
+                type:'GET',
+                url:url,
+                success:cb,
+                error:function(){
+                    alert('GET请求出错')
+                }
+            })
+        },
+        post:function(data,url,cb){
+            $.ajax({
+                type:'POST',
+                url:url,
+                data:data,
+                dataType:'json',
+                success:cb,
+                error:function(){
+                    alert('POST请求出错')                
+                }
+            })
+        },
+        delete:function(url,cb){
+            $.ajax({
+                type:'DELETE',
+                url:url
+            })
+            .done(cb)
+        }
+    }
+})

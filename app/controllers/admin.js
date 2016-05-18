@@ -129,5 +129,17 @@ exports.updateStu = function(req,res){
     }
 }
 
+exports.renderSelfPage = function(req,res){
+    var id = req.params.id
+    if(id){
+        User.findById(id,function(err,user){
+            res.render('admin_self_page',{
+                title:'学生信息更新',
+                user:user
+            })
+        })
+    }
+}
+
 
 
