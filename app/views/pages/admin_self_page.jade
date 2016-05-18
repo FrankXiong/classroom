@@ -13,38 +13,54 @@ block content
             div.am-g
                 div.am-u-sm-12
                     div.am-panel
-                        if user
+                        if teacher
                             form.am-form
-                                input#tid(type="hidden" value="#{user._id}")
+                                input#tid(type="hidden" value="#{teacher._id}")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 姓名
                                     div.am-u-sm-8.am-u-md-4
-                                        input#name(type="text" value="#{user.nickname}").am-input-sm
+                                        input#name(type="text" value="#{teacher.nickname}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6 
 
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 电话
                                     div.am-u-sm-8.am-u-md-4.am-u-end.col-end
-                                        input#phone(type="number" value="#{user.phone}").am-input-sm
+                                        input#phone(type="number" value="#{teacher.phone}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6 
                                 
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 密码
                                         
                                     div.am-u-sm-8.am-u-md-4
-                                        input#password(type="password" value="#{user.password}").am-input-sm
+                                        input#password(type="password" value="#{teacher.password}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6        
                                         
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 性别
                                     div.am-u-sm-8.am-u-md-4.am-u-end.col-end  
                                         div.am-btn-group(data-am-button)
-                                            label.am-btn.am-btn-default.am-btn-xs
-                                                input#male(type="radio" name="sex" value="1") 
-                                                span 男
-                                            label.am-btn.am-btn-default.am-btn-xs
-                                                input#female(type="radio" name="sex" value="2") 
-                                                span 女
+                                            case teacher.sex
+                                                when 0
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#male(type="radio" name="sex" value="1") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#female(type="radio" name="sex" value="2") 
+                                                        span 女 
+                                                when 1
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#male(type="radio" name="sex" value="1" checked="checked") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#female(type="radio" name="sex" value="2") 
+                                                        span 女
+                                                when 2
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#male(type="radio" name="sex" value="1") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#female(type="radio" name="sex" value="2" checked="checked") 
+                                                        span 女
                                         
                                     div.am-hide-sm-only.am-u-md-6 
                                         

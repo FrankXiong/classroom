@@ -10,7 +10,7 @@ header.am-topbar.admin-header
 
     div#topbar-collapse.am-collapse.am-topbar-collapse
 
-        if user 
+        if teacher 
             ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right.admin-header-list
                 li
                     a(href="javascript:;")
@@ -21,7 +21,7 @@ header.am-topbar.admin-header
                 li.am-dropdown(data-am-dropdown)
                     a.am-dropdown-toggle(data-am-dropdown-toggle href="javascript:;")
                         span.am-icon-users 
-                        span #{user.nickname}
+                        span #{teacher.name}
                         span.am-icon-caret-down
            
                     ul.am-dropdown-content
@@ -46,10 +46,10 @@ header.am-topbar.admin-header
         else
             ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right
                 li
-                    a(href="/admin/signup")
+                    a(href="/admin/reg")
                         span  注册
                 li
-                    a(href="/admin/signin")
+                    a(href="/admin/login")
                         span  登录
     
   

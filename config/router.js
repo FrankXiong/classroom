@@ -21,8 +21,8 @@ module.exports = function(app){
 
     // admin start
     app.get('/admin',Admin.renderIndex)
-    app.get('/admin/signin',Admin.renderLogin)
-    app.get('/admin/signup',Admin.renderReg)
+    app.get('/admin/login',Admin.renderLogin)
+    app.get('/admin/reg',Admin.renderReg)
     app.post('/admin/user/reg',Admin.reg)
     app.post('/admin/user/login',Admin.login)
     app.get('/logout',Admin.logout)

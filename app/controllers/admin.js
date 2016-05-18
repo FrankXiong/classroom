@@ -3,27 +3,29 @@ var OAuth = require('wechat-oauth')
 var config = require('config')
 var _ = require('underscore');
 var User = require('../models/user')
+var Teacher = require('../models/teacher')
 
 exports.renderIndex = function(req,res){
-    var user = req.session.user
-    console.log('user in session: '+req.session.user)
-    if(user){
+    var teacher = req.session.teacher
+    console.log('teacher in session: '+req.session.teacher)
+    if(teacher){
         res.render('admin',{
-            title:'翘课吧-后台管理系统'
+            title:'翘课吧-后台管理系统',
+            teacher:teacher
         }) 
     }else{
-        res.redirect('/admin/signin')
+        res.redirect('/admin/login')
     }
 }
 
 exports.renderReg = function(req,res){
-    res.render('admin_signup',{
+    res.render('admin_reg',{
         title:'注册'
     })
 }
 
 exports.renderLogin = function(req,res){
-    res.render('admin_signin',{
+    res.render('admin_login',{
         title:'登录'
     })
 }
@@ -42,10 +44,10 @@ exports.renderStuList = function(req,res){
 exports.renderSelfPage = function(req,res){
     var id = req.params.id
     if(id){
-        User.findById(id,function(err,user){
+        Teacher.findById(id,function(err,teacher){
             res.render('admin_self_page',{
                 title:'个人信息',
-                user:user
+                teacher:teacher
             })
         })
     }
@@ -53,24 +55,24 @@ exports.renderSelfPage = function(req,res){
 
 // 桌面端用户注册
 exports.reg = function(req,res){
-    var userObj = req.body
-    var phone = userObj.phone
+    var teacherObj = req.body
+    var phone = teacherObj.phone
 
-    User.findOne({phone:phone},function(err,user){
+    Teacher.findOne({phone:phone},function(err,teacher){
         if(err){
             console.log(err)
         }
-        if(user){
+        if(teacher){
             console.log('ERROR:用户名已存在')
-            return res.redirect('/admin/signin')
+            return res.redirect('/admin/login')
         }else{
-            var user = new User(userObj)
-            user.save(function(err,user){
+            var teacher = new Teacher(teacherObj)
+            teacher.save(function(err,teacher){
                 if(err){
                     console.log(err)
                 }
                 console.log("SUCCESS:注册成功")
-                return res.redirect('/admin/signin')
+                return res.redirect('/admin/login')
             })
         }
 
@@ -80,29 +82,29 @@ exports.reg = function(req,res){
 
 // 桌面端用户登录
 exports.login = function(req,res){
-    var _user = req.body
-    var phone = _user.phone
-    var password = _user.password
+    var _teacher = req.body
+    var phone = _teacher.phone
+    var password = _teacher.password
 
-    User.findOne({phone:phone},function(err,user){
+    Teacher.findOne({phone:phone},function(err,teacher){
         if(err) console.log(err)
         //用户不存在 
-        if(!user){
+        if(!teacher){
             console.log('error:用户名不存在！')
-            return res.redirect('/admin/signin')
+            return res.redirect('/admin/login')
         }
         //调用comparePassword方法比对密码
-        user.comparePassword(password,function(err,isMatch){
+        teacher.comparePassword(password,function(err,isMatch){
             if(err) console.log(err)
             if(isMatch){
                 // session存储登录信息
-                req.session.user = user
+                req.session.teacher = teacher
                 console.log('success:密码正确！')
                 return res.redirect('/admin')
             }else{
                 console.log('error:密码错误！')
                 // res.status(404).send("密码错误！")
-                return res.redirect('/admin/signin')
+                return res.redirect('/admin/login')
             }
 
         })
@@ -111,8 +113,8 @@ exports.login = function(req,res){
 
 // logout
 exports.logout = function(req,res){
-    delete req.session.user
-    // delete app.locals.user
+    delete req.session.teacher
+    // delete app.locals.teacher
     res.redirect('/admin')
 }
 
@@ -120,7 +122,7 @@ exports.logout = function(req,res){
 exports.delStu = function(req,res){
     var id = req.query.id
     if(id){
-        User.remove({_id:id},function(err,user){
+        teacher.remove({_id:id},function(err,teacher){
             if(err){
                 console.log(err)
             }
@@ -144,24 +146,24 @@ exports.updateStu = function(req,res){
 exports.updateSelf = function(req,res){
     var data = req.body
     var id = data._id
-    var _user
+    var _teacher
 
     if(id){
-        User.findById(id,function(err,user){
+        Teacher.findById(id,function(err,teacher){
             if(err){
                 console.log(err)
             }
-            console.log('user:' + user)
+            console.log('teacher:' + teacher)
             // 对象拷贝
-            _user = _.extend(user,data)
-            console.log('_user:' + _user)
+            _teacher = _.extend(teacher,data)
+            console.log('_teacher:' + _teacher)
 
-            _user.save(function(err,user){
+            _teacher.save(function(err,teacher){
                 if(err){
                     console.log(err)
                     res.status(500).json({msg:'服务器出了一点问题...'})
                 }
-                res.status(201).json({msg:'保存成功',data:_user})
+                res.status(201).json({msg:'保存成功',data:_teacher})
 
             })
         })
