@@ -1,0 +1,30 @@
+doctype
+html
+    head
+        meta(charset='utf-8')
+        title #{title}
+        include ../includes/admin_head
+
+    body
+        div.header.signin-header
+            div.am-g
+                h1
+                    a(href="/") 翘课吧 
+            hr 
+
+        div.am-g
+            div.am-u-lg-6.am-u-md-8.am-u-sm-centered
+                form(action="/user/reg",method="POST").am-form
+                    input(type="hidden" name="role" value="10")
+                    label(for="name") 姓名:
+                    input#name(type="text" name="name" value="")
+                    br
+                    label(for="phone") 手机号:
+                    input#phone(type="number" name="phone" value="")
+                    br
+                    label(for="password") 密码:
+                    input#password(type="password" name="password" value="")
+                    br
+                    br 
+                    div.am-cf
+                        input#regBtn.am-btn.am-btn-primary.am-fr(type="submit" name="" value="注册")

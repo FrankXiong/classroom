@@ -3,11 +3,7 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-    openid:{
-        type:String,
-        default:'unknown'
-    },
-    nickname:{
+    name:{
         type:String,
         default:'unknown'
     },
@@ -20,16 +16,44 @@ var UserSchema = new mongoose.Schema({
         // 1:verified user
         // >=10:admin
         // >=100:super admin
-        // 默认为普通用户
+        // 默认为普通用户,不可更改
         default:0
     },
     class:{
         type:String,
         default:'unknown'
     },
+    // 学号
     stuid:{
         type:Number,
         default:20130001
+    },
+    phone:Number,
+    // 暂不开放学校选项，默认为重庆大学，且不可更改
+    school:{
+        type:String,
+        default:'重庆大学'
+    },
+    // 学院和行政班级的数据应保存于json文件中
+    // 用户注册时以二级联动下拉列表的形式让用户选择
+    // 此处为求简单，暂时使用文本框的形式输入，因此学院和行政班级类型均为String
+    college:{
+        type:String,
+        default:'unknown'
+    },
+    xzclass:{
+        type:String,
+        default:'unknown'
+    },
+    
+    // 以下信息由微信认证后提供
+    openid:{
+        type:String,
+        default:'unknown'
+    },
+    nickname:{
+        type:String,
+        default:'unknown'
     },
     province:{
         type:String,
@@ -44,10 +68,8 @@ var UserSchema = new mongoose.Schema({
         //0:未知  1:男  2:女
         default:0
     },
-    phone:Number,
     headimgurl:String,
     intro:String,
-    token:String,
     meta:{
         createAt:{
             type:Date,

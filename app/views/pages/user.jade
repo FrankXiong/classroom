@@ -9,16 +9,17 @@ block content
                     input(type="hidden",name="_id",value="#{user._id}")
                 div.weui_cells_title 个人信息
                 div.weui_cells
-                    div.weui_cell
-                        div.weui_cell_bd.weui_cell_primary
-                            p 头像                   
-                        div.weui_cell_ft 
-                            img.headimg(src="#{user.headimgurl}",alt="用户头像")
-
-                    div.weui_cell
-                        div.weui_cell_bd.weui_cell_primary
-                            p 昵称                    
-                        div.weui_cell_ft #{user.nickname}
+                    if user.headimgurl
+                        div.weui_cell
+                            div.weui_cell_bd.weui_cell_primary
+                                p 头像                   
+                            div.weui_cell_ft 
+                                img.headimg(src="#{user.headimgurl}",alt="用户头像")
+                    if user.nickname
+                        div.weui_cell
+                            div.weui_cell_bd.weui_cell_primary
+                                p 昵称                    
+                            div.weui_cell_ft #{user.nickname}
 
                     div.weui_cell.weui_cell_select.weui_select_after
                         div.weui_cell_hd.weui_cell_primary
@@ -43,38 +44,44 @@ block content
                             p 学号                    
                         div.weui_cell_primary.weui_cell_bd
                             input#stuid.weui_input(type="number",name="stuid",value=user.stuid,pattern="[0-9*",placeholder="请输入学号")
+                            
+                    div.weui_cell
+                            div.weui_cell_bd.weui_cell_primary
+                                p 学校                    
+                            div.weui_cell_ft #{user.school}
+
                     div.weui_cell.weui_cell_select.weui_select_after
                         div.weui_cell_hd.weui_cell_primary 
-                            p 教学班
+                            p 行政班级
                         div.weui_cell_ft.weui_cell_bd
-                            select#class.weui_select(name="class",value=user.class)
-                                if user.class = unknown
+                            select#class.weui_select(name="class",value=user.xzclass)
+                                if user.xzclass = unknown
                                     option.tr(value="unknown") 请选择
-                                    option.tr(value="cxsj_yrl") 程序实践[杨瑞龙]
-                                    option.tr(value="cxsj_cb") 程序实践[陈波]   
+                                    option.tr(value="计科01班") 计科01班
+                                    option.tr(value="计科02班") 计科02班
+                                    option.tr(value="计科03班") 计科03班
+                                    option.tr(value="计科04班") 计科04班
+                                    option.tr(value="计科05班") 计科05班
+                                    option.tr(value="计科06班") 计科06班 
                                 else
-                                    option.tr(value="cxsj_yrl") 程序实践[杨瑞龙]
-                                    option.tr(value="cxsj_cb") 程序实践[陈波]  
+                                    option.tr(value="计科01班") 计科01班
+                                    option.tr(value="计科02班") 计科02班
+                                    option.tr(value="计科03班") 计科03班
+                                    option.tr(value="计科04班") 计科04班
+                                    option.tr(value="计科05班") 计科05班
+                                    option.tr(value="计科06班") 计科06班
                                 
-    
+                
                 div.weui_cells_title 地区
                 div.weui_cells
                     div.weui_cell.weui_cell_select.weui_select_after
-                        div.weui_cell_hd.weui_cell_primary 
-                            p 省份
-                        div.weui_cell_ft.weui_cell_bd
-                            select#province.weui_select(name="province",value=user.province)
-                                option.tr(selected="" value="#{user.province}") #{user.province}
-                                option.tr(value="Shanghai") 上海市
-                                option.tr(value="Guangzhou") 广州市          
+                        div.weui_cell_bd.weui_cell_primary
+                            p 省份                    
+                        div.weui_cell_ft #{user.province}
                     div.weui_cell.weui_cell_select.weui_select_after
-                        div.weui_cell_hd.weui_cell_primary 
-                            p 城市
-                        div.weui_cell_ft.weui_cell_bd
-                            select#city.weui_select(name="city",value=user.city)
-                                option.tr(selected="" value="#{user.city}") #{user.city}
-                                option.tr(value="Yuzhong") 渝中区
-                                option.tr(value="Wanzhou") 万州区
+                        div.weui_cell_bd.weui_cell_primary
+                            p 城市                    
+                        div.weui_cell_ft #{user.city}
 
                 div.weui_cells_title 其他
                 div.weui_cells

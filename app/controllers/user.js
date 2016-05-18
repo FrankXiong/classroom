@@ -50,7 +50,7 @@ exports.callback = function(req,res){
                             console.log('user save success')
 
                             req.session.user = user
-                            res.redirect('/home')
+                            res.redirect('/')
                         }
 
                     }) 
@@ -59,7 +59,7 @@ exports.callback = function(req,res){
                 console.log('user is exited')
                 console.log(user.nickname)
                 req.session.user = user
-                res.redirect('/home')
+                res.redirect('/')
             }
         })
     }) 
@@ -144,6 +144,72 @@ exports.signinRequired = function(req,res,next){
         res.redirect('/signin')
     }
     next()
+}
+
+exports.reg = function(req,res){
+    var userObj = req.body
+    var phone = userObj.phone
+
+    User.findOne({phone:phone},function(err,user){
+        if(err){
+            console.log(err)
+        }
+        if(user){
+            console.log('ERROR:用户名已存在')
+            return res.redirect('/login')
+        }else{
+            var user = new User(userObj)
+            user.save(function(err,user){
+                if(err){
+                    console.log(err)
+                }
+                console.log("SUCCESS:注册成功")
+                return res.redirect('/login')
+            })
+        }
+    })
+}
+
+exports.login = function(req,res){
+    var _user = req.body
+    var phone = _user.phone
+    var password = _user.password
+
+    User.findOne({phone:phone},function(err,user){
+        if(err) console.log(err)
+        //用户不存在 
+        if(!user){
+            console.log('error:用户名不存在！')
+            return res.redirect('/login')
+        }
+        //调用comparePassword方法比对密码
+        User.comparePassword(password,function(err,isMatch){
+            if(err) console.log(err)
+            if(isMatch){
+                // session存储登录信息
+                req.session.user = user
+                console.log('success:密码正确！')
+                return res.redirect('/')
+            }else{
+                console.log('error:密码错误！')
+                // res.status(404).send("密码错误！")
+                return res.redirect('/login')
+            }
+
+        })
+    })
+}
+
+exports.renderReg = function(req,res){
+    res.render('user_reg',{
+        title:'注册'
+    })
+}
+
+exports.renderLogin = function(req,res){
+    res.render('user_login',{
+        title:'登录'
+    })
 }
 
 

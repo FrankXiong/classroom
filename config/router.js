@@ -11,13 +11,18 @@ module.exports = function(app){
         return next()
     })
 
-    app.get('/home',Index.index) 
+    // app.get('/home',Index.index) 
     app.post('/',Index.send)
 
-    app.get('/',User.oauth)
+    // app.get('/',User.oauth)
+    app.get('/',Index.index)
     app.get('/wx/callback',User.callback)
     app.get('/user/:openid',User.showUserInfo)
     app.put('/user',User.updateSelf)
+    app.post('/user/reg',User.reg)
+    app.post('/user/login',User.login)
+    app.get('/user/login',User.renderLogin)
+    app.get('/user/reg',User.renderReg)
 
     // admin start
     app.get('/admin',Admin.renderIndex)
