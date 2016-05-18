@@ -7,11 +7,6 @@ exports.renderAdd = function(req,res){
         title:'添加教学班'
     })       
 }
-// exports.renderList = function(req,res){
-//     res.render('admin_class_list',{
-//         title:'教学班列表'
-//     })
-// }
 
 exports.addTClass = function(req,res){
     var oTClass = req.body
@@ -28,7 +23,6 @@ exports.addTClass = function(req,res){
 exports.renderList = function(req,res){
     Class.fetch(function(err,classes){
         if(err) console.log(err)
-        console.log(classes)
         res.render('admin_class_list',{
             title:'教学班列表',
             classes:classes

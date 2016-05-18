@@ -16,8 +16,8 @@ var TClassSchema = new mongoose.Schema({
         type:String
     }, 
     // 教师ID
-    tId:{
-        type:Number
+    tid:{
+        type:String
     },
     // 总选课人次
     total:{

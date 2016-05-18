@@ -4,7 +4,8 @@ var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
     openid:{
-        type:String
+        type:String,
+        default:'unknown'
     },
     nickname:{
         type:String,

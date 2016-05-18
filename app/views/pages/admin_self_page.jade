@@ -3,13 +3,14 @@ extends ../admin_layout
 block content
     include ../includes/admin_sidebar
 
+     //- content start 
     div.admin-content
         div.admin-content-body
             div.am-cf.am-padding.am-padding-bottom-0
                 div.am-fl.am-cf
-                    strong.am-text-primary.am-text-lg 教学班管理 /
-                    small 添加教学班 
+                    strong.am-text-primary.am-text-lg 个人资料
             hr
+
             div.am-g
                 div.am-u-sm-12
                     div.am-panel
@@ -106,7 +107,3 @@ block content
                                     div.am-margin
                                         button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
                                         button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
-        
-    script(src="/js/app/admin_class.js")
-        
-                        

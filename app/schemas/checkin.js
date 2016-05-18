@@ -8,7 +8,7 @@ var CheckinSchema = new mongoose.Schema({
         unique:true
     },
     // 学生学号
-    sId:{
+    sid:{
         type:String
     },
     //  课堂ID

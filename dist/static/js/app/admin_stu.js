@@ -6,7 +6,7 @@ $(function(){
 
         $.ajax({
             type:'DELETE',
-            url:'/admin/user/list?id=' + id
+            url:'/admin/stu/list?id=' + id
         })
         .done(function(results){
             if(results.success === 1){

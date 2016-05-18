@@ -18,22 +18,23 @@ module.exports = function(app){
     app.get('/wx/callback',User.callback)
     app.get('/user/:openid',User.showUserInfo)
     app.put('/user',User.updateSelf)
-    app.get('/logout',User.logout)
-
 
     // admin start
     app.get('/admin',Admin.renderIndex)
-    app.get('/admin/signin',User.showSigninPage)
-    app.get('/admin/signup',User.showSignupPage)
-    app.post('/admin/user/reg',User.reg)
-    app.post('/admin/user/login',User.login)
+    app.get('/admin/signin',Admin.renderLogin)
+    app.get('/admin/signup',Admin.renderReg)
+    app.post('/admin/user/reg',Admin.reg)
+    app.post('/admin/user/login',Admin.login)
+    app.get('/logout',Admin.logout)
+
+    app.get('/admin/stu/list',Admin.renderStuList)
+    app.delete('/admin/stu/list',Admin.delStu)
+    app.put('/admin/stu',Admin.updateStu)
 
     app.get('/admin/class/add',Class.renderAdd)
     app.get('/admin/class/list',Class.renderList)
     app.post('/admin/class/',Class.addTClass)
     app.delete('/admin/class/list',Class.del)
     app.get('/admin/class/update/:id',Class.update)
-
-    app.get('/admin/user/list',User.renderList)
     // admin end
 }

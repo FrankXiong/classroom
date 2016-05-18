@@ -3,7 +3,7 @@ $(function(){
         var oTClass = {
             courseId:$('#courseId').val(),
             courseName:$('#courseName').val(),
-            tId:$('#tId').val(),
+            tid:$('#tid').val(),
             total:$('#total').val(),
             duration:$('#duration').val(),
             classHours:$('#classHours').val(),
@@ -42,5 +42,4 @@ $(function(){
             }
         })
     })
-    
 })
