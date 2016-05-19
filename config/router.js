@@ -34,19 +34,23 @@ module.exports = function(app){
     app.post('/admin/user/login',Admin.login)
     app.get('/admin/logout',Admin.logout)
     app.get('/admin/user/:id',Admin.renderSelfPage)
-    app.put('/admin/user/self',Admin.updateSelf)
+    app.put('/admin/user/self',Admin.updateSelf)  
 
-    app.get('/admin/stu/list',Admin.renderStuList)
-    app.delete('/admin/stu/list',Admin.delStu)
-    app.put('/admin/stu',Admin.updateStu)
+    app.get('/admin/stu/list',Admin.renderStuList) 
+    app.get('/admin/stu/update/:id',Admin.renderUpdateStu)
+    app.delete('/admin/stu',Admin.delStu)
+     
 
     app.get('/admin/class/list',Class.renderList)
     app.get('/admin/class/import/:id',Class.renderStuAdd)
-    app.get('/admin/class/:id',Class.renderClassPage)
     app.get('/admin/class/add',Class.renderAdd)
+    app.get('/admin/class/:id',Class.renderClassPage)
+    
     
     app.post('/admin/class/',Class.addTClass)
     app.delete('/admin/class',Class.del)
     app.get('/admin/class/update/:id',Class.update)
+
+
     // admin end
 }

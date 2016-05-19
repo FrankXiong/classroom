@@ -13,7 +13,7 @@ require(['jquery','request'],function($,req){
         $updateSelfBtn.click(function(){
             var oUserSelf = {
                 _id:$('#tid').val(),
-                nickname:$('#name').val(),
+                name:$('#name').val(),
                 phone:$('#phone').val(),
                 password:$('#password').val(),
                 sex:$('input[name="sex"]:checked').val()

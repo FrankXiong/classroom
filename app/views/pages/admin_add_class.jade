@@ -4,111 +4,108 @@ block content
     include ../includes/admin_sidebar
 
     div.admin-content
-        if teacher
-            div.admin-content-body
-                div.am-cf.am-padding.am-padding-bottom-0
-                    div.am-fl.am-cf
-                        strong.am-text-primary.am-text-lg 教学班管理 /
-                        small 添加教学班 
-                hr
-                div.am-g
-                    div.am-u-sm-12
-                        div.am-panel
-                            if tclass
-                                form.am-form
-                                    input#tid(type="hidden" value="#{teacher._id}")
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#courseId(type="text" value="#{tclass.courseId}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
+        div.admin-content-body
+            div.am-cf.am-padding.am-padding-bottom-0
+                div.am-fl.am-cf
+                    strong.am-text-primary.am-text-lg 教学班管理 /
+                    small 添加教学班 
+            hr
+            div.am-g
+                div.am-u-sm-12
+                    div.am-panel
+                        if tclass
+                            form.am-form
+                                input#tid(type="hidden" value="#{teacher._id}")
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#courseId(type="text" value="#{tclass.courseId}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
 
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 课程名
-                                            
-                                        div.am-u-sm-8.am-u-md-4.am-u-end.col-end
-                                            input#courseName(type="text" value="#{tclass.courseName}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                            
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 总选课人数
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#total(type="number" value="#{tclass.total}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 持续时间
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#duration(type="text" value="#{tclass.duration}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填（开始周次-结束周次，实例：1-16）
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 总学时
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#classHours(type="number" value="#{tclass.classHours}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                           
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 当前课堂ID
-                                        div.am-u-sm-8.am-u-md-4.am-text-left
-                                            input#currentLesson(type="number" value="#{tclass.currentLesson}").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6
-                                    div.am-margin
-                                        button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
-                                        button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
-                            else
-                                form.am-form
-                                    input#tid(type="hidden" value="#{teacher._id}")
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#courseId(type="text").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 课程名
+                                        
+                                    div.am-u-sm-8.am-u-md-4.am-u-end.col-end
+                                        input#courseName(type="text" value="#{tclass.courseName}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                        
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 总选课人数
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#total(type="number" value="#{tclass.total}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 持续时间
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#duration(type="text" value="#{tclass.duration}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填（开始周次-结束周次，实例：1-16）
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 总学时
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#classHours(type="number" value="#{tclass.classHours}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                       
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 当前课堂ID
+                                    div.am-u-sm-8.am-u-md-4.am-text-left
+                                        input#currentLesson(type="number" value="#{tclass.currentLesson}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+                                div.am-margin
+                                    button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
+                                    button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
+                        else
+                            form.am-form
+                                input#tid(type="hidden" value="#{teacher._id}")
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#courseId(type="text").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
 
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 课程名
-                                            
-                                        div.am-u-sm-8.am-u-md-4.am-u-end.col-end
-                                            input#courseName(type="text").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                            
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 总选课人数
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#total(type="number").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 持续时间
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#duration(type="text").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填（开始周次-结束周次，实例：1-16）
-                                            
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 总学时
-                                            
-                                        div.am-u-sm-8.am-u-md-4
-                                            input#classHours(type="number").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6 *必填
-                                           
-                                    div.am-g.am-margin-top
-                                        div.am-u-sm-4.am-u-md-2.am-text-right 当前课堂ID
-                                        div.am-u-sm-8.am-u-md-4.am-text-left
-                                            input#currentLesson(type="number").am-input-sm
-                                        div.am-hide-sm-only.am-u-md-6
-                                    div.am-margin
-                                        button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
-                                        button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 课程名
+                                        
+                                    div.am-u-sm-8.am-u-md-4.am-u-end.col-end
+                                        input#courseName(type="text").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                        
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 总选课人数
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#total(type="number").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 持续时间
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#duration(type="text").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填（开始周次-结束周次，实例：1-16）
+                                        
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 总学时
+                                        
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#classHours(type="number").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6 *必填
+                                       
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 当前课堂ID
+                                    div.am-u-sm-8.am-u-md-4.am-text-left
+                                        input#currentLesson(type="number").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+                                div.am-margin
+                                    button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
+                                    button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
 
-        else
-            span 请先登录
         
     script(src="/js/app/admin_class.js")
         

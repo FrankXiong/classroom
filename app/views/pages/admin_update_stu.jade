@@ -1,0 +1,121 @@
+extends ../admin_layout
+
+block content
+    include ../includes/admin_sidebar
+
+     //- content start 
+    div.admin-content
+        if teacher
+            div.admin-content-body
+                div.am-cf.am-padding.am-padding-bottom-0
+                    div.am-fl.am-cf
+                        strong.am-text-primary.am-text-lg 编辑学生信息
+                hr
+                div.am-g
+                    div.am-u-sm-12
+                        if user
+                            form.am-form
+                                input#tid(type="hidden" value="#{teacher._id}")
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 姓名
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#name(type="text" value="#{user.name}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 学号
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#stuid(type="text" value="#{user.stuid}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 电话
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#phone(type="text" value="#{user.phone}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#xzclass(type="text" value="#{user.xzclass}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 性别
+                                    div.am-u-sm-8.am-u-md-4
+                                        div.am-btn-group(data-am-button)
+                                            case user.sex
+                                                when 1
+                                                    label.am-btn.am-btn-default.am-btn-xs.am-active
+                                                        input#male(type="radio" name="sex" value="1") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#female(type="radio" name="sex" value="2") 
+                                                        span 女 
+                                                when 2 
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#male(type="radio" name="sex" value="1") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs.am-active
+                                                        input#female(type="radio" name="sex" value="2") 
+                                                        span 女
+                                                when 0
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#male(type="radio" name="sex" value="1") 
+                                                        span 男
+                                                    label.am-btn.am-btn-default.am-btn-xs
+                                                        input#female(type="radio" name="sex" value="2") 
+                                                        span 女
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-margin
+                                    button(type="reset").am-btn.am-btn-default.am-fl 取消
+                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
+                        else
+                            form.am-form
+                                input#tid(type="hidden" value="#{teacher._id}")
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 姓名
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#name(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 学号
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#stuid(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 电话
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#phone(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#xzclass(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#xzclass(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 性别
+                                    div.am-u-sm-8.am-u-md-4
+                                        div.am-btn-group(data-am-button)
+                                            label.am-btn.am-btn-default.am-btn-xs
+                                                input#male(type="radio" name="sex" value="1") 
+                                                span 男
+                                            label.am-btn.am-btn-default.am-btn-xs
+                                                input#female(type="radio" name="sex" value="2") 
+                                                span 女 
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-margin
+                                    button(type="reset").am-btn.am-btn-default.am-fl 取消
+                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
+        else 
+            span 请先登录

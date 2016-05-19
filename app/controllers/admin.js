@@ -76,6 +76,24 @@ exports.renderStuList = function(req,res){
         res.redirect('/admin/login')
     }
 }
+exports.renderUpdateStu = function(req,res){
+    var id = req.params.id
+    var teacher = req.session.teacher
+    if(teacher){
+        if(id){
+            User.findById(id,function(err,user){
+                res.render('admin_update_stu',{
+                    title:'编辑学生信息',
+                    user:user,
+                    teacher:teacher
+                })
+            })
+        }
+    }else{
+        res.redirect('/admin/login')
+    }
+    
+}
 
 // 桌面端用户注册
 exports.reg = function(req,res){
@@ -145,8 +163,9 @@ exports.logout = function(req,res){
 
 exports.delStu = function(req,res){
     var id = req.query.id
+    console.log(id)
     if(id){
-        teacher.remove({_id:id},function(err,teacher){
+        User.remove({_id:id},function(err,user){
             if(err){
                 console.log(err)
             }
@@ -155,17 +174,7 @@ exports.delStu = function(req,res){
     }
 }
 
-exports.updateStu = function(req,res){
-    var id = req.params.id
-    if(id){
-        User.findById(id,function(err,user){
-            res.render('admin_update_user',{
-                title:'编辑学生信息',
-                user:user
-            })
-        })
-    }
-}
+
 
 exports.updateSelf = function(req,res){
     var data = req.body

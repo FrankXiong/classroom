@@ -1,12 +1,13 @@
 $(function(){
     $('.del').click(function(e){
-        var id = $(e.target).data('id')
-        console.log(id)
+        var target = $(e.target)
+        var id = target.data('id')
         var tr = $('.item-id-' + id)
+        console.log(id)
 
         $.ajax({
             type:'DELETE',
-            url:'/admin/stu/list?id=' + id
+            url:'/admin/stu/?id=' + id
         })
         .done(function(results){
             if(results.success === 1){
