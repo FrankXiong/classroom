@@ -31,7 +31,7 @@ $(function(){
 
         $.ajax({
             type:'DELETE',
-            url:'/admin/class/list?id=' + id
+            url:'/admin/class/?id=' + id
         })
         .done(function(results){
             if(results.success === 1){

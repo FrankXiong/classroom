@@ -7,66 +7,66 @@ block content
         div.admin-content-body
             div.am-cf.am-padding.am-padding-bottom-0
                 div.am-fl.am-cf
-                    strong.am-text-primary.am-text-lg 个人资料
+                    strong.am-text-primary.am-text-lg 个人资料 /
+                    small #{teacher.name}
             hr
 
             div.am-g
                 div.am-u-sm-12
                     div.am-panel
-                        if teacher
-                            form.am-form
-                                input#tid(type="hidden" value="#{teacher._id}")
-                                div.am-g.am-margin-top
-                                    div.am-u-sm-4.am-u-md-2.am-text-right 姓名
-                                    div.am-u-sm-8.am-u-md-4
-                                        input#name(type="text" value="#{teacher.name}").am-input-sm
-                                    div.am-hide-sm-only.am-u-md-6 
+                        form.am-form
+                            input#tid(type="hidden" value="#{teacher._id}")
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 姓名
+                                div.am-u-sm-8.am-u-md-4
+                                    input#name(type="text" value="#{teacher.name}").am-input-sm
+                                div.am-hide-sm-only.am-u-md-6 
 
-                                div.am-g.am-margin-top
-                                    div.am-u-sm-4.am-u-md-2.am-text-right 电话
-                                    div.am-u-sm-8.am-u-md-4.am-u-end.col-end
-                                        input#phone(type="number" value="#{teacher.phone}").am-input-sm
-                                    div.am-hide-sm-only.am-u-md-6 
-                                
-                                div.am-g.am-margin-top
-                                    div.am-u-sm-4.am-u-md-2.am-text-right 密码
-                                        
-                                    div.am-u-sm-8.am-u-md-4
-                                        input#password(type="password" value="#{teacher.password}").am-input-sm
-                                    div.am-hide-sm-only.am-u-md-6        
-                                        
-                                div.am-g.am-margin-top
-                                    div.am-u-sm-4.am-u-md-2.am-text-right 性别
-                                    div.am-u-sm-8.am-u-md-4.am-u-end.col-end  
-                                        div.am-btn-group(data-am-button)
-                                            case teacher.sex
-                                                when 0
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#male(type="radio" name="sex" value="1") 
-                                                        span 男
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#female(type="radio" name="sex" value="2") 
-                                                        span 女 
-                                                when 1
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#male(type="radio" name="sex" value="1" checked="checked") 
-                                                        span 男
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#female(type="radio" name="sex" value="2") 
-                                                        span 女
-                                                when 2
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#male(type="radio" name="sex" value="1") 
-                                                        span 男
-                                                    label.am-btn.am-btn-default.am-btn-xs
-                                                        input#female(type="radio" name="sex" value="2" checked="checked") 
-                                                        span 女
-                                        
-                                    div.am-hide-sm-only.am-u-md-6 
-                                        
-                                div.am-margin
-                                    button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
-                                    button#updateSelfBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 电话
+                                div.am-u-sm-8.am-u-md-4.am-u-end.col-end
+                                    input#phone(type="number" value="#{teacher.phone}").am-input-sm
+                                div.am-hide-sm-only.am-u-md-6 
+                            
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 密码
+                                    
+                                div.am-u-sm-8.am-u-md-4
+                                    input#password(type="password" value="#{teacher.password}").am-input-sm
+                                div.am-hide-sm-only.am-u-md-6        
+                                    
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 性别
+                                div.am-u-sm-8.am-u-md-4.am-u-end.col-end  
+                                    div.am-btn-group(data-am-button)
+                                        case teacher.sex
+                                            when 0
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#male(type="radio" name="sex" value="1") 
+                                                    span 男
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#female(type="radio" name="sex" value="2") 
+                                                    span 女 
+                                            when 1
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#male(type="radio" name="sex" value="1" checked="checked") 
+                                                    span 男
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#female(type="radio" name="sex" value="2") 
+                                                    span 女
+                                            when 2
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#male(type="radio" name="sex" value="1") 
+                                                    span 男
+                                                label.am-btn.am-btn-default.am-btn-xs
+                                                    input#female(type="radio" name="sex" value="2" checked="checked") 
+                                                    span 女
+                                    
+                                div.am-hide-sm-only.am-u-md-6 
+                                    
+                            div.am-margin
+                                button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
+                                button#updateSelfBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
 
     script(src="/js/lib/require.js" data-main="/js/app/admin")
 

@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var Class = require('../models/class')
 var ClassList = require('../models/classList')
+var Teacher = require('../models/teacher')
 
 exports.renderAdd = function(req,res){
     var teacher = req.session.teacher
@@ -42,6 +43,27 @@ exports.renderStuAdd = function(req,res){
                     teacher:teacher,
                     tclass:tclass
                 })                
+            })
+        }
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderClassPage = function(req,res){
+    var isLogin = req.session.teacher
+    var classId = req.params.id
+    if(isLogin){
+        if(classId){
+            Class.findById(classId,function(err,tclass){
+                // Teacher.findById(tclass.tid,function(err,teacher){
+                    res.render('admin_class_page',{
+                        title:'教学班主页',
+                        // teacher:teacher,
+                        tclass:tclass,
+                        teacher:isLogin
+                    }) 
+                // })
             })
         }
     }else{
@@ -92,6 +114,6 @@ exports.update = function(req,res){
 }
 
 exports.importStu = function(req,res){
-    
+
 }
 

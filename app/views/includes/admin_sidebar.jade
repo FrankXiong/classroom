@@ -38,34 +38,37 @@ div#admin-offcanvas.admin-sidebar.am-offcanvas
                     span 学生管理
                     
             li
-                a.am-cf(data-am-collapse="{target: '#class-nav'}")
-                    span.am-icon-flask
+                a(href="/admin/class/list")
+                    span.am-icon-user 
                     span 教学班管理
-                    span.am-icon-angle-right.am-fr.am-margin-right
-                ul#class-nav.am-list.am-collapse.admin-sidebar-sub.am-in
-                    li
-                        a(href="/admin/class/list")
-                            span.am-icon-list-ul
-                            span 教学班列表
-                    li
-                        a(href="/admin/class/add")
-                            span.am-icon-clipboard
-                            span 创建教学班
+                //- a.am-cf(data-am-collapse="{target: '#class-nav'}")
+                //-     span.am-icon-flask
+                //-     span 教学班管理
+                //-     span.am-icon-angle-right.am-fr.am-margin-right
+                //- ul#class-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+                //-     li
+                //-         a(href="/admin/class/list")
+                //-             span.am-icon-list-ul
+                //-             span 教学班列表
+                //-     li
+                //-         a(href="/admin/class/add")
+                //-             span.am-icon-clipboard
+                //-             span 创建教学班
   
-            li
-                a.am-cf(data-am-collapse="{target: '#lesson-nav'}")
-                    span.am-icon-leaf 
-                    span 课堂管理
-                    span.am-icon-angle-right.am-fr.am-margin-right
-                ul#lesson-nav.am-list.am-collapse.admin-sidebar-sub.am-in
-                    li
-                        a(href="")
-                            span.am-icon-list-ul
-                            span 课堂列表
-                    li
-                        a(href="")
-                            span.am-icon-list-ul
-                            span 添加课堂
+            //- li
+            //-     a.am-cf(data-am-collapse="{target: '#lesson-nav'}")
+            //-         span.am-icon-leaf 
+            //-         span 课堂管理
+            //-         span.am-icon-angle-right.am-fr.am-margin-right
+            //-     ul#lesson-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+            //-         li
+            //-             a(href="")
+            //-                 span.am-icon-list-ul
+            //-                 span 课堂列表
+            //-         li
+            //-             a(href="")
+            //-                 span.am-icon-list-ul
+            //-                 span 添加课堂
 
         div.am-panel.am-panel-default.admin-sidebar-panel
             div.am-panel-bd

@@ -1,0 +1,21 @@
+extends ../admin_layout
+
+block content
+    include ../includes/admin_sidebar
+
+    div.admin-content
+        if tclass
+            div.admin-content-body
+                div.am-cf.am-padding.am-padding-bottom-0
+                    div.am-fl.am-cf
+                        strong.am-text-primary.am-text-lg 
+                hr
+
+                div.am-g
+                    div.am-u-sm-12
+                        div.am-panel
+                                button#startLessonBtn(type="button").am-btn.am-btn-primary.am-fr 开始上课
+
+    script(src="/js/lib/require.js" data-main="/js/app/admin")
+
+                            

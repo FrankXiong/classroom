@@ -48,13 +48,16 @@ exports.renderStuList = function(req,res){
 
 exports.renderSelfPage = function(req,res){
     var id = req.params.id
-    if(id){
-        Teacher.findById(id,function(err,teacher){
+    var teacher = req.session.teacher 
+    if(teacher){
+        if(id){
             res.render('admin_self_page',{
                 title:'个人信息',
                 teacher:teacher
             })
-        })
+        }
+    }else{
+        res.redirect('/admin/login')
     }
 }
 
