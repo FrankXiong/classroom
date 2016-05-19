@@ -30,6 +30,25 @@ exports.renderList = function(req,res){
     }
 }
 
+exports.renderStuAdd = function(req,res){
+    var teacher = req.session.teacher
+    var classId = req.params.id
+    console.log(classId)
+    if(teacher){
+        if(classId){
+            Class.findById(classId,function(err,tclass){
+                res.render('admin_add_stu',{
+                    title:'导入学生',
+                    teacher:teacher,
+                    tclass:tclass
+                })                
+            })
+        }
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
 exports.addTClass = function(req,res){
     var oTClass = req.body
     var tClass = new Class(oTClass)
@@ -70,6 +89,9 @@ exports.update = function(req,res){
     }else{
         res.redirect('/admin/login')
     }
+}
+
+exports.importStu = function(req,res){
     
 }
 

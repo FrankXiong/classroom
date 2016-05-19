@@ -74,19 +74,6 @@ exports.renderStuList = function(req,res){
     }
 }
 
-exports.renderStuAdd = function(req,res){
-    var teacher = req.session.teacher
-    if(teacher){
-        res.render('admin_add_stu',{
-            title:'导入学生',
-            teacher:teacher
-        })  
-    }else{
-        res.redirect('/admin/login')
-    }
-}
-
-
 // 桌面端用户注册
 exports.reg = function(req,res){
     var teacherObj = req.body

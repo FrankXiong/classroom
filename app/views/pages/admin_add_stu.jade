@@ -13,27 +13,28 @@ block content
                 hr
                 div.am-g
                     div.am-u-sm-12
-                        form.am-form
-                            input#tid(type="hidden" value="#{teacher._id}")
-                            div.am-g.am-margin-top
-                                div.am-u-sm-4.am-u-md-2.am-text-right 学号
-                                div.am-u-sm-8.am-u-md-4
-                                    input#stuid(type="text" value="#{user.stuid}").am-input-sm
-                                div.am-hide-sm-only.am-u-md-6
-
-                            div.am-g.am-margin-top
-                                div.am-u-sm-4.am-u-md-2.am-text-right 教学班级
-                                if class
+                        if tclass
+                            form.am-form
+                                input#tid(type="hidden" value="#{teacher._id}")
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 学号
                                     div.am-u-sm-8.am-u-md-4
-                                        input#tclass(type="text" value="#{class.name}").am-input-sm
-                                else 
-                                    div.am-u-sm-8.am-u-md-4 请先选择教学班级
-                                div.am-hide-sm-only.am-u-md-6
+                                        input#stuid(type="text" value="").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
 
-                            div.am-margin
-                                button(type="reset").am-btn.am-btn-default.am-fl 取消
-                                button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 添加
-        else 请先登录
+                                div.am-g.am-margin-top
+                                    div.am-u-sm-4.am-u-md-2.am-text-right 教学班级
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#tclass(type="text" value="#{tclass.courseName}").am-input-sm
+                                    div.am-hide-sm-only.am-u-md-6
+
+                                div.am-margin
+                                    button(type="reset").am-btn.am-btn-default.am-fl 取消
+                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 添加
+                        else
+                            div.am-u-sm-8.am-u-md-4 请先选择教学班级
+        else 
+            span 请先登录
                         
     script(src="/js/app/admin_class.js")    
         
