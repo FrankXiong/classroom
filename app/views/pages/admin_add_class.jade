@@ -4,19 +4,19 @@ block content
     include ../includes/admin_sidebar
 
     div.admin-content
-        div.admin-content-body
-            div.am-cf.am-padding.am-padding-bottom-0
-                div.am-fl.am-cf
-                    strong.am-text-primary.am-text-lg 教学班管理 /
-                    small 添加教学班 
-            hr
-            div.am-g
-                div.am-u-sm-12
-                    div.am-panel
-                        if user
+        if teacher
+            div.admin-content-body
+                div.am-cf.am-padding.am-padding-bottom-0
+                    div.am-fl.am-cf
+                        strong.am-text-primary.am-text-lg 教学班管理 /
+                        small 添加教学班 
+                hr
+                div.am-g
+                    div.am-u-sm-12
+                        div.am-panel
                             if tclass
                                 form.am-form
-                                    input#tid(type="hidden" value="#{user._id}")
+                                    input#tid(type="hidden" value="#{teacher._id}")
                                     div.am-g.am-margin-top
                                         div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
                                         div.am-u-sm-8.am-u-md-4
@@ -62,7 +62,7 @@ block content
                                         button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
                             else
                                 form.am-form
-                                    input#tid(type="hidden" value="#{user._id}")
+                                    input#tid(type="hidden" value="#{teacher._id}")
                                     div.am-g.am-margin-top
                                         div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
                                         div.am-u-sm-8.am-u-md-4

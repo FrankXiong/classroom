@@ -16,20 +16,6 @@ block content
                     div.am-btn-toolbar
                         div.am-btn-group.am-btn-group-xs
                             button(type="button").am-btn.am-btn-defaultspan.am-icon-plus 新增
-                            button(type="button").am-btn.am-btn-defaultspan.am-icon-save 保存
-                            button(type="button").am-btn.am-btn-defaultspan.am-icon-archive 审核
-                            button(type="button").am-btn.am-btn-defaultspan.am-icon-trash-o 删除
-            
-                //- div.am-u-sm-12.am-u-md-3
-                //-     div.am-form-group
-                //-         select(data-am-selected="{btnSize: 'sm'}")
-                //-             option(value="option1")所有类别
-                //-             option(value="option2")IT业界
-                //-             option(value="option3")数码产品
-                //-             option(value="option3")笔记本电脑
-                //-             option(value="option3")平板电脑
-                //-             option(value="option3")只能手机
-                //-             option(value="option3")超极本
             
                 div.am-u-sm-12.am-u-md-3
                     div.am-input-group.am-input-group-sm
@@ -68,11 +54,12 @@ block content
                                         td 
                                             div.am-btn-toolbar
                                                 div.am-btn-group.am-btn-group-xs
-                                                    a(href="/admin/class/update/#{item._id}")
-                                                        button.edit.am-btn.am-btn-default.am-btn-xs.am-text-secondary
-                                                            span.am-icon-pencil-square-o 编辑
-                                                    button.del.am-btn.am-btn-default.am-btn-xs.am-text-danger.am-hide-sm-only(data-id="#{item._id}")
+                                                    a(href="/admin/class/update/#{item._id}").edit.am-btn.am-btn-warning.am-btn-xs
+                                                        span.am-icon-pencil-square-o 编辑
+                                                    a.del.am-btn.am-btn-danger.am-btn-xs(data-id="#{item._id}")
                                                         span.am-icon-trash-o 删除
+                                                    a(href="/admin/class/import").import.am-btn.am-btn-success.am-btn-xs
+                                                        span.am-icon-trash-o 导入学生
                         
                         div.am-cf 共 1 个教学班
     script(src="/js/app/admin_class.js")    

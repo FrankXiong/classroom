@@ -40,6 +40,8 @@ module.exports = function(app){
     app.delete('/admin/stu/list',Admin.delStu)
     app.put('/admin/stu',Admin.updateStu)
 
+    app.get('/admin/class/import',Admin.renderStuAdd)
+
     app.get('/admin/class/add',Class.renderAdd)
     app.get('/admin/class/list',Class.renderList)
     app.post('/admin/class/',Class.addTClass)

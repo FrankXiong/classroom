@@ -31,14 +31,19 @@ exports.renderLogin = function(req,res){
 }
 
 exports.renderStuList = function(req,res){
-    User.fetch(function(err,users){
-        if(err) console.log(err)
-        console.log(users)
-        res.render('admin_stu_list',{
-            title:'学生列表',
-            users:users
-        })  
-    })
+    var teacher = req.session.teacher
+    if(teacher){
+        User.fetch(function(err,users){
+            if(err) console.log(err)
+            res.render('admin_stu_list',{
+                title:'学生列表',
+                users:users,
+                teacher:teacher
+            })  
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
 }
 
 exports.renderSelfPage = function(req,res){
@@ -52,6 +57,35 @@ exports.renderSelfPage = function(req,res){
         })
     }
 }
+
+exports.renderStuList = function(req,res){
+    var teacher = req.session.teacher
+    if(teacher){
+        User.fetch(function(err,users){
+            if(err) console.log(err)
+            res.render('admin_stu_list',{
+                title:'学生列表',
+                users:users,
+                teacher:teacher
+            })  
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderStuAdd = function(req,res){
+    var teacher = req.session.teacher
+    if(teacher){
+        res.render('admin_add_stu',{
+            title:'导入学生',
+            teacher:teacher
+        })  
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
 
 // 桌面端用户注册
 exports.reg = function(req,res){

@@ -5,47 +5,37 @@ div#admin-offcanvas.admin-sidebar.am-offcanvas
                 a(href="/admin")
                     span.am-icon-home 
                     span 首页
-            li.admin-parent
-                a.am-cf.am-collapsed(data-am-collapse="{target: '#collapse-nav'}")
-                    span.am-icon-tags
-                    span 功能模块 
-                    span.am-icon-angle-right.am-fr.am-margin-right
-                ul#collapse-nav.am-list.am-collapse.admin-sidebar-sub.am-in
-                    li
-                        a.am-cf(href="admin-begin.html")
-                            span.am-icon-check 
-                            span 上课
-                            span.am-icon-star.am-fr.am-margin-right.admin-icon-yellow
-                    li
-                        a(href="admin-answer.html")
-                            span.am-icon-comments
-                            span 答题
-                    li
-                        a(href="admin-exam.html")
-                            span.am-icon-leanpub
-                            span 考试
-                    li
-                        a(href="admin-analysis.html")
-                            span.am-icon-line-chart 
-                            span 统计分析
-                    li
-                        a(href="admin-404.html")
-                            span.am-icon-bug 
-                            span 404
+            //- li.admin-parent
+            //-     a.am-cf.am-collapsed(data-am-collapse="{target: '#collapse-nav'}")
+            //-         span.am-icon-tags
+            //-         span 功能模块 
+            //-         span.am-icon-angle-right.am-fr.am-margin-right
+            //-     ul#collapse-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+            //-         li
+            //-             a.am-cf(href="admin-begin.html")
+            //-                 span.am-icon-check 
+            //-                 span 上课
+            //-                 span.am-icon-star.am-fr.am-margin-right.admin-icon-yellow
+            //-         li
+            //-             a(href="admin-answer.html")
+            //-                 span.am-icon-comments
+            //-                 span 答题
+            //-         li
+            //-             a(href="admin-exam.html")
+            //-                 span.am-icon-leanpub
+            //-                 span 考试
+            //-         li
+            //-             a(href="admin-analysis.html")
+            //-                 span.am-icon-line-chart 
+            //-                 span 统计分析
+            //-         li
+            //-             a(href="admin-404.html")
+            //-                 span.am-icon-bug 
+            //-                 span 404
             li
-                a.am-cf(data-am-collapse="{target: '#stu-nav'}")
+                a(href="/admin/stu/list")
                     span.am-icon-user 
                     span 学生管理
-                    span.am-icon-angle-right.am-fr.am-margin-right
-                ul#stu-nav.am-list.am-collapse.admin-sidebar-sub.am-in
-                    li
-                        a(href="/admin/stu/list")
-                            span.am-icon-list-ul
-                            span 学生列表
-                    li
-                        a(href="")
-                            span.am-icon-clipboard
-                            span 批量导入学生
                     
             li
                 a.am-cf(data-am-collapse="{target: '#class-nav'}")
@@ -60,7 +50,7 @@ div#admin-offcanvas.admin-sidebar.am-offcanvas
                     li
                         a(href="/admin/class/add")
                             span.am-icon-clipboard
-                            span 添加教学班
+                            span 创建教学班
   
             li
                 a.am-cf(data-am-collapse="{target: '#lesson-nav'}")

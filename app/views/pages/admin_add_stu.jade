@@ -1,0 +1,39 @@
+extends ../admin_layout
+
+block content
+    include ../includes/admin_sidebar
+
+     //- content start 
+    div.admin-content
+        if teacher
+            div.admin-content-body
+                div.am-cf.am-padding.am-padding-bottom-0
+                    div.am-fl.am-cf
+                        strong.am-text-primary.am-text-lg 导入学生
+                hr
+                div.am-g
+                    div.am-u-sm-12
+                        form.am-form
+                            input#tid(type="hidden" value="#{teacher._id}")
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 学号
+                                div.am-u-sm-8.am-u-md-4
+                                    input#stuid(type="text" value="#{user.stuid}").am-input-sm
+                                div.am-hide-sm-only.am-u-md-6
+
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right 教学班级
+                                if class
+                                    div.am-u-sm-8.am-u-md-4
+                                        input#tclass(type="text" value="#{class.name}").am-input-sm
+                                else 
+                                    div.am-u-sm-8.am-u-md-4 请先选择教学班级
+                                div.am-hide-sm-only.am-u-md-6
+
+                            div.am-margin
+                                button(type="reset").am-btn.am-btn-default.am-fl 取消
+                                button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 添加
+        else 请先登录
+                        
+    script(src="/js/app/admin_class.js")    
+        

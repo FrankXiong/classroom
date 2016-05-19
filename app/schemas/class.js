@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
 // 教学班
 var TClassSchema = new mongoose.Schema({
@@ -30,6 +32,10 @@ var TClassSchema = new mongoose.Schema({
     classHours:{
         type:Number
     },
+    users:[{
+        type:ObjectId,
+        ref:'User'
+    }],
     meta:{
         createAt:{
             type:Date,
