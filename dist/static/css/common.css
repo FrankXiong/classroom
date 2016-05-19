@@ -4,6 +4,9 @@ html, body {
 body {
   background-color: #fff; }
 
+address, blockquote, dl, fieldset, figure, hr, ol, p, pre, ul {
+  margin: 0; }
+
 .main {
   margin-bottom: 20px; }
 
@@ -29,8 +32,15 @@ body {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+.weui_cell {
+  padding-top: 14px;
+  padding-bottom: 14px; }
+
 .weui_tab {
   position: static; }
+
+.weui_select {
+  height: auto; }
 
 .weui_tab_bd_item {
   display: none; }
@@ -53,6 +63,19 @@ body {
 
 .btn_lg {
   margin: 15px; }
+
+.row {
+  margin: 10px 0;
+  display: block;
+  width: 100%; }
+
+.btn-row {
+  margin-top: 40px; }
+
+.btn-login, .btn-reg {
+  display: block;
+  width: 100%;
+  color: #fff; }
 
 /**
  * admin.css start
@@ -346,13 +369,13 @@ gallery.html css
 .user-dropdown:focus, .user-dropdown:hover {
   color: #fff; }
 
-#regBtn {
-  color: #333; }
-
 .header-title {
   margin: 0;
   margin-left: 20%;
   display: inline; }
+
+.stuid-input {
+  text-align: right; }
 
 /**
  * user.css end

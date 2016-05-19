@@ -47,8 +47,8 @@ block content
                     div.weui_cell
                         div.weui_cell_hd.weui_cell_primary
                             p 学号                    
-                        div.weui_cell_primary.weui_cell_bd
-                            input#stuid.weui_input(type="number",name="stuid",value=user.stuid,pattern="[0-9*",placeholder="请输入学号")
+                        div.weui_cell_ft
+                            input#stuid.weui_input.stuid-input(type="number",name="stuid",value=user.stuid,pattern="[0-9*",placeholder="请输入学号")
                             
                     div.weui_cell
                             div.weui_cell_bd.weui_cell_primary
@@ -95,7 +95,7 @@ block content
                             p 身份
                         div.weui_cell_ft
                             case user.role
-                                when 0
+                                when 1
                                     p 学生
                                 when 10 
                                     p 教师

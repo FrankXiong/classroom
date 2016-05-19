@@ -86,10 +86,7 @@ exports.renderSelfPage = function(req,res){
 //用户修改自己的信息
 exports.updateSelf = function(req,res){
     var id = req.body._id
-    console.log('user id:' + id)
     var userObj = req.body
-    console.log('userObj:' + userObj)
-    console.log('stuid:' + userObj.stuid)
     var _user
 
     if(id){

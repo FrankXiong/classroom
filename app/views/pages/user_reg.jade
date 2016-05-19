@@ -15,18 +15,19 @@ html
         div.am-g
             div.am-u-lg-6.am-u-md-8.am-u-sm-centered
                 form(action="/user/reg",method="POST").am-form
-                    input(type="hidden" name="role" value="1")
-                    label(for="name") 姓名:
-                    input#name(type="text" name="name" value="")
-                    br
-                    label(for="phone") 手机号:
-                    input#phone(type="number" name="phone" value="")
-                    br
-                    label(for="password") 密码:
-                    input#password(type="password" name="password" value="")
-                    br
-                    br 
-                    div.am-cf
+                    div.row
+                        input(type="hidden" name="role" value="1")
+                        label(for="name") 姓名:
+                        input#name(type="text" name="name" value="")
+                    div.row
+                        label(for="phone") 手机号:
+                        input#phone(type="number" name="phone" value="")
+                    div.row
+                        label(for="password") 密码:
+                        input#password(type="password" name="password" value="")
+                    div.row.btn-row
+                        input#regBtn.btn-reg.am-btn.am-btn-primary.am-btn-lg(type="submit" name="" value="注册")    
+                    div.row.btn-row
                         a(href="/user/login")
-                            input.am-btn.am-btn-default.am-fl(type="button" name="" value="直接登录")
-                        input#regBtn.am-btn.am-btn-primary.am-fr(type="submit" name="" value="注册")
+                            input.am-btn.am-btn-default.am-fr(type="button" name="" value="直接登录")
+

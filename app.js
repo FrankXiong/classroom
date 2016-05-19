@@ -11,7 +11,7 @@ var API = require('wechat-api')
 var config = require('config')
 var multer = require('multer')
 
-var port = process.env.PORT || 80
+var port = process.env.PORT || 3000
 var app = new express()
 var dbUrl = 'mongodb://127.0.0.1/classroom'
 

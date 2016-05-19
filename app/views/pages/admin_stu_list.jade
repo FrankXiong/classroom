@@ -45,15 +45,11 @@ block content
                                 tr
                                     th.table-check
                                         input(type="checkbox")
-                                    th.table-id openID
                                     th.table-name 姓名
                                     th.table-phone 电话 
-                                    th.table-tclass.am-hide-sm-only 教学班级
-                                    th.table-sex.am-hide-sm-only 性别
-                                    th.table-province.am-hide-sm-only 省份
-                                    th.table-city.am-hide-sm-only 城市
-                                    th.table-headimg.am-hide-sm-only 头像
-                                    th.table-create-time.am-hide-sm-only 加入时间
+                                    th.table-tclass 行政班级
+                                    th.table-sex 性别
+                                    th.table-create-time 加入时间
                                     th.table-set 操作
                             tbody
                                 each item in users
@@ -61,15 +57,14 @@ block content
 
                                         td 
                                             input(type="checkbox")
-                                        td #{item.openid}
                                         td #{item.nickname}
                                         td #{item.phone}
-                                        td.am-hide-sm-only #{item.class}
-                                        td.am-hide-sm-only #{item.sex}
-                                        td.am-hide-sm-only #{item.province}
-                                        td.am-hide-sm-only #{item.city}
-                                        td.am-hide-sm-only 
-                                            img(src="#{item.headimgurl}").avatar
+                                        td #{item.xzclass}
+                                        case item.sex  
+                                            when 0: td 未知
+                                            when 1: td 男
+                                            when 2: td 女 
+
                                         td.am-hide-sm-only #{item.meta.createAt}
                                         td 
                                             div.am-btn-toolbar
