@@ -21,7 +21,14 @@
 * 实现签到功能（学生&教师）
 * 实现批量导入学生（教师）
 
+### 本周任务
+> * 清理现有BUG,完成一期所有功能
+> * 实现导入学生功能
+> * 实现签到功能
+
 ### BUG列表
 > * request.js:getFormData()不能获取到完整的表单数据
 > * 添加教学班BUG:```MongoError: E11000 duplicate key error index: classroom.classes.$id_1 dup key: { : null }```
+> * 删除学生或教学班时获取不到id
+> * Node进程能在服务器运行，但网站无法访问（IPv6?）
 
