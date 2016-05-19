@@ -1,14 +1,14 @@
 {
-    "domain": "127.0.0.1",
+    "domain": "wenxin.info",
     "is_debug": true,
     "mongodb": {
-    "host": "127.0.0.1",
+    "host": "121.42.189.247",
     "port": "27017",
     "db": "classroom"
     },
     "sms": {
-    "host": "127.0.0.1",
-    "port": "5001"
+        "host": "121.42.189.247",
+        "port": "5001"
     },
     "wx": {
         "app_id": "wx77385a01a23c3f6a",

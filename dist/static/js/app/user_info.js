@@ -12,8 +12,8 @@ var postUserinfo = function(){
         tips.innerHTML = '请输入正确的学号';
         return;
     }
-    if(!user.class){
-        tips.innerHTML = '请选择教学班';
+    if(!user.xzclass){
+        tips.innerHTML = '请选择行政班级';
         return;
     }
     console.log(user)
