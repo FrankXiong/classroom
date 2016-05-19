@@ -17,12 +17,14 @@ module.exports = function(app){
     // app.get('/',User.oauth)
     app.get('/',Index.index)
     app.get('/wx/callback',User.callback)
-    app.get('/user/:openid',User.showUserInfo)
+    app.get('/user/login',User.renderLogin)
+    app.get('/user/reg',User.renderReg)
+    app.get('/user/:openid',User.renderSelfPage)
     app.put('/user',User.updateSelf)
     app.post('/user/reg',User.reg)
     app.post('/user/login',User.login)
-    app.get('/user/login',User.renderLogin)
-    app.get('/user/reg',User.renderReg)
+    app.get('/logout',User.logout)
+
 
     // admin start
     app.get('/admin',Admin.renderIndex)
@@ -30,7 +32,7 @@ module.exports = function(app){
     app.get('/admin/reg',Admin.renderReg)
     app.post('/admin/user/reg',Admin.reg)
     app.post('/admin/user/login',Admin.login)
-    app.get('/logout',Admin.logout)
+    app.get('/admin/logout',Admin.logout)
     app.get('/admin/user/:id',Admin.renderSelfPage)
     app.put('/admin/user/self',Admin.updateSelf)
 

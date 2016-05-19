@@ -337,3 +337,23 @@ gallery.html css
 /**
  * admin.css end
  */
+/**
+ * user.css start
+ */
+.user-dropdown {
+  color: #fff; }
+
+.user-dropdown:focus, .user-dropdown:hover {
+  color: #fff; }
+
+#regBtn {
+  color: #333; }
+
+.header-title {
+  margin: 0;
+  margin-left: 20%;
+  display: inline; }
+
+/**
+ * user.css end
+ */

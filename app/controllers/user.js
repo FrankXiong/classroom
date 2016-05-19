@@ -66,7 +66,7 @@ exports.callback = function(req,res){
 }
 
 // 查看用户信息页
-exports.showUserInfo = function(req,res){
+exports.renderSelfPage = function(req,res){
     var openid = req.params.openid
     console.log(openid)
     if(openid){
@@ -74,7 +74,7 @@ exports.showUserInfo = function(req,res){
             if(err){
                 console.log('findUserError:' + err)
             }
-            res.render('user',{
+            res.render('user_self_page',{
                 title:'个人信息'
             })
         })        
@@ -132,7 +132,7 @@ exports.adminRequired = function(req,res){
     var user = req.session.user
     // 用户权限不够，重定向到登录页面
     if(user.role < 10){
-        res.redirect('/signin')
+        res.redirect('/user/login')
     }
     next()
 }
@@ -141,7 +141,7 @@ exports.signinRequired = function(req,res,next){
     var user = req.session.user
     // 用户未登录，重定向到登录页面
     if(!user){
-        res.redirect('/signin')
+        res.redirect('/user/login')
     }
     next()
 }
@@ -156,7 +156,7 @@ exports.reg = function(req,res){
         }
         if(user){
             console.log('ERROR:用户名已存在')
-            return res.redirect('/login')
+            return res.redirect('/user/login')
         }else{
             var user = new User(userObj)
             user.save(function(err,user){
@@ -164,7 +164,7 @@ exports.reg = function(req,res){
                     console.log(err)
                 }
                 console.log("SUCCESS:注册成功")
-                return res.redirect('/login')
+                return res.redirect('/user/login')
             })
         }
     })
@@ -180,10 +180,11 @@ exports.login = function(req,res){
         //用户不存在 
         if(!user){
             console.log('error:用户名不存在！')
-            return res.redirect('/login')
+            return res.redirect('/user/login')
         }
+        console.log(user)
         //调用comparePassword方法比对密码
-        User.comparePassword(password,function(err,isMatch){
+        user.comparePassword(password,function(err,isMatch){
             if(err) console.log(err)
             if(isMatch){
                 // session存储登录信息
@@ -193,11 +194,17 @@ exports.login = function(req,res){
             }else{
                 console.log('error:密码错误！')
                 // res.status(404).send("密码错误！")
-                return res.redirect('/login')
+                return res.redirect('/user/login')
             }
 
         })
     })
+}
+
+exports.logout = function(req,res){
+    delete req.session.user
+    // delete app.locals.user
+    res.redirect('/')
 }
 
 exports.renderReg = function(req,res){

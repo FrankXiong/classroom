@@ -14,13 +14,11 @@ html
 
         div.am-g
             div.am-u-lg-6.am-u-md-8.am-u-sm-centered
-                h3  快捷登录
-                hr
+                label 快捷登录
                 div.am-btn-group
                     a(href="#").am-btn.am-btn-success.am-btn-sm
                         i.am-icon-weixin.am-icon-sm 微信
-                br
-                br
+                hr
                 form(action="/user/login",method="POST").am-form
                     label(for="phone") 手机号:
                     input#phone(type="number" name="phone" value="")
@@ -29,7 +27,7 @@ html
                     input#password(type="password" name="password" value="")
                     br
                     div.am-cf
-                        a(href="/reg")
+                        a(href="/user/reg")
                             input.am-btn.am-btn-default.am-fl(type="button" name="" value="没有帐号?先去注册")
                         input#loginBtn.am-btn.am-btn-primary.am-fr(type="submit" name="" value="登 录")
 

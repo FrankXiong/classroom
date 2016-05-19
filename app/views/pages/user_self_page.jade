@@ -20,6 +20,11 @@ block content
                             div.weui_cell_bd.weui_cell_primary
                                 p 昵称                    
                             div.weui_cell_ft #{user.nickname}
+                    if user.name
+                        div.weui_cell
+                            div.weui_cell_bd.weui_cell_primary
+                                p 姓名                    
+                            div.weui_cell_ft #{user.name}
 
                     div.weui_cell.weui_cell_select.weui_select_after
                         div.weui_cell_hd.weui_cell_primary
@@ -32,10 +37,10 @@ block content
                                         option.tr(value="1") 男
                                         option.tr(value="2") 女
                                     when 1 
-                                        option.tr(value="1") 男
+                                        option.tr(value="1" selected="selected") 男
                                         option.tr(value="2") 女
                                     when 2 
-                                        option.tr(value="2") 女
+                                        option.tr(value="2" selected="selected") 女
                                         option.tr(value="1") 男
                                 
                                 
@@ -74,11 +79,11 @@ block content
                 
                 div.weui_cells_title 地区
                 div.weui_cells
-                    div.weui_cell.weui_cell_select.weui_select_after
+                    div.weui_cell
                         div.weui_cell_bd.weui_cell_primary
                             p 省份                    
                         div.weui_cell_ft #{user.province}
-                    div.weui_cell.weui_cell_select.weui_select_after
+                    div.weui_cell
                         div.weui_cell_bd.weui_cell_primary
                             p 城市                    
                         div.weui_cell_ft #{user.city}
@@ -100,6 +105,6 @@ block content
 
                 a#btn_save.weui_btn.weui_btn_primary.btn_lg(href="javascript:") 保存
 
-        else
-            span 你还没有登录
+        //- else
+        //-     span 你还没有登录
     script(src="/js/app/user_info.js")

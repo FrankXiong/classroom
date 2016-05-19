@@ -15,7 +15,7 @@ html
         div.am-g
             div.am-u-lg-6.am-u-md-8.am-u-sm-centered
                 form(action="/user/reg",method="POST").am-form
-                    input(type="hidden" name="role" value="10")
+                    input(type="hidden" name="role" value="1")
                     label(for="name") 姓名:
                     input#name(type="text" name="name" value="")
                     br
@@ -27,4 +27,6 @@ html
                     br
                     br 
                     div.am-cf
+                        a(href="/user/login")
+                            input.am-btn.am-btn-default.am-fl(type="button" name="" value="直接登录")
                         input#regBtn.am-btn.am-btn-primary.am-fr(type="submit" name="" value="注册")

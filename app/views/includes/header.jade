@@ -2,12 +2,43 @@ header.am-header.am-header-default(data-am-widget="header")
     div.am-header-left.am-header-nav
         a(href="/")
             i.am-header-icon.am-icon-home
-    h1.am-header-title
+    h1.am-header-title.header-title
         a(href="#") 翘课吧
     div.am-header-right.am-header-nav
         if user
-            a(href="#") 
-                span #{user.nickname}
+            li.am-dropdown(data-am-dropdown)
+                a.am-dropdown-toggle.user-dropdown(data-am-dropdown-toggle href="javascript:;")
+                    span #{user.name}
+                    span.am-icon-caret-down
+       
+                ul.am-dropdown-content
+                    li
+                        a(href="/user/#{user._id}")
+                            span.am-icon-user 
+                            span 个人资料
+                    li
+                        a(href="/logout")
+                            span.am-icon-power-off 
+                            span 退出
+            //- elseif user.nickname
+            //-     li.am-dropdown(data-am-dropdown)
+            //-             a.am-dropdown-toggle(data-am-dropdown-toggle href="javascript:;")
+            //-                 span.am-icon-users 
+            //-                 span #{user.nickname}
+            //-                 span.am-icon-caret-down
+               
+            //-             ul.am-dropdown-content
+            //-                 li
+            //-                     a(href="/user/#{user._id}")
+            //-                         span.am-icon-user 
+            //-                         span 个人资料
+            //-                 li
+            //-                     a(href="/logout")
+            //-                         span.am-icon-power-off 
+            //-                         span 退出
+            
         else
             a(href="/user/reg") 
-                button(type="button" class="am-btn am-btn-success") 注册
+                button#regBtn(type="button" class="am-btn am-btn-info am-btn-lg") 注册
+            a(href="/user/login") 
+                button#loginBtn(type="button" class="am-btn am-btn-success am-btn-lg") 登录
