@@ -8,8 +8,11 @@ require.config({
 });
 
 require(['jquery','request'],function($,req){
+
     $(function(){
-        var $updateSelfBtn = $('#updateSelfBtn');
+        var $updateSelfBtn = $('#updateSelfBtn'),
+            $updateStuBtn = $('#updateStuBtn');
+
         $updateSelfBtn.click(function(){
             var oUserSelf = {
                 _id:$('#tid').val(),
@@ -23,5 +26,21 @@ require(['jquery','request'],function($,req){
                 alert(data.msg)
             })
         })
+
+        $updateStuBtn.click(function(){
+            var oStu = {
+                _id:$('#sid').val(),
+                name:$('#name').val(),
+                phone:$('#phone').val(),
+                xzclass:$('#xzclass').val(),
+                sex:$('input[name="sex"]:checked').val()
+            }
+            console.log(oStu)
+            req.put(oStu,'/admin/stu/update',function(data){
+                alert(data.msg)
+            })
+        })
+
+
     })
 })

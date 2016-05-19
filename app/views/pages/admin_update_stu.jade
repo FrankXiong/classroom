@@ -3,7 +3,6 @@ extends ../admin_layout
 block content
     include ../includes/admin_sidebar
 
-     //- content start 
     div.admin-content
         if teacher
             div.admin-content-body
@@ -15,7 +14,7 @@ block content
                     div.am-u-sm-12
                         if user
                             form.am-form
-                                input#tid(type="hidden" value="#{teacher._id}")
+                                input#sid(type="hidden" value="#{user._id}")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 姓名
                                     div.am-u-sm-8.am-u-md-4
@@ -69,7 +68,7 @@ block content
 
                                 div.am-margin
                                     button(type="reset").am-btn.am-btn-default.am-fl 取消
-                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
+                                    button#updateStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
                         else
                             form.am-form
                                 input#tid(type="hidden" value="#{teacher._id}")
@@ -116,6 +115,8 @@ block content
 
                                 div.am-margin
                                     button(type="reset").am-btn.am-btn-default.am-fl 取消
-                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
+                                    button#updateStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
         else 
             span 请先登录
+
+    script(src="/js/lib/require.js" data-main="/js/app/admin")

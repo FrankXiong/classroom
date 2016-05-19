@@ -39,6 +39,7 @@ module.exports = function(app){
     app.get('/admin/stu/list',Admin.renderStuList) 
     app.get('/admin/stu/update/:id',Admin.renderUpdateStu)
     app.delete('/admin/stu',Admin.delStu)
+    app.put('/admin/stu/update',Admin.updateStu)
      
 
     app.get('/admin/class/list',Class.renderList)

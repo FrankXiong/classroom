@@ -40,6 +40,19 @@ define(['jquery'],function($){
                 url:url
             })
             .done(cb)
+        },
+        // BUG:只能获取到sex值
+        getFormData : function(){
+            var form = $('form'),
+                pairs = form.serialize().split(/&/gi),
+                formData = {};
+
+            pairs.forEach(function(pair) {
+                pair = pair.split('=');
+                formData[pair[0]] = decodeURIComponent(pair[1] || '');
+            });
+            return formData;
         }
+
     }
 })

@@ -205,5 +205,31 @@ exports.updateSelf = function(req,res){
     } 
 }
 
+exports.updateStu = function(req,res){
+    var data = req.body
+    var id = data._id
+    var _stu
+
+    if(id){
+        User.findById(id,function(err,stu){
+            if(err){
+                console.log(err)
+            }
+            _stu = _.extend(stu,data)
+
+            _stu.save(function(err,stu){
+                if(err){
+                    console.log(err)
+                    res.status(500).json({msg:'服务器出了一点问题...'})
+                }
+                res.status(201).json({msg:'保存成功',data:_stu})
+
+            })
+        })
+    }else{
+        console.log("ERROR:请求参数中没有id")
+    } 
+}
+
 
 
