@@ -169,8 +169,10 @@ exports.delStu = function(req,res){
             if(err){
                 console.log(err)
             }
-            res.json({success:1});
+            res.json({code:1,msg:'删除成功'});
         })
+    }else{
+        console.log('query id is empty')
     }
 }
 
