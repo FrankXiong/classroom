@@ -2,16 +2,15 @@ require.config({
     baseUrl: '/js',
     paths:{
         jquery:'lib/jquery',
-        amazeui:'lib/amazeui',
-        request:'widget/request'
+        request:'widget/request',
+        common:'common'
     }
 });
 
 require(['jquery','request'],function($,req){
 
     $(function(){
-        var $updateSelfBtn = $('#updateSelfBtn'),
-            $updateStuBtn = $('#updateStuBtn');
+        var $updateSelfBtn = $('#updateSelfBtn');
 
         $updateSelfBtn.click(function(){
             var oUserSelf = req.getFormData()
@@ -20,15 +19,6 @@ require(['jquery','request'],function($,req){
                 alert(data.msg)
             })
         })
-
-        $updateStuBtn.click(function(){
-            var oStu = req.getFormData()
-            console.log(oStu)
-            req.put(oStu,'/admin/stu/update',function(data){
-                alert(data.msg)
-            })
-        })
-
 
     })
 })

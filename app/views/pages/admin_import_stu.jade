@@ -3,7 +3,6 @@ extends ../admin_layout
 block content
     include ../includes/admin_sidebar
 
-     //- content start 
     div.admin-content
         if teacher
             div.admin-content-body
@@ -15,11 +14,11 @@ block content
                     div.am-u-sm-12
                         if tclass
                             form.am-form
-                                input#tid(type="hidden" value="#{teacher._id}")
                                 div.am-g.am-margin-top
+                                    input(type="hidden" value="#{tclass._id}" name="classid")
                                     div.am-u-sm-4.am-u-md-2.am-text-right 学号
                                     div.am-u-sm-8.am-u-md-4
-                                        input#stuid(type="text" value="").am-input-sm
+                                        input#stuid(type="number" value="" name="stuid").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
@@ -29,8 +28,8 @@ block content
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-margin
-                                    button(type="reset").am-btn.am-btn-default.am-fl 取消
-                                    button#addStuBtn(type="button").am-btn.am-btn-primary.am-fr 添加
+                                    a(href='/admin/class/list').back.am-btn.am-btn-default.am-fl 返回
+                                    button#importStuBtn(type="button").am-btn.am-btn-primary.am-fr 导入
                         else
                             div.am-u-sm-8.am-u-md-4 请先选择教学班级
         else 

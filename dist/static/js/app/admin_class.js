@@ -2,17 +2,28 @@ require.config({
     baseUrl: '/js',
     paths:{
         jquery:'lib/jquery',
-        amazeui:'lib/amazeui',
-        request:'widget/request'
+        request:'widget/request',
+        common:'common'
     }
 });
 require(['jquery','request'],function($,req){
+
     $('#addClassBtn').click(function(){
         var oTClass = req.getFormData()
         req.post(oTClass,'/admin/class',function(data){
             alert(data.msg)
         },function(){
             alert('添加教学班失败')
+        })
+    })
+
+    $('#importStuBtn').click(function(){
+        var oStu = req.getFormData()
+        console.log(oStu)
+        req.post(oStu,'/admin/class/add',function(data){
+            alert(data.msg)
+        },function(){
+            alert(data.msg)
         })
     })
 
@@ -36,4 +47,6 @@ require(['jquery','request'],function($,req){
             alert('id is undefined')
         }
     })
+
+
 })

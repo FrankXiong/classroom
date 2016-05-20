@@ -131,6 +131,11 @@ UserSchema.statics = {
         return this
             .findOne({_id:id})
             .exec(cb)
+    },
+    findByStuid:function(id,cb){
+        return this
+            .findOne({stuid:id})
+            .exec(cb)
     }
 };
 

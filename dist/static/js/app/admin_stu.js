@@ -2,13 +2,17 @@ require.config({
     baseUrl: '/js',
     paths:{
         jquery:'lib/jquery',
-        request:'widget/request'
+        request:'widget/request',
+        common:'common'
     }
 });
 
 require(['jquery','request'],function($,req){
     $(function(){
-        $('.del').click(function(e){
+        var $updateStuBtn = $('#updateStuBtn'),
+            $del = $('.del');
+
+        $del.click(function(e){
             var id = $(e.target).data('id'),
                 tr = $('.item-id-' + id),
                 url = '/admin/stu/?id=' + id;
@@ -30,6 +34,14 @@ require(['jquery','request'],function($,req){
                 alert('id is undefined')
             }
             
+        })
+
+        $updateStuBtn.click(function(){
+            var oStu = req.getFormData()
+            console.log(oStu)
+            req.put(oStu,'/admin/stu/update',function(data){
+                alert(data.msg)
+            })
         })
     })    
 })

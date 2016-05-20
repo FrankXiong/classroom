@@ -2,6 +2,7 @@ var _ = require('underscore');
 var Class = require('../models/class')
 var ClassList = require('../models/classList')
 var Teacher = require('../models/teacher')
+var User = require('../models/user')
 
 exports.renderAdd = function(req,res){
     var teacher = req.session.teacher
@@ -38,7 +39,7 @@ exports.renderStuAdd = function(req,res){
     if(teacher){
         if(classId){
             Class.findById(classId,function(err,tclass){
-                res.render('admin_add_stu',{
+                res.render('admin_import_stu',{
                     title:'导入学生',
                     teacher:teacher,
                     tclass:tclass
@@ -116,6 +117,34 @@ exports.update = function(req,res){
 }
 
 exports.importStu = function(req,res){
-
+    var oStu = req.body
+    var stuid = oStu.stuid
+    var classId = oStu.classid
+    var _class
+    if(classId){
+        if(stuid){
+            User.findByStuid(stuid,function(err,stu){
+                if(err){
+                    console.log(err)
+                }else{
+                    Class.findById(classId,function(err,tclass){
+                        if(err){
+                            console.log(err)
+                        }else{
+                            tclass.stus.push(stu._id)
+                            tclass.save(function(err,tclass){
+                                res.json({code:1,msg:'导入成功'})
+                            })
+                        }
+                        
+                    })
+                }
+            })
+        }else{
+            res.json({code:0,msg:'stuid is empty'})
+        }
+    }else{
+        res.json({code:0,msg:'classid is empty'})
+    }
 }
 

@@ -51,7 +51,7 @@ module.exports = function(app){
     app.post('/admin/class/',Class.addTClass)
     app.delete('/admin/class',Class.del)
     app.get('/admin/class/update/:id',Class.update)
-
+    app.post('/admin/class/add',Class.importStu)
 
     // admin end
 }
