@@ -32,7 +32,7 @@ var TClassSchema = new mongoose.Schema({
     classHours:{
         type:Number
     },
-    users:[{
+    stus:[{
         type:ObjectId,
         ref:'User'
     }],
