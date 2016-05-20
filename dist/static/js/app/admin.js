@@ -14,13 +14,7 @@ require(['jquery','request'],function($,req){
             $updateStuBtn = $('#updateStuBtn');
 
         $updateSelfBtn.click(function(){
-            var oUserSelf = {
-                _id:$('#tid').val(),
-                name:$('#name').val(),
-                phone:$('#phone').val(),
-                password:$('#password').val(),
-                sex:$('input[name="sex"]:checked').val()
-            }
+            var oUserSelf = req.getFormData()
             console.log(oUserSelf)
             req.put(oUserSelf,'/admin/user/self',function(data){
                 alert(data.msg)
@@ -28,13 +22,7 @@ require(['jquery','request'],function($,req){
         })
 
         $updateStuBtn.click(function(){
-            var oStu = {
-                _id:$('#sid').val(),
-                name:$('#name').val(),
-                phone:$('#phone').val(),
-                xzclass:$('#xzclass').val(),
-                sex:$('input[name="sex"]:checked').val()
-            }
+            var oStu = req.getFormData()
             console.log(oStu)
             req.put(oStu,'/admin/stu/update',function(data){
                 alert(data.msg)

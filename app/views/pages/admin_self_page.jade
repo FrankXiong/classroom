@@ -15,24 +15,30 @@ block content
                 div.am-u-sm-12
                     div.am-panel
                         form.am-form
-                            input#tid(type="hidden" value="#{teacher._id}")
+                            //- input#tid(type="hidden" name="tid" value="#{teacher.tid}")
+                            div.am-g.am-margin-top
+                                div.am-u-sm-4.am-u-md-2.am-text-right ID
+                                div.am-u-sm-8.am-u-md-4
+                                    input#tid(type="text" name="tid" value="#{teacher.tid}").am-input-sm
+                                div.am-hide-sm-only.am-u-md-6 
+
                             div.am-g.am-margin-top
                                 div.am-u-sm-4.am-u-md-2.am-text-right 姓名
                                 div.am-u-sm-8.am-u-md-4
-                                    input#name(type="text" value="#{teacher.name}").am-input-sm
+                                    input#name(type="text" name="name" value="#{teacher.name}").am-input-sm
                                 div.am-hide-sm-only.am-u-md-6 
 
                             div.am-g.am-margin-top
                                 div.am-u-sm-4.am-u-md-2.am-text-right 电话
                                 div.am-u-sm-8.am-u-md-4.am-u-end.col-end
-                                    input#phone(type="number" value="#{teacher.phone}").am-input-sm
+                                    input#phone(type="number" name="phone" value="#{teacher.phone}").am-input-sm
                                 div.am-hide-sm-only.am-u-md-6 
                             
                             div.am-g.am-margin-top
                                 div.am-u-sm-4.am-u-md-2.am-text-right 密码
                                     
                                 div.am-u-sm-8.am-u-md-4
-                                    input#password(type="password" value="#{teacher.password}").am-input-sm
+                                    input#password(type="password" name="password" value="#{teacher.password}").am-input-sm
                                 div.am-hide-sm-only.am-u-md-6        
                                     
                             div.am-g.am-margin-top

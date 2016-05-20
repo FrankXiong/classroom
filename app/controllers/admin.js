@@ -178,27 +178,31 @@ exports.delStu = function(req,res){
 
 exports.updateSelf = function(req,res){
     var data = req.body
-    var id = data._id
+    var id = data.tid
     var _teacher
 
     if(id){
-        Teacher.findById(id,function(err,teacher){
+        console.log(id)
+        Teacher.findByTid(id,function(err,teacher){
             if(err){
                 console.log(err)
             }
-            console.log('teacher:' + teacher)
-            // 对象拷贝
-            _teacher = _.extend(teacher,data)
-            console.log('_teacher:' + _teacher)
+            else if(teacher != null){
+                // 对象拷贝
+                _teacher = _.extend(teacher,data)
+                console.log('_teacher:' + _teacher)
 
-            _teacher.save(function(err,teacher){
-                if(err){
-                    console.log(err)
-                    res.status(500).json({msg:'服务器出了一点问题...'})
-                }
-                res.status(201).json({msg:'保存成功',data:_teacher})
+                _teacher.save(function(err,teacher){
+                    if(err){
+                        console.log(err)
+                        res.status(500).json({msg:'服务器出了一点问题...'})
+                    }
+                    res.status(201).json({msg:'保存成功',data:_teacher})
 
-            })
+                })
+            }else{
+                console.log('teacher is null')
+            }
         })
     }else{
         console.log("ERROR:请求参数中没有id")

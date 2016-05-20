@@ -14,28 +14,28 @@ block content
                     div.am-u-sm-12
                         if user
                             form.am-form
-                                input#sid(type="hidden" value="#{user._id}")
+                                input#sid(type="hidden" name="_id" value="#{user._id}")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 姓名
                                     div.am-u-sm-8.am-u-md-4
-                                        input#name(type="text" value="#{user.name}").am-input-sm
+                                        input#name(type="text" name="name" value="#{user.name}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 学号
                                     div.am-u-sm-8.am-u-md-4
-                                        input#stuid(type="text" value="#{user.stuid}").am-input-sm
+                                        input#stuid(type="text" name="stuid" value="#{user.stuid}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 电话
                                     div.am-u-sm-8.am-u-md-4
-                                        input#phone(type="text" value="#{user.phone}").am-input-sm
+                                        input#phone(type="text" name="phone" value="#{user.phone}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
                                     div.am-u-sm-8.am-u-md-4
-                                        input#xzclass(type="text" value="#{user.xzclass}").am-input-sm
+                                        input#xzclass(type="text" name="xzclass" value="#{user.xzclass}").am-input-sm
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
