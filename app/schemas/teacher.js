@@ -38,7 +38,10 @@ var TeacherSchema = new mongoose.Schema({
         //0:未知  1:男  2:女
         default:0
     },
-    phone:Number,
+    phone:{
+        type:Number,
+        default:0
+    },
     headimgurl:String,
     intro:String,
     token:String,
