@@ -1,47 +1,41 @@
 define(['jquery'],function($){
     return {
-        get:function(url,cb,param){
+        get:function(url,doneCallback,failCallback){
             $.ajax({
                 type:'GET',
-                url:url,
-                success:cb,
-                error:function(){
-                    alert('GET请求出错')
-                }
+                url:url
             })
+            .done(doneCallback)
+            .fail(failCallback)
         },
-        post:function(data,url,cb){
+        post:function(data,url,doneCallback,failCallback){
             $.ajax({
                 type:'POST',
                 url:url,
                 data:data,
-                dataType:'json',
-                success:cb,
-                error:function(){
-                    alert('POST请求出错')                
-                }
+                dataType:'json'
             })
+            .done(doneCallback)
+            .fail(failCallback)
         },
-        put:function(data,url,cb){
+        put:function(data,url,doneCallback,failCallback){
             $.ajax({
                 type:'PUT',
                 url:url,
                 data:data,
-                dataType:'json',
-                success:cb,
-                error:function(){
-                    alert('POST请求出错')                
-                }
+                dataType:'json'
             })
+            .done(doneCallback)
+            .fail(failCallback)
         },
-        delete:function(url,cb){
+        delete:function(url,doneCallback,failCallback){
             $.ajax({
                 type:'DELETE',
                 url:url
             })
-            .done(cb)
+            .done(doneCallback)
+            .fail(failCallback)
         },
-        // BUG:只能获取到sex值
         getFormData : function(){
             var form = $('form'),
                 pairs = form.serialize().split(/&/gi),
