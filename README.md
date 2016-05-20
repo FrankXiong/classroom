@@ -28,7 +28,6 @@
 
 ### BUG列表
 > * request.js:getFormData()不能获取到完整的表单数据
-> * 添加教学班BUG:```MongoError: E11000 duplicate key error index: classroom.classes.$id_1 dup key: { : null }```
 > * 删除学生或教学班时获取不到id
 > * Node进程能在服务器运行，但网站无法访问（IPv6?）
 

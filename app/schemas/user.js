@@ -3,6 +3,11 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
+    // 学号
+    stuid:{
+        type:Number,
+        default:20130001
+    },
     name:{
         type:String,
         default:'unknown'
@@ -23,12 +28,10 @@ var UserSchema = new mongoose.Schema({
         type:String,
         default:'unknown'
     },
-    // 学号
-    stuid:{
+    phone: {
         type:Number,
-        default:20130001
+        default:0
     },
-    phone:Number,
     // 暂不开放学校选项，默认为重庆大学，且不可更改
     school:{
         type:String,

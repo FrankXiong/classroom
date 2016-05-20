@@ -95,12 +95,12 @@ exports.renderUpdateStu = function(req,res){
     
 }
 
-// 桌面端用户注册
+// 教师注册
 exports.reg = function(req,res){
     var teacherObj = req.body
-    var phone = teacherObj.phone
+    var tid = teacherObj.tid
 
-    Teacher.findOne({phone:phone},function(err,teacher){
+    Teacher.findOne({tid:tid},function(err,teacher){
         if(err){
             console.log(err)
         }
@@ -122,13 +122,13 @@ exports.reg = function(req,res){
 
 }
 
-// 桌面端用户登录
+// 教师登录
 exports.login = function(req,res){
-    var _teacher = req.body
-    var phone = _teacher.phone
-    var password = _teacher.password
+    var teacherObj = req.body
+    var tid = teacherObj.tid
+    var password = teacherObj.password
 
-    Teacher.findOne({phone:phone},function(err,teacher){
+    Teacher.findOne({tid:tid},function(err,teacher){
         if(err) console.log(err)
         //用户不存在 
         if(!teacher){

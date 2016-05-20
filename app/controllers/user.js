@@ -145,9 +145,9 @@ exports.signinRequired = function(req,res,next){
 
 exports.reg = function(req,res){
     var userObj = req.body
-    var phone = userObj.phone
+    var stuid = userObj.stuid
 
-    User.findOne({phone:phone},function(err,user){
+    User.findOne({stuid:stuid},function(err,user){
         if(err){
             console.log(err)
         }
@@ -168,18 +168,17 @@ exports.reg = function(req,res){
 }
 
 exports.login = function(req,res){
-    var _user = req.body
-    var phone = _user.phone
-    var password = _user.password
+    var userObj = req.body
+    var stuid = userObj.stuid
+    var password = userObj.password
 
-    User.findOne({phone:phone},function(err,user){
+    User.findOne({stuid:stuid},function(err,user){
         if(err) console.log(err)
         //用户不存在 
         if(!user){
             console.log('error:用户名不存在！')
             return res.redirect('/user/login')
         }
-        console.log(user)
         //调用comparePassword方法比对密码
         user.comparePassword(password,function(err,isMatch){
             if(err) console.log(err)

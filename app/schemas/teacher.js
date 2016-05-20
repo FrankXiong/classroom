@@ -91,9 +91,9 @@ TeacherSchema.statics = {
             .sort('meta.updateAt')
             .exec(cb)
     },
-    findByOpenid:function(id,cb){
+    findByTid:function(id,cb){
         return this
-            .findOne({openid:id})
+            .findOne({tid:id})
             .exec(cb)
     },
     findById:function(id,cb){
