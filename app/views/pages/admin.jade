@@ -4,7 +4,7 @@ block content
     include ../includes/admin_sidebar
 
     div.admin-content
-        div.am-cf.am-padding
+        div.am-cf.am-padding.row
             div.am-fl.am-cf
                 strong.am-text-primary.am-text-lg 首页 / 
                 small 一些常用模块
@@ -38,38 +38,80 @@ block content
                     在线用户
                     br 
                     span 3000
-        div.am-g
-            div.am-u-md-12
-                div.am-panel.am-panel-default
-                    div.am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-1'}") 需求分析
-                        span.am-icon-chevron-down.am-fr
-                div#collapse-panel-1.am-panel-bd.am-collapse.am-in
-                    ul.am-list.admin-content-file
-                        li
-                            strong
-                                span.am-icon-check 一期(2016.4.1 - 4.20)
-                            ul
-                                li 学生注册（学生）
-                                li 教师信息管理。包括注册账号、添加、修改教师ID、姓名、密码、手机号（教师）
-                                li 教师登录、注销（教师）
-                                li 教学班管理。包括添加、删除、修改、查询教学班信息（教师）
-                                li 学生管理。包括添加、删除、修改、查询学生信息（教师）
+        div.am-g.row
+            //- div.am-u-md-6
+            //-     div.am-panel.am-panel-default
+            //-         div.am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-1'}") 需求分析
+            //-             span.am-icon-chevron-down.am-fr
+            //-         div#collapse-panel-1.am-panel-bd.am-collapse.am-in
+            //-             ul.am-list.admin-content-file
+            //-                 li
+            //-                     strong
+            //-                         span.am-icon-check 一期(2016.4.1 - 4.20)
+            //-                     ul
+            //-                         li 学生注册（学生）
+            //-                             span.am-badge.am-badge-success YES
+            //-                         li 教师信息管理。包括注册账号、添加、修改教师ID、姓名、密码、手机号（教师）
+            //-                             span.am-badge.am-badge-success YES
+            //-                         li 教师登录、注销（教师）
+            //-                             span.am-badge.am-badge-success YES
+            //-                         li 教学班管理。包括添加、删除、修改、查询教学班信息（教师）
+            //-                             span.am-badge.am-badge-success YES
+            //-                         li 学生管理。包括添加、删除、修改、查询学生信息（教师）
+            //-                             span.am-badge.am-badge-success YES
 
-                        li
-                            strong
-                                span.am-icon-check 二期(4.20 - 5.10)
-                            ul    
-                                li 上课功能。选择上课后，可以选择进行签到、答题。答题模式中包含单选题、多选题、问答题等应答会话模式，教师可以设置答题时间。二期暂不实现签到功能。（教师）
-                                li 教师查看当前应答会话信息。包括剩余时间、会话类型、参与人数（教师）
-                                li 学生答题，提交答案后系统应对用户提交的信息进行格式验证。答完题后应收到反馈信息。（学生）
-                                li 答题结束后对答案进行统计分析（教师）
-                            
-                        li
-                            strong
-                                span.am-icon-check 三期 (5.10 - 5.20)
-                            ul    
-                                li 实现签到功能（学生&教师）
-                                li 实现批量导入学生（教师）
+            //-                 li
+            //-                     strong
+            //-                         span.am-icon-check 二期(4.20 - 5.10)
+            //-                     ul    
+            //-                         li 上课功能。选择上课后，可以选择进行签到、答题。答题模式中包含单选题、多选题、问答题等应答会话模式，教师可以设置答题时间。二期暂不实现签到功能。（教师）
+            //-                             span.am-badge.am-badge-danger NO
+            //-                         li 教师查看当前应答会话信息。包括剩余时间、会话类型、参与人数（教师）
+            //-                             span.am-badge.am-badge-danger NO
+            //-                         li 学生答题，提交答案后系统应对用户提交的信息进行格式验证。答完题后应收到反馈信息。（学生）
+            //-                             span.am-badge.am-badge-danger NO
+            //-                         li 答题结束后对答案进行统计分析（教师）
+            //-                             span.am-badge.am-badge-danger NO
+                                
+            //-                 li
+            //-                     strong
+            //-                         span.am-icon-check 三期 (5.10 - 5.20)
+            //-                     ul    
+            //-                         li 实现签到功能（学生&教师）
+            //-                             span.am-badge.am-badge-info ING
+            //-                         li 实现批量导入学生（教师）
+            //-                             span.am-badge.am-badge-danger NO
+            div.am-u-md-6
+                div.am-panel.am-panel-default
+                    div.am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-tasks'}") 本周任务(13周)
+                        span.am-icon-chevron-down.am-fr
+                    div#collapse-panel-tasks.am-panel-bd.am-collapse.am-in
+                        ul.am-list.admin-content-file
+                            li 清理现有BUG,完成一期所有功能
+                                span.am-badge.am-badge-secondary ING
+                            li 实现导入学生功能
+                                span.am-badge.am-badge-success YES
+                            li 实现签到功能(进行中)
+                                span.am-badge.am-badge-secondary ING
+                            div.am-u-md-6
+
+            div.am-u-md-6
+                div.am-panel.am-panel-default
+                    div.am-panel-hd.am-cf(data-am-collapse="{target: '#collapse-panel-bugs'}") Bug清单
+                        span.am-icon-chevron-down.am-fr
+                    div#collapse-panel-bugs.am-panel-bd.am-collapse.am-in
+                        ul.am-list.admin-content-file
+                            li 怪异的删除BUG：教学班和学生需要点击多次才能删除
+                                span.am-badge.am-badge-danger NO
+                            li 教师登录bug：登录时密码错误
+                                span.am-badge.am-badge-danger NO
+                            li Node进程能在服务器运行，但网站无法访问（IPv6?）
+                                span.am-badge.am-badge-danger NO
+                            li 教师个人资料：电话和性别显示异常
+                                span.am-badge.am-badge-danger NO
+                            li 查看某个课程下的学生列表：点删除按钮时，只应删除该课程下的学生记录
+                                span.am-badge.am-badge-danger NO
+
                                 
                   
                 
