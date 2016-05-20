@@ -28,18 +28,24 @@ $(function(){
         var id = $(e.target).data('id')
         console.log(id)
         var tr = $('.item-id-' + id)
-
-        $.ajax({
-            type:'DELETE',
-            url:'/admin/class/?id=' + id
-        })
-        .done(function(results){
-            if(results.success === 1){
-                if(tr.length > 0){
-                    tr.remove()
-                    alert('成功删除')
+        if(id){
+            $.ajax({
+                type:'DELETE',
+                url:'/admin/class/?id=' + id,
+                error:function(){
+                    alert('删除失败')
                 }
-            }
-        })
+            })
+            .done(function(results){
+                if(results.code === 1){
+                    if(tr.length > 0){
+                        tr.remove()
+                        alert(results.msg)
+                    }
+                }
+            })
+        }else{
+            alert('id is undefined')
+        }
     })
 })
