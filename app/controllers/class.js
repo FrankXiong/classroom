@@ -52,19 +52,26 @@ exports.renderStuAdd = function(req,res){
 }
 
 exports.renderClassPage = function(req,res){
-    var isLogin = req.session.teacher
+    var teacher = req.session.teacher
     var classId = req.params.id
-    if(isLogin){
+    if(teacher){
         if(classId){
-            Class.findById(classId,function(err,tclass){
-                // Teacher.findById(tclass.tid,function(err,teacher){
-                    res.render('admin_class_page',{
-                        title:'教学班主页',
-                        // teacher:teacher,
-                        tclass:tclass,
-                        teacher:isLogin
-                    }) 
-                // })
+            // Class.findById(classId,function(err,tclass){
+            //     res.render('admin_class_page',{
+            //         title:'教学班主页',
+            //         tclass:tclass,
+            //         teacher:isLogin
+            //     }) 
+            // })
+            Class.findOne({_id:classId})
+            .populate({path:'stus'})
+            .exec(function(err,tclass){
+                console.log('after populate:',err,tclass)
+                res.render('admin_class_page',{
+                    title:'教学班主页',
+                    tclass:tclass,
+                    teacher:teacher
+                }) 
             })
         }
     }else{
@@ -126,6 +133,8 @@ exports.importStu = function(req,res){
             User.findByStuid(stuid,function(err,stu){
                 if(err){
                     console.log(err)
+                }else if(!stu){
+                    res.json({code:0,msg:'此学生未注册'})
                 }else{
                     Class.findById(classId,function(err,tclass){
                         if(err){

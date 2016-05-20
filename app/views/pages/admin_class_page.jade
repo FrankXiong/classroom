@@ -8,13 +8,22 @@ block content
             div.admin-content-body
                 div.am-cf.am-padding.am-padding-bottom-0
                     div.am-fl.am-cf
-                        strong.am-text-primary.am-text-lg 
+                        strong.am-text-primary.am-text-lg #{tclass.courseName}
                 hr
 
                 div.am-g
                     div.am-u-sm-12
                         div.am-panel
-                                button#startLessonBtn(type="button").am-btn.am-btn-primary.am-fr 开始上课
+                            button#startLessonBtn(type="button").am-btn.am-btn-primary 开始上课
+                            button.am-btn.am-btn-primary(data-am-offcanvas="{target: '#stu-list'}") 所有学生
+                            div#stu-list.am-offcanvas
+                                div.am-offcanvas-bar.am-offcanvas-bar-flip
+                                    div.am-offcanvas-content
+                                        p 所有上课学生
+                                        ul.stu-list
+                                            each item in tclass.stus
+                                                li 
+                                                    a(href="#") #{item.name}
 
     script(src="/js/lib/require.js" data-main="/js/app/admin")
 

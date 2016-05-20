@@ -357,6 +357,12 @@ gallery.html css
 .signin-header p {
   font-size: 14px; }
 
+.am-offcanvas-bar {
+  top: 51px; }
+
+.stu-list {
+  margin-top: 10px; }
+
 /**
  * admin.css end
  */
