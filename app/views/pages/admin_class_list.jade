@@ -60,12 +60,12 @@ block content
                                                             span.am-icon-paper-plane 进入
                                                         a(href="/admin/class/update/#{item._id}").edit.am-btn.am-btn-warning.am-btn-xs
                                                             span.am-icon-pencil-square-o 编辑
-                                                        span.del.am-btn.am-btn-danger.am-btn-xs(data-id="#{item._id}")
+                                                        span.del-class.am-btn.am-btn-danger.am-btn-xs(data-id="#{item._id}")
                                                             span.am-icon-trash-o 删除
                                                         a(href="/admin/class/import/#{item._id}").import.am-btn.am-btn-success.am-btn-xs
                                                             span.am-icon-user-plus 导入学生
                             
         else
             span 请先登录
-    script(src="/js/lib/require.js" data-main="/js/app/admin_class")    
+    script(src="/js/lib/require.js" data-main="/js/app/admin")    
         

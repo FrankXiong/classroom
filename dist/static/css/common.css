@@ -360,8 +360,15 @@ gallery.html css
 .am-offcanvas-bar {
   top: 51px; }
 
-.stu-list {
-  margin-top: 10px; }
+.offcanvas-stu-list {
+  margin-top: 10px;
+  padding-left: 0; }
+
+.offcanvas-stu-item {
+  border-bottom: 1px dotted #666; }
+
+.offcanvas-edit {
+  margin-right: 10px; }
 
 /**
  * admin.css end

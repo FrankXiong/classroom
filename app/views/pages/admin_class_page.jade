@@ -20,10 +20,15 @@ block content
                                 div.am-offcanvas-bar.am-offcanvas-bar-flip
                                     div.am-offcanvas-content
                                         p 所有上课学生
-                                        ul.stu-list
+                                        ul.offcanvas-stu-list
                                             each item in tclass.stus
-                                                li 
-                                                    a(href="#") #{item.name}
+                                                li.offcanvas-stu-item(class="item-id-#{item._id}")
+                                                    div.am-fl
+                                                        a(href="#") #{item.name}
+                                                    div.am-fr
+                                                        a(href="/admin/stu/update/#{item._id}")
+                                                            span.offcanvas-edit.am-icon-pencil-square-o 
+                                                        span(data-id="#{item._id}").am-icon-trash-o.offcanvas-del.del-stu
 
     script(src="/js/lib/require.js" data-main="/js/app/admin")
 

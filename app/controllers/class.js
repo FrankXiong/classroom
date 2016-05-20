@@ -140,6 +140,11 @@ exports.importStu = function(req,res){
                         if(err){
                             console.log(err)
                         }else{
+                            for(var item in tclass.stus){
+                                if(stu._id === item){
+                                    res.json({code:0,msg:'此学生已导入'})
+                                }
+                            }
                             tclass.stus.push(stu._id)
                             tclass.save(function(err,tclass){
                                 res.json({code:1,msg:'导入成功'})
