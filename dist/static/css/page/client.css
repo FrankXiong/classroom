@@ -1,0 +1,16 @@
+.input-answer {
+  position: fixed;
+  bottom: 0;
+  width: 100%; }
+
+.weui_grid_icon {
+  color: #333; }
+
+.grid-active {
+  background: #e6e6e6;
+  /*.weui_grid_icon{
+        color: #fff;
+    }
+    .weui_grid_label{
+        color: #fff;
+    }*/ }

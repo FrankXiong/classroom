@@ -35,7 +35,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('js', function() {  
-  return gulp.src('src/js/**/*.js')
+  return gulp.src('src/js/**/*.*')
     .pipe(gulp.dest('dist/static/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));

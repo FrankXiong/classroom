@@ -10,6 +10,12 @@ var wx = require('weixin-api')
 var API = require('wechat-api')
 var config = require('config')
 var multer = require('multer')
+var io = require('socket.io')()
+var Realtime = require('leancloud-realtime').Realtime;
+var realtime = new Realtime({
+  appId: 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz',
+  region: 'cn', // 美国节点为 "us"
+});
 
 var port = process.env.PORT || 3000
 var app = new express()
@@ -33,6 +39,8 @@ app.use(cookieParser())
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 // app.use(multer()) // for parsing multipart/form-data
+
+io.emit('from socket.io')
 
 app.use(session({
     secret:'classroom',

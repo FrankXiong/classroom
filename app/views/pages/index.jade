@@ -3,91 +3,131 @@ extends ../layout
 block content
     
     div.container
-        div.weui_cells_title 资源列表
-        div.weui_cells.weui_cells_access.source_list
-            div.weui_cell
-                div.weui_cell_hd
-                    img.cover(src="http://s.amazeui.org/media/i/demos/pure-1.jpg?imageView2/0/w/640" alt="") 
-            
-                div.weui_cell_bd.weui_cell_primary
-                    h3.title WeUI 发布——微信官方UI库
-                    p.summary 团队里的几个小伙子把微信里面web app的UI，按照设计规范给梳理了一遍，并将之开源了出来。
-                
-                div.weui_cell_ft
         
-            div.weui_cell
-                div.weui_cell_hd
-                    img.cover(src="http://s.amazeui.org/media/i/demos/bing-2.jpg" alt="")
+        
+        //- 弹窗组件
+        //- div.weui_dialog_confirm 
+        //-     div.weui_mask 
+        //-     div.weui_dialog 
+        //-         div.weui_dialog_hd 
+        //-             strong.weui_dialog_title 会话标题
+        //-         div.weui_dialog_bd 自定义弹窗内容 ...
+        //-         div.weui_dialog_ft 
+        //-             a(href="javascript:;").weui_btn_dialog.default 取消
+        //-             a(href="javascript:;").weui_btn_dialog.primary 确定
                 
-                div.weui_cell_bd.weui_cell_primary
-                    h3.title 服务器被删除了
-                    p.summary 因为没钱付服务器年费，所以一直都是月付，然后每个月服务器商会发来短信告诉我要缴费了。
+            
+        //- div.weui_cells
+        //-     div.weui_cell
+        //-         div.weui_cell_bd.weui_cell_primary
+        //-             p 标题文字
                 
-                div.weui_cell_ft
-          
-            div.weui_cell
-                div.weui_cell_hd
-                    img.cover(src="http://s.amazeui.org/media/i/demos/bing-3.jpg" alt="")
+        //-         div.weui_cell_ft 说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字
+        //-     div.weui_cell
+        //-         div.weui_cell_bd.weui_cell_primary
+        //-             p 标题文字
                 
-                div.weui_cell_bd.weui_cell_primary
-                    h3.title  QQ浏览器X5内核问题汇总
-                    p.summary  常常被人问及微信中使用的X5内核的问题，其实我也不是很清楚，只知道它是基于android 4.2的webkit，版本号是webkit 534。
-                
-                div.weui_cell_ft
+        //-         div.weui_cell_ft 说明文字
+        
+        
+              
+            
+        div.weui_grids
+            a(href="javascript:;").weui_grid.grid-active
+                div.weui_grid_icon
+                    span.am-icon-sign-in.am-icon-sm
+                p.weui_grid_label 签到
+            a(href="javascript:;").weui_grid
+                div.weui_grid_icon
+                    span.am-icon-commenting.am-icon-sm
+                p.weui_grid_label 即时问答
+            a(href="javascript:;").weui_grid
+                div.weui_grid_icon
+                    span.am-icon-question.am-icon-sm
+                p.weui_grid_label 学生提问
+            a(href="javascript:;").weui_grid
+                div.weui_grid_icon
+                    span.am-icon-smile-o.am-icon-sm
+                p.weui_grid_label 开放问题
+            a(href="javascript:;").weui_grid
+                div.weui_grid_icon
+                    span.am-icon-pencil.am-icon-sm
+                p.weui_grid_label 测验
+            a(href="javascript:;").weui_grid
+                div.weui_grid_icon
+                    span.am-icon-paper-plane.am-icon-sm
+                p.weui_grid_label 实时反馈
 
-            div.weui_cell
-                div.weui_cell_hd
-                    img.cover(src="http://s.amazeui.org/media/i/demos/bing-2.jpg" alt="")
-                
-                div.weui_cell_bd.weui_cell_primary
-                    h3.title 服务器被删除了
-                    p.summary 因为没钱付服务器年费，所以一直都是月付，然后每个月服务器商会发来短信告诉我要缴费了。
-                
-                div.weui_cell_ft
-          
-            div.weui_cell
-                div.weui_cell_hd
-                    img.cover(src="http://s.amazeui.org/media/i/demos/bing-3.jpg" alt="")
-                
-                div.weui_cell_bd.weui_cell_primary
-                    h3.title  QQ浏览器X5内核问题汇总
-                    p.summary  常常被人问及微信中使用的X5内核的问题，其实我也不是很清楚，只知道它是基于android 4.2的webkit，版本号是webkit 534。
-                
-                div.weui_cell_ft
-          
+        div(data-am-widget="list_news").am-list-news.am-list-news-default
+            //- div.am-list-news-hd.am-cf
+            //-     a(href="###")
+            //-         h2 程序实践
 
-        div.weui_tab.ctr_bar
-            div.weui_tab_bd
-                div.weui_tab_bd_item
-                    h3 微信
+            div.am-list-news-bd
+                ul.am-list
+                    li.am-g.am-list-item-desced
+                        a(href="").am-list-item-hd 签到 
+                        div.am-list-item-text 请发送数字1进行签到
+                    //- li.am-g.am-list-item-desced
+                    //-     a(href="").am-list-item-hd 开放问题
+                    //-     div.am-list-item-text websocket的工作原理？
+                    //- li.am-g.am-list-item-desced
+                    //-     a(href="").am-list-item-hd 学生提问
+                    //-     div.am-list-item-text 发送你想问的问题
+                    //- li.am-g.am-list-item-desced
+                    //-     a(href="").am-list-item-hd 微试卷 
+                    //-     div.am-list-item-text 请在60分钟内完成本次测验
+                    //- li.am-g.am-list-item-desced
+                    //-     a(href="").am-list-item-hd 即时应答 
+                    //-     div.am-list-item-text 30s内写下你的答案
+                    //- li.am-g.am-list-item-desced
+                    //-     a(href="").am-list-item-hd 即时应答 
+                    //-     div.am-list-item-text 30s内写下你的答案
+            div.am-list-news-ft
+                a.am-list-news-more.am-btn.am-btn-default(href="###") 查看更多 &raquo;
+
+        //- 输入框组件
+        div.weui_cells.weui_cells_form.input-answer
+            div.weui_cell 
+                div.weui_cell_bd.weui_cell_primary 
+                    input#stuInput.weui_input(type="text" placeholder="输入...")
+                div.weui_cell_hd 
+                    button#postBtn.am-btn.am-btn-secondary.am-btn-lg 发送
                 
-                div.weui_tab_bd_item
-                    h3 通讯录
+            
+        
+        //- div.weui_tab.ctr_bar
+        //-     div.weui_tab_bd
+        //-         div.weui_tab_bd_item
+        //-             h3 微信
                 
-                div.weui_tab_bd_item
-                    h3 发现
+        //-         div.weui_tab_bd_item
+        //-             h3 通讯录
                 
-                div.weui_tab_bd_item
-                    h3 我
+        //-         div.weui_tab_bd_item
+        //-             h3 发现
                 
-            div.weui_tabbar
-                a.weui_tabbar_item(href="javascript:;")
-                    div.weui_tabbar_icon
-                        img(src="http://weui.github.io/weui/images/icon_nav_dialog.png" alt="")
+        //-         div.weui_tab_bd_item
+        //-             h3 我
+                
+        //-     div.weui_tabbar
+        //-         a.weui_tabbar_item(href="javascript:;"))
+        //-   .        dieui_tabbar_icon
+        //-                 img(src="http://weui.github.io/weui/images/icon_nav_dialog.png" alt="")
                     
-                    p.weui_tabbar_label 答题
+        //-             p.weui_tabbar_label 答题
                 
-                a.weui_tabbar_item(href="javascript:;")
-                    div.weui_tabbar_icon
-                        img(src="http://weui.github.io/weui/images/icon_nav_search_bar.png" alt="")
+        //-         a.weui_tabbar_item(href="javascript:;"))
+        //-   .        dieui_tabbar_icon
+        //-                 img(src="http://weui.github.io/weui/images/icon_nav_search_bar.png" alt="")
                     
-                    p.weui_tabbar_label 发现
+        //-             p.weui_tabbar_label 发现
                 
-                a.weui_tabbar_item(href="/user/:openid")
-                    div.weui_tabbar_icon
-                        img(src="http://weui.github.io/weui/images/icon_nav_cell.png" alt="")
+        //-         a.weui_tabbar_item(href="/user/:openid)")
+        //-  .         dweui_tabbar_icon
+        //-                 img(src="http://weui.github.io/weui/images/icon_nav_cell.png" alt="")
                     
-                    p.weui_tabbar_label 我
+        //-             p.weui_tabbar_label 我
                 
             
         
