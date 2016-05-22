@@ -360,10 +360,14 @@ gallery.html css
 
 .offcanvas-stu-list {
   margin-top: 10px;
-  padding-left: 0; }
+  padding-left: 0;
+  list-style: none; }
 
 .offcanvas-stu-item {
-  border-bottom: 1px dotted #666; }
+  border-bottom: 1px dotted #666;
+  display: block;
+  line-height: 150%;
+  clear: both; }
 
 .offcanvas-edit {
   margin-right: 10px; }
@@ -392,18 +396,26 @@ gallery.html css
  * user.css end
  */
 .boxes {
-  width: 100%; }
+  width: 100%;
+  margin-top: 1em; }
 
 .boxes .box {
-  height: 100px;
   color: #eee;
   text-align: center;
   font-weight: bold;
   transition: all .2s ease;
-  border: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  height: 100px;
   color: #333; }
+  .boxes .box:last-child {
+    border-right: 1px solid #d9d9d9; }
   .boxes .box .action-icon {
     line-height: 60px;
     color: #666; }
   .boxes .box p {
     color: #666; }
+
+.boxes .box:hover {
+  background: #d9d9d9; }
