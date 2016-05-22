@@ -46,6 +46,16 @@ define(['jquery'],function($){
                 formData[pair[0]] = decodeURIComponent(pair[1] || '');
             });
             return formData;
+        },
+        getLoginFormData : function(form){
+            var pairs = form.serialize().split(/&/gi),
+                formData = {};
+
+            pairs.forEach(function(pair) {
+                pair = pair.split('=');
+                formData[pair[0]] = decodeURIComponent(pair[1] || '');
+            });
+            return formData;
         }
 
     }

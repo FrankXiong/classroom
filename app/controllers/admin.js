@@ -95,70 +95,7 @@ exports.renderUpdateStu = function(req,res){
     
 }
 
-// 教师注册
-exports.reg = function(req,res){
-    var teacherObj = req.body
-    var tid = teacherObj.tid
 
-    Teacher.findOne({tid:tid},function(err,teacher){
-        if(err){
-            console.log(err)
-        }
-        if(teacher){
-            console.log('ERROR:用户名已存在')
-            return res.redirect('/admin/login')
-        }else{
-            var teacher = new Teacher(teacherObj)
-            teacher.save(function(err,teacher){
-                if(err){
-                    console.log(err)
-                }
-                console.log("SUCCESS:注册成功")
-                return res.redirect('/admin/login')
-            })
-        }
-
-    })
-
-}
-
-// 教师登录
-exports.login = function(req,res){
-    var teacherObj = req.body
-    var tid = teacherObj.tid
-    var password = teacherObj.password
-
-    Teacher.findOne({tid:tid},function(err,teacher){
-        if(err) console.log(err)
-        //用户不存在 
-        if(!teacher){
-            console.log('error:用户名不存在！')
-            return res.redirect('/admin/login')
-        }
-        //调用comparePassword方法比对密码
-        teacher.comparePassword(password,function(err,isMatch){
-            if(err) console.log(err)
-            if(isMatch){
-                // session存储登录信息
-                req.session.teacher = teacher
-                console.log('success:密码正确！')
-                return res.redirect('/admin')
-            }else{
-                console.log('error:密码错误！')
-                // res.status(404).send("密码错误！")
-                return res.redirect('/admin/login')
-            }
-
-        })
-    })
-}
-
-// logout
-exports.logout = function(req,res){
-    delete req.session.teacher
-    // delete app.locals.teacher
-    res.redirect('/admin')
-}
 
 
 exports.delStu = function(req,res){

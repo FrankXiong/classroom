@@ -30,10 +30,8 @@ block content
         //-         div.weui_cell_ft 说明文字
         
         
-              
-            
         div.weui_grids
-            a(href="javascript:;").weui_grid.grid-active
+            a(href="javascript:;").weui_grid
                 div.weui_grid_icon
                     span.am-icon-sign-in.am-icon-sm
                 p.weui_grid_label 签到
@@ -53,7 +51,7 @@ block content
                 div.weui_grid_icon
                     span.am-icon-pencil.am-icon-sm
                 p.weui_grid_label 测验
-            a(href="javascript:;").weui_grid
+            a(href="javascript:;").weui_grid.grid-active
                 div.weui_grid_icon
                     span.am-icon-paper-plane.am-icon-sm
                 p.weui_grid_label 实时反馈
@@ -66,8 +64,8 @@ block content
             div.am-list-news-bd
                 ul.am-list
                     li.am-g.am-list-item-desced
-                        a(href="").am-list-item-hd 签到 
-                        div.am-list-item-text 请发送数字1进行签到
+                        a(href="").am-list-item-hd 杨老师 
+                        div#printWall.am-list-item-text 杨老师的回复
                     //- li.am-g.am-list-item-desced
                     //-     a(href="").am-list-item-hd 开放问题
                     //-     div.am-list-item-text websocket的工作原理？
@@ -83,8 +81,8 @@ block content
                     //- li.am-g.am-list-item-desced
                     //-     a(href="").am-list-item-hd 即时应答 
                     //-     div.am-list-item-text 30s内写下你的答案
-            div.am-list-news-ft
-                a.am-list-news-more.am-btn.am-btn-default(href="###") 查看更多 &raquo;
+            //- div.am-list-news-ft
+            //-     a.am-list-news-more.am-btn.am-btn-default(href="###") 查看更多 &raquo;
 
         //- 输入框组件
         div.weui_cells.weui_cells_form.input-answer

@@ -3,7 +3,10 @@ var OAuth = require('wechat-oauth')
 var config = require('config')
 var _ = require('underscore');
 var User = require('../models/user')
+var Teacher = require('../models/teacher')
+var AV = require('avoscloud-sdk')
 
+AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
 
 var appid = config.get('wx.app_id')
 var appsecret = config.get('wx.app_secret')
@@ -153,15 +156,26 @@ exports.reg = function(req,res){
         }
         if(user){
             console.log('ERROR:用户名已存在')
-            return res.redirect('/user/login')
+            return res.redirect('/user/reg')
         }else{
             var user = new User(userObj)
+            var AVuser = new AV.User()
             user.save(function(err,user){
                 if(err){
                     console.log(err)
                 }
-                console.log("SUCCESS:注册成功")
-                return res.redirect('/user/login')
+                AVuser.set('username',userObj.name)
+                AVuser.set('password',userObj.password)
+                AVuser.set('stuid',userObj.stuid)
+                AVuser.signUp().then(function(user){
+                    console.log('成功注册：'+user)
+                    return res.redirect('/user/login');
+                },function (err) {
+                    console.log('Error: ' + err.code + ' ' + err.message)
+                    return res.redirect('/user/reg');
+                })
+                // console.log("SUCCESS:注册成功")
+                // return res.redirect('/user/login')
             })
         }
     })
@@ -185,11 +199,11 @@ exports.login = function(req,res){
             if(isMatch){
                 // session存储登录信息
                 req.session.user = user
+                AV.User.logIn(stuid, password)
                 console.log('success:密码正确！')
                 return res.redirect('/')
             }else{
                 console.log('error:密码错误！')
-                // res.status(404).send("密码错误！")
                 return res.redirect('/user/login')
             }
 
@@ -199,7 +213,8 @@ exports.login = function(req,res){
 
 exports.logout = function(req,res){
     delete req.session.user
-    // delete app.locals.user
+    AV.User.logOut();
+    var currentUser = AV.User.current(); 
     res.redirect('/')
 }
 
@@ -213,6 +228,84 @@ exports.renderLogin = function(req,res){
     res.render('user_login',{
         title:'登录'
     })
+}
+
+
+// 教师注册
+exports.adminReg = function(req,res){
+    var teacherObj = req.body
+    var tid = teacherObj.tid
+
+    Teacher.findOne({tid:tid},function(err,teacher){
+        if(err){
+            console.log(err)
+        }
+        if(teacher){
+            console.log('ERROR:用户名已存在')
+            return res.redirect('/admin/reg')
+        }else{
+            var teacher = new Teacher(teacherObj)
+            var AVuser = new AV.User()
+            teacher.save(function(err,teacher){
+                if(err){
+                    console.log(err)
+                }
+                // console.log("SUCCESS:注册成功")
+                // return res.redirect('/admin/login')
+                else{
+                    AVuser.set('username',teacherObj.name)
+                    AVuser.set('password',teacherObj.password)
+                    AVuser.set('tid',teacherObj.tid)
+                    AVuser.signUp().then(function(user){
+                        console.log('成功注册：'+teacher)
+                        return res.redirect('/admin/login');
+                    },function (err) {
+                        console.log('Error: ' + err.code + ' ' + err.message)
+                        return res.redirect('/admin/reg');
+                    })
+                }
+                
+            })
+        }
+
+    })
+
+}
+
+// 教师登录
+exports.adminLogin = function(req,res){
+    var teacherObj = req.body
+    var tid = teacherObj.tid
+    var password = teacherObj.password
+
+    Teacher.findOne({tid:tid},function(err,teacher){
+        if(err) console.log(err)
+        //用户不存在 
+        if(!teacher){
+            console.log('error:用户名不存在！')
+            return res.redirect('/admin/login')
+        }
+        teacher.comparePassword(password,function(err,isMatch){
+            if(err) console.log(err)
+            if(isMatch){
+                // session存储登录信息
+                req.session.teacher = teacher
+                AV.User.logIn(tid, password)
+                console.log('success:密码正确！')
+                return res.redirect('/admin')
+            }else{
+                res.send("密码错误！")
+                return res.redirect('/admin/user/login')
+            }
+        })
+    })
+}
+
+// logout
+exports.adminLogout = function(req,res){
+    delete req.session.teacher
+    // delete app.locals.teacher
+    res.redirect('/admin')
 }
 
 

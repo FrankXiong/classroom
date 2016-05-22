@@ -11,7 +11,9 @@ var API = require('wechat-api')
 var config = require('config')
 var multer = require('multer')
 var io = require('socket.io')()
+
 var Realtime = require('leancloud-realtime').Realtime;
+
 var realtime = new Realtime({
   appId: 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz',
   region: 'cn', // 美国节点为 "us"

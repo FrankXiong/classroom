@@ -6,6 +6,7 @@ header.am-header.am-header-default(data-am-widget="header")
         a(href="#") 翘课吧
     div.am-header-right.am-header-nav
         if user
+            input#uname(type="hidden" value="#{user.name}" name="uname")
             li.am-dropdown(data-am-dropdown)
                 a.am-dropdown-toggle.user-dropdown(data-am-dropdown-toggle href="javascript:;")
                     span #{user.name}

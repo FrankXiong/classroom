@@ -3,7 +3,7 @@ html
     head
         meta(charset='utf-8')
         title #{title}
-        include ../includes/admin_head
+        include ../includes/head
 
     body
         div.header.signin-header
@@ -20,6 +20,41 @@ html
                         a(href="/oauth").am-btn.am-btn-success.am-btn-sm
                             i.am-icon-weixin.am-icon-sm 微信
                 hr
+                //- div(data-am-widget="tabs").am-tabs.am-tabs-default
+                //-     ul.am-tabs-nav.am-cf
+                //-         li.am-active
+                //-             a(href="[data-tab-panel-stu]") 学生
+                //-         li
+                //-             a(href="[data-tab-panel-teacher]") 教师
+                //-     div.am-tabs-bd
+                //-         div(data-tab-panel-stu).am-tab-panel.am-active.form-tab
+                //-             div.row
+                //-                 form.am-form.form-stu
+                //-                     div.row
+                //-                         label(for="stuid") 学号:
+                //-                         input#stuid(type="number" name="stuid" value="")
+                //-                     div.row
+                //-                         label(for="password") 密码:
+                //-                         input#password(type="password" name="password" value="")
+                //-                     div.row.btn-row
+                //-                         input#stuLoginBtn.btn-login.am-btn.am-btn-primary.am-btn-lg(type="button" name="" value="登 录")
+                //-                     div.row.btn-row
+                //-                         a(href="/user/reg")
+                //-                             input.am-btn.am-btn-default.am-fr(type="button" name="" value="没有帐号?先去注册")
+                      
+                //-         div(data-tab-panel-teacher).am-tab-panel.form-tab
+                //-             div.row
+                //-                 form.am-form.form-teacher
+                //-                     div.row
+                //-                         label(for="tid") ID:
+                //-                         input#tid(type="number" name="tid" value="")
+                //-                     div.row
+                //-                         label(for="password") 密码:
+                //-                         input#password(type="password" name="password" value="")
+                //-                     div.row.btn-row
+                //-                         input#teacherLoginBtn.btn-login.am-btn.am-btn-primary.am-btn-lg(type="button" name="" value="登 录")
+              
+
                 div.row
                     form(action="/user/login",method="POST").am-form
                         div.row
@@ -34,6 +69,6 @@ html
                             a(href="/user/reg")
                                 input.am-btn.am-btn-default.am-fr(type="button" name="" value="没有帐号?先去注册")
 
-
+    // script(src="/js/lib/require.js" data-main="/js/app/client")
                         
                         

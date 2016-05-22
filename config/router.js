@@ -30,9 +30,9 @@ module.exports = function(app){
     app.get('/admin',Admin.renderIndex)
     app.get('/admin/login',Admin.renderLogin)
     app.get('/admin/reg',Admin.renderReg)
-    app.post('/admin/user/reg',Admin.reg)
-    app.post('/admin/user/login',Admin.login)
-    app.get('/admin/logout',Admin.logout)
+    app.post('/admin/user/reg',User.adminReg)
+    app.post('/admin/user/login',User.adminLogin)
+    app.get('/admin/logout',User.adminLogout)
     app.get('/admin/user/:id',Admin.renderSelfPage)
     app.put('/admin/user/self',Admin.updateSelf)  
 

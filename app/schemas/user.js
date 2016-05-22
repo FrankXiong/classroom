@@ -112,7 +112,7 @@ UserSchema.methods = {
             cb(null,isMatch)
         })
     }
-};
+}
 
 // 静态方法
 UserSchema.statics = {
