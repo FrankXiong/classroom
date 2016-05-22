@@ -10,3 +10,9 @@ exports.send = function(req,res){
     wx.loop(req,res)    
 }
 
+exports.renderChatroom = function(req,res){
+    res.render('chatroom',{
+        title:'实时反馈'
+    })
+}
+

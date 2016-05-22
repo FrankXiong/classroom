@@ -25,6 +25,8 @@ module.exports = function(app){
     app.post('/user/login',User.login)
     app.get('/logout',User.logout)
 
+    app.get('/chatroom',Index.renderChatroom)
+
 
     // admin start
     app.get('/admin',Admin.renderIndex)
