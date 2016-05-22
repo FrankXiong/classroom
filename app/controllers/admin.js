@@ -91,12 +91,8 @@ exports.renderUpdateStu = function(req,res){
         }
     }else{
         res.redirect('/admin/login')
-    }
-    
+    }    
 }
-
-
-
 
 exports.delStu = function(req,res){
     var id = req.query.id
@@ -112,8 +108,6 @@ exports.delStu = function(req,res){
         console.log('query id is empty')
     }
 }
-
-
 
 exports.updateSelf = function(req,res){
     var data = req.body

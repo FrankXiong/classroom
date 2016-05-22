@@ -32,8 +32,10 @@ var realtime = new Realtime({
 //   });
 // }).catch(console.error);
 
+
+
 // 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
-var roomId = '5741e55871cfe4006c48b232';
+var roomId = '574204e149830c00614b220e';
 
 // 每个客户端自定义的 id
 var clientId = $('#uname').val();
@@ -148,29 +150,29 @@ function main() {
     }
     return conversation;
   })
-  .then(function(conversation) {
-    return conversation.join();
-  })
-  .then(function(conversation) {
-    // 获取聊天历史
-    room = conversation;
-    messageIterator = conversation.createMessagesIterator();
-    getLog(function() {
-      printWall.scrollTop = printWall.scrollHeight;
-      showLog('已经加入，可以开始聊天。');
-    });
-    // 房间接受消息
-    conversation.on('message', function(message) {
-      if (!msgTime) {
-        // 存储下最早的一个消息时间戳
-        msgTime = message.timestamp;
-      }
-      showMsg(message);
-    });
-  })
-  .catch(function(err) {
-    console.error(err);
-  })
+    .then(function(conversation) {
+        return conversation.join();
+    })
+    .then(function(conversation) {
+        // 获取聊天历史
+        room = conversation;
+        messageIterator = conversation.createMessagesIterator();
+        getLog(function() {
+        printWall.scrollTop = printWall.scrollHeight;
+            showLog('已经加入，可以开始聊天。');
+        });
+        // 房间接受消息
+        conversation.on('message', function(message) {
+            if (!msgTime) {
+            // 存储下最早的一个消息时间戳
+                msgTime = message.timestamp;
+            }
+            showMsg(message);
+        });
+    })
+    .catch(function(err) {
+        console.error(err);
+    })
 }
 
 function sendMsg() {
@@ -221,18 +223,18 @@ function b64EncodeUnicode(str) {
 
 // 显示接收到的信息
 function showMsg(message, isBefore) {
-  var text = message.text;
-  var from = message.from;
-  if (message.from === clientId) {
-    from = '自己';
-  }
-  if (message instanceof AV.TextMessage) {
-    if (String(text).replace(/^\s+/, '').replace(/\s+$/, '')) {
-      showLog(encodeHTML(from) + '： ', encodeHTML(message.text),formatTime(message.timestamp), isBefore);
+    var text = message.text;
+    var from = message.from;
+    if (message.from === clientId) {
+        from = '自己';
     }
-  } else if (message instanceof AV.FileMessage) {
-    showLog(encodeHTML(from) + '： ', createLink(message.getFile().url()),formatTime(message.timestamp), isBefore);
-  }
+    if (message instanceof AV.TextMessage) {
+        if (String(text).replace(/^\s+/, '').replace(/\s+$/, '')) {
+            showLog(encodeHTML(from) + '： ', encodeHTML(message.text),formatTime(message.timestamp), isBefore);
+        }
+        } else if (message instanceof AV.FileMessage) {
+            showLog(encodeHTML(from) + '： ', createLink(message.getFile().url()),formatTime(message.timestamp), isBefore);
+    }
 }
 
 
@@ -241,10 +243,10 @@ function showMsg(message, isBefore) {
 function getLog(callback) {
   var height = printWall.scrollHeight;
   if (logFlag) {
-    return;
+        return;
   } else {
-    // 标记正在拉取
-    logFlag = true;
+        // 标记正在拉取
+        logFlag = true;
   }
   messageIterator.next().then(function(result) {
     var data = result.value;
@@ -252,16 +254,16 @@ function getLog(callback) {
     // 存储下最早一条的消息时间戳
     var l = data.length;
     if (l) {
-      msgTime = data[0].timestamp;
+        msgTime = data[0].timestamp;
     }
     for (var i = l - 1; i >= 0; i--) {
-      showMsg(data[i], true);
+        showMsg(data[i], true);
     }
     if (l) {
-      printWall.scrollTop = printWall.scrollHeight - height;
+        printWall.scrollTop = printWall.scrollHeight - height;
     }
     if (callback) {
-      callback();
+        callback();
     }
   })
   // .catch(function(err) {
@@ -293,7 +295,7 @@ function showLog(msg, data,timestamp,isBefore) {
 }
 
 function encodeHTML(source) {
-  return String(source)
+    return String(source)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -303,16 +305,16 @@ function encodeHTML(source) {
 }
 
 function formatTime(time) {
-  var date = new Date(time);
-  var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
-  var currentDate = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-  var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-  var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-  var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-  return hh + ':' + mm + ':' + ss;
+    var date = new Date(time);
+    var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    var currentDate = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var hh = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    var mm = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    var ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+    return hh + ':' + mm + ':' + ss;
 }
 
 function createLink(url) {
-  return '<a target="_blank" href="' + encodeHTML(url) + '">' + encodeHTML(url) + '</a>';
+    return '<a target="_blank" href="' + encodeHTML(url) + '">' + encodeHTML(url) + '</a>';
 }
 

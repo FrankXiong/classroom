@@ -14,22 +14,47 @@ block content
                 div.am-g
                     div.am-u-sm-12
                         div.am-panel
-                            button#startLessonBtn(type="button").am-btn.am-btn-primary 开始上课
-                            button.am-btn.am-btn-primary(data-am-offcanvas="{target: '#stu-list'}") 所有学生
-                            div#stu-list.am-offcanvas
-                                div.am-offcanvas-bar.am-offcanvas-bar-flip
-                                    div.am-offcanvas-content
-                                        p 所有上课学生
-                                        ul.offcanvas-stu-list
-                                            each item in tclass.stus
-                                                li.offcanvas-stu-item(class="item-id-#{item._id}")
-                                                    div.am-fl
-                                                        a(href="#") #{item.name}
-                                                    div.am-fr
-                                                        a(href="/admin/stu/update/#{item._id}")
-                                                            span.offcanvas-edit.am-icon-pencil-square-o 
-                                                        span(data-id="#{item._id}").am-icon-trash-o.offcanvas-del.del-stu
+                            ul.am-avg-sm-3.boxes
+                                li.box.box-1 
+                                    a(href="javascript:;" data-am-offcanvas="{target: '#stu-list'}")
+                                        span.action-icon.am-icon-bars.am-icon-sm
+                                        p.action-label 所有学生
+                                            div#stu-list.am-offcanvas
+                                                div.am-offcanvas-bar.am-offcanvas-bar-flip
+                                                    div.am-offcanvas-content
+                                                        p 所有上课学生
+                                                        ul.offcanvas-stu-list
+                                                            each item in tclass.stus
+                                                                li.offcanvas-stu-item(class="item-id-#{item._id}")
+                                                                    div.am-fl
+                                                                        a(href="#") #{item.name}
+                                                                    div.am-fr
+                                                                        a(href="/admin/stu/update/#{item._id}")
+                                                                            span.offcanvas-edit.am-icon-pencil-square-o 
+                                                                        span(data-id="#{item._id}").am-icon-trash-o.offcanvas-del.del-stu
+                                li.box.box-2 
+                                    span.action-icon.am-icon-commenting.am-icon-sm
+                                    p.action-label 即时问答
+                                li.box.box-3
+                                    a(href="javascript:;").weui_grid
+                                        div.weui_grid_icon
+                                            span.action-icon.am-icon-question.am-icon-sm
+                                        p.weui_grid_label 学生提问
+                                li.box.box-4
+                                    div.weui_grid_icon
+                                        span.action-icon.am-icon-smile-o.am-icon-sm
+                                    p.weui_grid_label 开放问题
+                                li.box.box-5
+                                    div.weui_grid_icon
+                                        span.action-icon.am-icon-pencil.am-icon-sm
+                                    p.weui_grid_label 测验
+                                li.box.box-6
+                                    a(href="/admin/class/#{tclass._id}/chatroom")
+                                        div.weui_grid_icon
+                                            span.action-icon.am-icon-paper-plane.am-icon-sm
+                                        p.weui_grid_label 实时反馈
 
+                                    
     script(src="/js/lib/require.js" data-main="/js/app/admin")
 
                             

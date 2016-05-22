@@ -133,8 +133,6 @@ address, blockquote, dl, fieldset, figure, hr, ol, p, pre, ul {
 
 .admin-content {
   width: auto;
-  overflow: hidden;
-  height: 100%;
   background: #fff; }
 
 .admin-content-list {
@@ -393,3 +391,19 @@ gallery.html css
 /**
  * user.css end
  */
+.boxes {
+  width: 100%; }
+
+.boxes .box {
+  height: 100px;
+  color: #eee;
+  text-align: center;
+  font-weight: bold;
+  transition: all .2s ease;
+  border: 1px solid #d9d9d9;
+  color: #333; }
+  .boxes .box .action-icon {
+    line-height: 60px;
+    color: #666; }
+  .boxes .box p {
+    color: #666; }

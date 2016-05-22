@@ -79,6 +79,18 @@ exports.renderClassPage = function(req,res){
     }
 }
 
+exports.renderChatroom = function(req,res){
+    var teacher = req.session.teacher
+    if(teacher){
+        res.render('admin_chatroom',{
+            title:'教学班主页',
+            teacher:teacher
+        }) 
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
 exports.addTClass = function(req,res){
     var oTClass = req.body
     var tClass = new Class(oTClass)

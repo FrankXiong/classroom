@@ -25,7 +25,7 @@ module.exports = function(app){
     app.post('/user/login',User.login)
     app.get('/logout',User.logout)
 
-    app.get('/chatroom',Index.renderChatroom)
+    // app.get('/chatroom',Index.renderChatroom)
 
 
     // admin start
@@ -54,6 +54,8 @@ module.exports = function(app){
     app.delete('/admin/class',Class.del)
     app.get('/admin/class/update/:id',Class.update)
     app.post('/admin/class/add',Class.importStu)
+
+    app.get('/admin/class/:id/chatroom',Class.renderChatroom)
 
     // admin end
 }

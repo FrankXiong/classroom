@@ -1,0 +1,10 @@
+.time {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px; }
+
+#printWall {
+  margin-bottom: 3em;
+  height: 90%;
+  overflow: auto; }

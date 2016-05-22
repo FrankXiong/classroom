@@ -10,7 +10,8 @@ header.am-topbar.admin-header
 
     div#topbar-collapse.am-collapse.am-topbar-collapse
 
-        if teacher 
+        if teacher
+            input#uname(type="hidden" value="#{teacher.name}") 
             ul.am-nav.am-nav-pills.am-topbar-nav.am-topbar-right.admin-header-list
                 li
                     a(href="javascript:;")
