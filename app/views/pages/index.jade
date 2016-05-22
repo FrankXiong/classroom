@@ -62,10 +62,8 @@ block content
             //-         h2 程序实践
 
             div.am-list-news-bd
-                ul.am-list
-                    li.am-g.am-list-item-desced
-                        a(href="").am-list-item-hd 杨老师 
-                        div#printWall.am-list-item-text 杨老师的回复
+                a(href="").am-list-item-hd 杨老师 
+                div#printWall
                     //- li.am-g.am-list-item-desced
                     //-     a(href="").am-list-item-hd 开放问题
                     //-     div.am-list-item-text websocket的工作原理？
@@ -88,9 +86,9 @@ block content
         div.weui_cells.weui_cells_form.input-answer
             div.weui_cell 
                 div.weui_cell_bd.weui_cell_primary 
-                    input#stuInput.weui_input(type="text" placeholder="输入...")
+                    input#inputSend.weui_input(type="text" placeholder="输入...")
                 div.weui_cell_hd 
-                    button#postBtn.am-btn.am-btn-secondary.am-btn-lg 发送
+                    button#sendBtn.am-btn.am-btn-secondary.am-btn-lg 发送
                 
             
         
