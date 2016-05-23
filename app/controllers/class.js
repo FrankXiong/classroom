@@ -83,7 +83,19 @@ exports.renderChatroom = function(req,res){
     var teacher = req.session.teacher
     if(teacher){
         res.render('admin_chatroom',{
-            title:'教学班主页',
+            title:'实时反馈',
+            teacher:teacher
+        }) 
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderRealtime = function(req,res){
+    var teacher = req.session.teacher
+    if(teacher){
+        res.render('admin_realtime',{
+            title:'即时应答',
             teacher:teacher
         }) 
     }else{

@@ -1,4 +1,3 @@
-// 请将 AppId 改为你自己的 AppId，否则无法本地测试
 var appId = 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz';
 var appKey = 'tPHW2xTOAFFxVn6krhF56NVe';
 

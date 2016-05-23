@@ -1,0 +1,17 @@
+extends ../admin_layout
+
+block content
+    include ../includes/admin_sidebar
+    link(href="/css/page/admin_realtime.css",rel="stylesheet")
+    div.admin-content
+            div.admin-content-body
+                div.am-cf.am-padding.am-padding-bottom-0
+                    div.am-fl.am-cf
+                        strong.am-text-primary.am-text-lg 即时应答
+                hr                    
+                div.am-g
+                    div#result 结果
+                        p
+
+    script(src='/js/lib/AV.push.js')
+    script(src='/js/app/admin_push.js')

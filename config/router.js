@@ -56,6 +56,7 @@ module.exports = function(app){
     app.post('/admin/class/add',Class.importStu)
 
     app.get('/admin/class/:id/chatroom',Class.renderChatroom)
+    app.get('/admin/class/:id/realtime',Class.renderRealtime)
 
     // admin end
 }
