@@ -1,14 +1,23 @@
-var appId = 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz';
-var appKey = 'tPHW2xTOAFFxVn6krhF56NVe';
+// var config = require('./config.json');
+// var appId = 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz';
+// var appKey = 'tPHW2xTOAFFxVn6krhF56NVe';
+var config = {
+    "leancloud":{
+        "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
+        "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
+        "roomId":"574204e149830c00614b220e"
+    }
+}
 
-AV.initialize(appId, appKey);
+AV.initialize(config.leancloud.appId, config.leancloud.appKey);
 
 localStorage.setItem('debug', 'LC*');
 
 // 初始化实时通讯 SDK
 var Realtime = AV.Realtime;
 var realtime = new Realtime({
-  appId: 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz'
+  // appId: 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz'
+  appId:config.leancloud.appId
 });
 
 // // Stu 用自己的名字作为 clientId，获取 IMClient 对象实例
@@ -34,7 +43,8 @@ var realtime = new Realtime({
 
 
 // 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
-var roomId = '574204e149830c00614b220e';
+// var roomId = '574204e149830c00614b220e';
+var roomId = config.leancloud.roomId;
 
 // 每个客户端自定义的 id
 var clientId = $('#uname').val();
@@ -97,8 +107,8 @@ function main() {
 
   // 创建实时通信实例
   realtime = new AV.Realtime({
-    appId: appId,
-    appKey: appKey,
+    appId: config.leancloud.appId,
+    appKey: config.leancloud.appKey,
   });
   // 注册文件类型消息  
   // realtime.register(AV.FileMessage);
