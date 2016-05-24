@@ -34,5 +34,3 @@ node_modules
 
 vendor
 src
-app.js
-config/default.json
