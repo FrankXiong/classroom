@@ -42,8 +42,6 @@ app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 // app.use(multer()) // for parsing multipart/form-data
 
-io.emit('from socket.io')
-
 app.use(session({
     secret:'classroom',
     resave:false,

@@ -12,7 +12,7 @@ module.exports = function(app){
     })
 
     // app.get('/home',Index.index) 
-    app.post('/',Index.send)
+    // app.post('/',Index.send)
 
     app.get('/oauth',User.oauth)
     app.get('/',Index.index)
