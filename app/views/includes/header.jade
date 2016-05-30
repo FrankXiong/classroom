@@ -9,7 +9,10 @@ header.am-header.am-header-default(data-am-widget="header")
             input#uname(type="hidden" value="#{user.name}")
             li.am-dropdown(data-am-dropdown)
                 a.am-dropdown-toggle.user-dropdown(data-am-dropdown-toggle href="javascript:;")
-                    span #{user.name}
+                    if user.name
+                        span #{user.name}
+                    else
+                        span #{user.nickname}
                     span.am-icon-caret-down
        
                 ul.am-dropdown-content

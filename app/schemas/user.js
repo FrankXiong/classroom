@@ -9,8 +9,7 @@ var UserSchema = new mongoose.Schema({
         default:20130001
     },
     name:{
-        type:String,
-        default:'unknown'
+        type:String    
     },
     password:{
         type:String

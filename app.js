@@ -19,7 +19,7 @@ var realtime = new Realtime({
   region: 'cn', // 美国节点为 "us"
 });
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 80
 var app = new express()
 var dbUrl = 'mongodb://127.0.0.1/classroom'
 
