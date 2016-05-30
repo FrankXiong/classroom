@@ -1,6 +1,5 @@
 var _ = require('underscore');
 var Class = require('../models/class')
-var ClassList = require('../models/classList')
 var Teacher = require('../models/teacher')
 var User = require('../models/user')
 
