@@ -11,11 +11,8 @@ module.exports = function(app){
         return next()
     })
 
-    // app.get('/home',Index.index) 
-    // app.post('/',Index.send)
-
-    app.get('/oauth',User.oauth)
     app.get('/',Index.index)
+    app.get('/oauth',User.oauth)
     app.get('/wx/callback',User.callback)
     app.get('/user/login',User.renderLogin)
     app.get('/user/reg',User.renderReg)

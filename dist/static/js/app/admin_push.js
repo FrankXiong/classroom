@@ -37,7 +37,7 @@ function createNew() {
     // 发送一条推送
     push.send({
         // channels: ['aaa'],
-        data: {LeanCloud: 123}
+        data: {title: '标题',content:'正文内容...'}
     }, function(result) {
         if (result) {
             showLog('推送成功发送');
@@ -46,13 +46,13 @@ function createNew() {
         }
     });
 
-    push.subscribe(['test123'], function(data) {
+    push.subscribe(['realtime'], function(data) {
         showLog('关注新的频道');
     });
 
     push.send({
-        channels: ['test123'],
-        data: {test123: 123}
+        channels: ['realtime'],
+        data: {realtime: 123}
     });
 
     setTimeout(function() {
@@ -62,12 +62,12 @@ function createNew() {
             abc: 123
         });
 
-        push.unsubscribe(['test123'], function(data) {
+        push.unsubscribe(['realtime'], function(data) {
             showLog('取消关注新的频道');
 
             push.send({
-                channels: ['test123'],
-                data: {test123: 123}
+                channels: ['realtime'],
+                data: {realtime: 123}
             });
         });
 
@@ -76,8 +76,8 @@ function createNew() {
 
 function showLog(msg) {
     console.log(msg);
-    var div = $('#result');
-    var p = document.createElement('p');
-    p.innerText = msg;
-    div.append(p);
+    // var div = $('#result');
+    // var p = document.createElement('p');
+    // p.innerText = msg;
+    // div.append(p);
 }

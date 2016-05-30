@@ -18,7 +18,7 @@ var client = new OAuth(appid,appsecret)
 exports.oauth = function(req,res){
     var url = client.getAuthorizeURL('http://' + domain + '/wx/callback','','snsapi_userinfo')
     console.log(url)
-    res.redirect(url) 
+    return res.redirect(url) 
 }
 // 认证授权后回调函数
 // 
