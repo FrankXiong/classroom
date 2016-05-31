@@ -26,11 +26,10 @@ exports.callback = function(req,res){
     console.log("-------weixin callback---------")
 
     var code = req.query.code
-    // var User = req.model.UserModel
+    var User = req.model.UserModel
 
     client.getAccessToken(code,function(err,result){
         var accessToken = result.data.access_token
-        console.log(result.data)
         var openid = result.data.openid
 
         console.log('accessToken:' + accessToken)
@@ -138,7 +137,7 @@ exports.adminRequired = function(req,res){
     next()
 }
 
-exports.signinRequired = function(req,res,next){
+exports.loginRequired = function(req,res,next){
     var user = req.session.user
     // 用户未登录，重定向到登录页面
     if(!user){

@@ -17,12 +17,12 @@ module.exports = function(app){
     app.get('/user/login',User.renderLogin)
     app.get('/user/reg',User.renderReg)
     app.get('/user/:openid',User.renderSelfPage)
-    app.put('/user',User.updateSelf)
+    app.put('/user',User.loginRequired,User.updateSelf)
     app.post('/user/reg',User.reg)
     app.post('/user/login',User.login)
     app.get('/logout',User.logout)
 
-    app.get('/chatroom',Index.renderChatroom)
+    app.get('/chatroom',User.loginRequired,Index.renderChatroom)
 
 
     // admin start

@@ -50,8 +50,7 @@ var UserSchema = new mongoose.Schema({
     
     // 以下信息由微信认证后提供
     openid:{
-        type:String,
-        default:'unknown'
+        type:String    
     },
     nickname:{
         type:String,
