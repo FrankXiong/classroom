@@ -24,7 +24,7 @@ exports.callback = function(req,res){
     console.log("-------weixin callback---------")
 
     var code = req.query.code
-    var User = req.model.UserModel
+    // var User = req.model.UserModel
 
     client.getAccessToken(code, function (err, result) {
         console.dir(err)
