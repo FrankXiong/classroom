@@ -1,13 +1,13 @@
 {
-    "domain": "skipclassxxr.ngrok.natapp.cn",
+    "domain": "wenxin.info",
     "is_debug": true,
     "mongodb": {
-    "host": "127.0.0.1",
+    "host": "121.42.189.247",
     "port": "27017",
     "db": "classroom"
     },
     "sms": {
-        "host": "127.0.0.1",
+        "host": "121.42.189.247",
         "port": "5001"
     },
     "wx": {
@@ -19,7 +19,7 @@
                 {
                     "type": "view",
                     "name": "进入课堂",
-                    "url": "http://skipclassxxr.ngrok.natapp.cn"
+                    "url": "http://wenxin.info"
                 },
                 {
                     "name": "更多",
