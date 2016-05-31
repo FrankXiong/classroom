@@ -6,7 +6,8 @@ var session = require('express-session')
 var cookieParser = require('cookie-parser')
 var mongoStore = require('connect-mongo')(session)
 var logger = require('morgan')
-var wx = require('weixin-api')
+// var wx = require('weixin-api')
+var wechat = require('wechat')
 var API = require('wechat-api')
 var config = require('config')
 var multer = require('multer')
@@ -26,6 +27,7 @@ var dbUrl = 'mongodb://127.0.0.1/classroom'
 var menu_config = config.get('wx.wx_menu')
 var app_id      = config.get('wx.app_id')
 var app_secret  = config.get('wx.app_secret')
+var wx_config = config.get('wx')
 
 var api = new API(app_id,app_secret)
 
@@ -53,6 +55,12 @@ app.use(session({
     })
 }))
 
+app.use('/wechat', wechat(wx_config, function (req, res, next) {
+  // 微信输入信息都在req.weixin上
+  var message = req.weixin;
+  res.reply({type:'text',content:'自动回复功能正在开发中...'})
+}));
+
 api.createMenu(menu_config, function(err, result){
     if(err){
         console.log(err)
@@ -61,95 +69,96 @@ api.createMenu(menu_config, function(err, result){
     }
 })
 
-wx.token = 'classroom'
 
-// 监听文本消息
-wx.textMsg(function(msg) {
-    console.log("textMsg received")
-    console.log(JSON.stringify(msg))
+// wx.token = 'classroom'
 
-    var resMsg = {}
+// // 监听文本消息
+// wx.textMsg(function(msg) {
+//     console.log("textMsg received")
+//     console.log(JSON.stringify(msg))
 
-    switch (msg.content) {
-        case "openid" :
-            resMsg = {
-                fromUserName : msg.toUserName,
-                toUserName : msg.fromUserName,
-                msgType : "text",
-                content : msg.fromUserName,
-                funcFlag : 0
-            }
-            break
+//     var resMsg = {}
 
-        case "msgid" :
-            resMsg = {
-                fromUserName : msg.toUserName,
-                toUserName : msg.fromUserName,
-                msgType : "text",
-                content : msg.msgId,
-                funcFlag : 0
-            }
-            break
+//     switch (msg.content) {
+//         case "openid" :
+//             resMsg = {
+//                 fromUserName : msg.toUserName,
+//                 toUserName : msg.fromUserName,
+//                 msgType : "text",
+//                 content : msg.fromUserName,
+//                 funcFlag : 0
+//             }
+//             break
 
-        case "上课" :
-            resMsg = {
-                fromUserName : msg.toUserName,
-                toUserName : msg.fromUserName,
-                msgType : "text",
-                content : "<a href='http://wenxin.info'>进入课堂</a>",
-                funcFlag : 0
-            }
-            break
+//         case "msgid" :
+//             resMsg = {
+//                 fromUserName : msg.toUserName,
+//                 toUserName : msg.fromUserName,
+//                 msgType : "text",
+//                 content : msg.msgId,
+//                 funcFlag : 0
+//             }
+//             break
 
-        case "音乐" :
-            resMsg = {
-                fromUserName : msg.toUserName,
-                toUserName : msg.fromUserName,
-                msgType : "music",
-                title : "向往",
-                description : "李健《向往》",
-                musicUrl : "",
-                HQMusicUrl : "",
-                funcFlag : 0
-            }
-            break
+//         case "上课" :
+//             resMsg = {
+//                 fromUserName : msg.toUserName,
+//                 toUserName : msg.fromUserName,
+//                 msgType : "text",
+//                 content : "<a href='http://wenxin.info'>进入课堂</a>",
+//                 funcFlag : 0
+//             }
+//             break
 
-        case "图文" :
+//         case "音乐" :
+//             resMsg = {
+//                 fromUserName : msg.toUserName,
+//                 toUserName : msg.fromUserName,
+//                 msgType : "music",
+//                 title : "向往",
+//                 description : "李健《向往》",
+//                 musicUrl : "",
+//                 HQMusicUrl : "",
+//                 funcFlag : 0
+//             }
+//             break
 
-            var articles = []
-            articles[0] = {
-                title : "PHP依赖管理工具Composer入门",
-                description : "PHP依赖管理工具Composer入门",
-                picUrl : "http://weizhifeng.net/images/tech/composer.png",
-                url : "http://weizhifeng.net/manage-php-dependency-with-composer.html"
-            }
+//         case "图文" :
 
-            articles[1] = {
-                title : "八月西湖",
-                description : "八月西湖",
-                picUrl : "http://weizhifeng.net/images/poem/bayuexihu.jpg",
-                url : "http://weizhifeng.net/bayuexihu.html"
-            }
+//             var articles = []
+//             articles[0] = {
+//                 title : "PHP依赖管理工具Composer入门",
+//                 description : "PHP依赖管理工具Composer入门",
+//                 picUrl : "http://weizhifeng.net/images/tech/composer.png",
+//                 url : "http://weizhifeng.net/manage-php-dependency-with-composer.html"
+//             }
 
-            articles[2] = {
-                title : "「翻译」Redis协议",
-                description : "「翻译」Redis协议",
-                picUrl : "http://weizhifeng.net/images/tech/redis.png",
-                url : "http://weizhifeng.net/redis-protocol.html"
-            }
+//             articles[1] = {
+//                 title : "八月西湖",
+//                 description : "八月西湖",
+//                 picUrl : "http://weizhifeng.net/images/poem/bayuexihu.jpg",
+//                 url : "http://weizhifeng.net/bayuexihu.html"
+//             }
 
-            // 返回图文消息
-            resMsg = {
-                fromUserName : msg.toUserName,
-                toUserName : msg.fromUserName,
-                msgType : "news",
-                articles : articles,
-                funcFlag : 0
-            }
-    }
+//             articles[2] = {
+//                 title : "「翻译」Redis协议",
+//                 description : "「翻译」Redis协议",
+//                 picUrl : "http://weizhifeng.net/images/tech/redis.png",
+//                 url : "http://weizhifeng.net/redis-protocol.html"
+//             }
 
-    wx.sendMsg(resMsg)
-})
+//             // 返回图文消息
+//             resMsg = {
+//                 fromUserName : msg.toUserName,
+//                 toUserName : msg.fromUserName,
+//                 msgType : "news",
+//                 articles : articles,
+//                 funcFlag : 0
+//             }
+//     }
+
+//     wx.sendMsg(resMsg)
+// })
 
 
 if('development' === app.get('env')){

@@ -13,6 +13,7 @@
     "wx": {
         "app_id": "wx77385a01a23c3f6a",
         "app_secret": "bee389d07fe2cae904be642a8cfa9c39",
+        "token": "classroom",
         "wx_menu": {
             "button": [
                 {

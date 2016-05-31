@@ -44,6 +44,7 @@
     "multer": "^1.1.0",
     "socket.io": "^1.4.6",
     "underscore": "^1.8.3",
+    "wechat": "^2.0.3",
     "wechat-api": "^1.27.1",
     "wechat-oauth": "^1.1.1",
     "weixin-api": "^0.1.7",
