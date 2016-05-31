@@ -20,50 +20,89 @@ exports.oauth = function(req,res){
     res.redirect(url) 
 }
 // 认证授权后回调函数
-// 
 exports.callback = function(req,res){
     console.log("-------weixin callback---------")
 
     var code = req.query.code
-    // var User = req.model.UserModel
+    var User = req.model.UserModel
 
-    client.getAccessToken(code,function(err,result){
-        var accessToken = result.data.access_token
-        var openid = result.data.openid
+    client.getAccessToken(code, function (err, result) {
+        console.dir(err)
+        console.dir(result)
+        var accessToken = result.data.access_token;
+        var openid = result.data.openid;
+        
+        console.log('token=' + accessToken);
+        console.log('openid=' + openid);
 
-        console.log('accessToken:' + accessToken)
-        console.log('openid:' + openid)
+        User.findByOpenid(openid, function(err, user){
+          console.log('微信回调后，User.find_by_openid(openid) 返回的user = ' + user)
+          if(err || user == null){
+            console.log('user is not exist.')
+            client.getUser(openid, function (err, result) {
+              console.log('use weixin api get user: '+ err)
+              console.log(result)
+              var oauth_user = result;
+              
+              var _user = new User(oauth_user);
+              _user.nickname = oauth_user.nickname;
+              _user.sex = oauth_user.sex;
 
-        User.findByOpenid(openid,function(err,user){
-            //如果用户不存在，则注册一个新用户
-            if(err || user === null){
-                console.log('ERROR:user is not exit')
+              _user.save(function(err, user) {
+                if (err) {
+                  console.log('User save error ....' + err);
+                } else {
+                  console.log('User save sucess ....' + err);
+                  req.session.user = user;
+                  res.redirect('/');
+                }
+              });
+              
+            });
+          }else{
+            req.session.user = user
+            res.redirect('/')
+          }
+        });
+    });
 
-                client.getUser(openid,function(err,result){
-                    console.log(result)
+    // client.getAccessToken(code,function(err,result){
+    //     var accessToken = result.data.access_token
+    //     var openid = result.data.openid
 
-                    var oauthUser = result
-                    var _user = new User(oauthUser)
+    //     console.log('accessToken:' + accessToken)
+    //     console.log('openid:' + openid)
 
-                    _user.save(function(err,user){
-                        if(err){
-                            console.log('ERROR:user save ' + err)
-                        }else{
-                            console.log('user save success')
+    //     User.findByOpenid(openid,function(err,user){
+    //         //如果用户不存在，则注册一个新用户
+    //         if(err || user === null){
+    //             console.log('ERROR:user is not exit')
 
-                            req.session.user = user
-                            res.redirect('/')
-                        }
+    //             client.getUser(openid,function(err,result){
+    //                 console.log(result)
 
-                    }) 
-                })
-            }else{
-                console.log(user.nickname+': is exited')
-                req.session.user = user
-                res.redirect('/')
-            }
-        })
-    }) 
+    //                 var oauthUser = result
+    //                 var _user = new User(oauthUser)
+
+    //                 _user.save(function(err,user){
+    //                     if(err){
+    //                         console.log('ERROR:user save ' + err)
+    //                     }else{
+    //                         console.log('user save success')
+
+    //                         req.session.user = user
+    //                         res.redirect('/')
+    //                     }
+
+    //                 }) 
+    //             })
+    //         }else{
+    //             console.log(user.nickname+': is exited')
+    //             req.session.user = user
+    //             res.redirect('/')
+    //         }
+    //     })
+    // }) 
 }
 
 // 查看用户信息页
