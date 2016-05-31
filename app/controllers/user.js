@@ -17,8 +17,7 @@ var client = new OAuth(appid,appsecret)
 // oauth认证
 exports.oauth = function(req,res){
     var url = client.getAuthorizeURL('http://' + domain + '/wx/callback','','snsapi_userinfo')
-    console.log(url)
-    return res.redirect(url) 
+    res.redirect(url) 
 }
 // 认证授权后回调函数
 // 
@@ -26,7 +25,7 @@ exports.callback = function(req,res){
     console.log("-------weixin callback---------")
 
     var code = req.query.code
-    var User = req.model.UserModel
+    // var User = req.model.UserModel
 
     client.getAccessToken(code,function(err,result){
         var accessToken = result.data.access_token
@@ -59,8 +58,7 @@ exports.callback = function(req,res){
                     }) 
                 })
             }else{
-                console.log('user is exited')
-                console.log(user.nickname)
+                console.log(user.nickname+': is exited')
                 req.session.user = user
                 res.redirect('/')
             }
