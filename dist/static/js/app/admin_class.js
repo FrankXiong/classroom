@@ -9,7 +9,7 @@ require.config({
 require(['jquery','request'],function($,req){
 
     $('#addClassBtn').click(function(){
-        var oTClass = req.getFormData()
+        var oTClass = req.getFormData($('#formAddClass'))
         req.post(oTClass,'/admin/class',function(data){
             alert(data.msg)
         },function(){
@@ -18,7 +18,7 @@ require(['jquery','request'],function($,req){
     })
 
     $('#importStuBtn').click(function(){
-        var oStu = req.getFormData()
+        var oStu = req.getFormData($('#formImportStu'))
         console.log(oStu)
         req.post(oStu,'/admin/class/add',function(data){
             alert(data.msg)

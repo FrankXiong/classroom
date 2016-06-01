@@ -14,7 +14,7 @@ require(['jquery','request'],function($,req){
             $teacherLoginBtn = $('#teacherLoginBtn');
 
         $updateSelfBtn.click(function(){
-            var formData = req.getFormData()
+            var formData = req.getFormData($('#formSelfInfo'))
 
             console.log(formData)
             req.put(formData,'/user',function(data){
@@ -24,7 +24,7 @@ require(['jquery','request'],function($,req){
 
         $stuLoginBtn.click(function(){
             var activeForm = $('.am-active.form-tab').find('form'),
-                formData = req.getLoginFormData(activeForm);
+                formData = req.getFormData(activeForm);
                 console.log(formData)
                 if(activeForm.hasClass('form-stu')){
                     console.log('form stu')
@@ -44,7 +44,7 @@ require(['jquery','request'],function($,req){
         })
         $teacherLoginBtn.click(function(){
             var activeForm = $('.am-active.form-tab').find('form'),
-                formData = req.getLoginFormData(activeForm);
+                formData = req.getFormData(activeForm);
                 console.log(formData)
                 console.log(activeForm)
                 if(activeForm.hasClass('form-stu')){

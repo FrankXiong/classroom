@@ -13,19 +13,19 @@ block content
                 div.am-g
                     div.am-u-sm-12
                         if tclass
-                            form.am-form.am-cf
+                            form.am-form.am-cf#formImportStu
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 批量导入
                                     div.am-u-sm-8.am-u-md-4
                                         input#importXlsx(type="file" value="" name="xlsx").am-btn.am-btn-primary
                                     div.am-hide-sm-only.am-u-md-6
                                 
-                                div.am-g.am-margin-top
+                                //- div.am-g.am-margin-top
                                     input(type="hidden" value="#{tclass._id}" name="classid")
-                                    div.am-u-sm-4.am-u-md-2.am-text-right 学号
-                                    div.am-u-sm-8.am-u-md-4
-                                        input#stuid(type="number" value="" name="stuid").am-input-sm
-                                    div.am-hide-sm-only.am-u-md-6
+                                //-     div.am-u-sm-4.am-u-md-2.am-text-right 学号
+                                //-     div.am-u-sm-8.am-u-md-4
+                                //-         input#stuid(type="number" value="" name="stuid").am-input-sm
+                                //-     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 所在教学班级

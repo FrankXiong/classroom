@@ -15,7 +15,6 @@ var CheckinSchema = new mongoose.Schema({
     lessonId:{
         type:String
     }, 
-    //  总上课人数
     checkTime:{
         type:Date,
         default:Date.now()
@@ -28,7 +27,7 @@ var CheckinSchema = new mongoose.Schema({
     hit:{
         type:Number,
         default:0
-    }
+    },
     meta:{
         createAt:{
             type:Date,
@@ -63,6 +62,11 @@ CheckinSchema.statics = {
     findById:function(id,cb){
         return this
             .findOne({_id:id})
+            .exec(cb)
+    },
+    findBySid:function(id,cb){
+        return this
+            .findOne({sid:id})
             .exec(cb)
     }
 };

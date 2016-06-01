@@ -24,6 +24,10 @@ module.exports = function(app){
 
     app.get('/chatroom',User.loginRequired,Index.renderChatroom)
     app.get('/realtime',User.loginRequired,Index.renderRealtime)
+    app.get('/ask',User.loginRequired,Index.renderAsk)
+    app.get('/open',User.loginRequired,Index.renderOpenQuestion)
+
+    app.post('/checkin',User.loginRequired,Index.checkin)
 
 
     // admin start

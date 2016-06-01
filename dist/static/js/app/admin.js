@@ -64,7 +64,7 @@ require(['jquery','request'],function($,req){
         })
 
         $updateStuBtn.click(function(){
-            var oStu = req.getFormData()
+            var oStu = req.getFormData($('#formUpdateStu'))
             console.log(oStu)
             req.put(oStu,'/admin/stu/update',function(data){
                 alert(data.msg)
@@ -72,7 +72,7 @@ require(['jquery','request'],function($,req){
         })
 
         $addClassBtn.click(function(){
-            var oTClass = req.getFormData()
+            var oTClass = req.getFormData($('#formAddClass'))
             req.post(oTClass,'/admin/class',function(data){
                 alert(data.msg)
             },function(){
@@ -81,7 +81,7 @@ require(['jquery','request'],function($,req){
         })
 
         $importStuBtn.click(function(){
-            var oStu = req.getFormData()
+            var oStu = req.getFormData($('#formImportStu'))
             console.log(oStu)
             req.post(oStu,'/admin/class/add',function(data){
                 alert(data.msg)
@@ -91,7 +91,7 @@ require(['jquery','request'],function($,req){
         })
 
         $updateSelfBtn.click(function(){
-            var oUserSelf = req.getFormData()
+            var oUserSelf = req.getFormData($('#formUpdateSelf'))
             console.log(oUserSelf)
             req.put(oUserSelf,'/admin/user/self',function(data){
                 alert(data.msg)

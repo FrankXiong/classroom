@@ -14,7 +14,7 @@ block content
                 div.am-u-sm-12
                     div.am-panel
                         if tclass
-                            form.am-form
+                            form.am-form#formAddClass
                                 input#tid(type="hidden" value="#{teacher._id}" name="tid")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 课程ID
@@ -60,7 +60,7 @@ block content
                                     button(type="reset").am-btn.am-btn-default.am-fl 放弃保存
                                     button#addClassBtn(type="button").am-btn.am-btn-primary.am-fr 提交保存
                         else
-                            form.am-form
+                            form.am-form#formAddClass
                                 input#tid(type="hidden" value="#{teacher._id}" name="tid")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 课程ID

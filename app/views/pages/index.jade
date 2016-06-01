@@ -37,25 +37,27 @@ block content
         //-         div.am-modal-footer 
         //-             span.am-modal-btn(data-am-modal-cancel) 取消
         //-             span.am-modal-btn(data-am-modal-confirm) 提交
-        
+        input#stuid(type="hidden" value="#{user.stuid}")
         div.weui_grids
-            a(href="javascript:;").weui_grid
-                div.weui_grid_icon
-                    span.am-icon-sign-in.am-icon-sm
-                p.weui_grid_label 签到
+            if(user)
+                //- a(href="/checkin/?id=#{user.stuid}").weui_grid
+                a(href="").weui_grid#checkin    
+                    div.weui_grid_icon
+                        span.am-icon-sign-in.am-icon-sm
+                    p.weui_grid_label 签到
             a(href="/realtime").weui_grid
                 div.weui_grid_icon
                     span.am-icon-commenting.am-icon-sm
                 p.weui_grid_label 即时问答
-            a(href="javascript:;").weui_grid
+            a(href="/ask").weui_grid
                 div.weui_grid_icon
                     span.am-icon-question.am-icon-sm
                 p.weui_grid_label 学生提问
-            a(href="javascript:;").weui_grid
+            a(href="/open").weui_grid
                 div.weui_grid_icon
                     span.am-icon-smile-o.am-icon-sm
                 p.weui_grid_label 开放问题
-            a(href="javascript:;").weui_grid
+            a(href="/test").weui_grid
                 div.weui_grid_icon
                     span.am-icon-pencil.am-icon-sm
                 p.weui_grid_label 测验
@@ -109,7 +111,7 @@ block content
         //-             p.weui_tabbar_label 我
                 
             
-        
+        script(src="/js/lib/require.js" data-main="/js/app/checkin")
         
       
 

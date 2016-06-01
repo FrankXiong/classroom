@@ -5,7 +5,7 @@ var config = {
     "leancloud":{
         "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
         "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
-        "roomId":"574204e149830c00614b220e"
+        "roomId":"574eaaae71cfe4006b031703"
     }
 }
 
@@ -13,12 +13,11 @@ AV.initialize(config.leancloud.appId, config.leancloud.appKey);
 
 localStorage.setItem('debug', 'LC*');
 
-// 初始化实时通讯 SDK
-var Realtime = AV.Realtime;
-var realtime = new Realtime({
-  // appId: 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz'
-  appId:config.leancloud.appId
-});
+// // 初始化实时通讯 SDK
+// var Realtime = AV.Realtime;
+// var realtime = new Realtime({
+//     appId:config.leancloud.appId
+// });
 
 // // Stu 用自己的名字作为 clientId，获取 IMClient 对象实例
 // realtime.createIMClient('teacher').then(function(stu) {

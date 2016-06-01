@@ -36,18 +36,18 @@ define(['jquery'],function($){
             .done(doneCallback)
             .fail(failCallback)
         },
-        getFormData : function(){
-            var form = $('form'),
-                pairs = form.serialize().split(/&/gi),
-                formData = {};
+        // getFormData : function(form){
+        //     var form = $('form'),
+        //         pairs = form.serialize().split(/&/gi),
+        //         formData = {};
 
-            pairs.forEach(function(pair) {
-                pair = pair.split('=');
-                formData[pair[0]] = decodeURIComponent(pair[1] || '');
-            });
-            return formData;
-        },
-        getLoginFormData : function(form){
+        //     pairs.forEach(function(pair) {
+        //         pair = pair.split('=');
+        //         formData[pair[0]] = decodeURIComponent(pair[1] || '');
+        //     });
+        //     return formData;
+        // },
+        getFormData : function(form){
             var pairs = form.serialize().split(/&/gi),
                 formData = {};
 

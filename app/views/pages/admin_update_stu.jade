@@ -13,7 +13,7 @@ block content
                 div.am-g
                     div.am-u-sm-12
                         if user
-                            form.am-form
+                            form.am-form#formUpdateStu
                                 input#sid(type="hidden" name="_id" value="#{user._id}")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 姓名
@@ -70,7 +70,7 @@ block content
                                     button(type="reset").am-btn.am-btn-default.am-fl 取消
                                     button#updateStuBtn(type="button").am-btn.am-btn-primary.am-fr 保存
                         else
-                            form.am-form
+                            form.am-form#formUpdateStu
                                 input#tid(type="hidden" value="#{teacher._id}")
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 姓名
