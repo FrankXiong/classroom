@@ -7,7 +7,7 @@ block content
                 div.weui_grid_icon
                     span.am-icon-sign-in.am-icon-sm
                 p.weui_grid_label 签到
-            a(href="/realtime").weui_grid
+            a(href="/realtime").weui_grid.grid-active
                 div.weui_grid_icon
                     span.am-icon-commenting.am-icon-sm
                 p.weui_grid_label 即时问答
@@ -23,36 +23,26 @@ block content
                 div.weui_grid_icon
                     span.am-icon-pencil.am-icon-sm
                 p.weui_grid_label 测验
-            a(href="/chatroom").weui_grid.grid-active
+            a(href="/chatroom").weui_grid
                 div.weui_grid_icon
                     span.am-icon-paper-plane.am-icon-sm
                 p.weui_grid_label 实时反馈
 
         div(data-am-widget="list_news").am-list-news.am-list-news-default
+            div.am-list-news-hd.am-cf
+                a(href="###")
+                    h2 即时问答
+                    span.am-list-news-more.am-fr 更多 &raquo;
             div.am-list-news-bd
-                a(href="").am-list-item-hd 杨老师 
-                div#printWall
+                ul.am-list#printWall
 
-        //- 输入框组件
         div.weui_cells.weui_cells_form.input-answer
             div.weui_cell 
                 div.weui_cell_bd.weui_cell_primary 
-                    input#inputSend.weui_input(type="text" placeholder="输入...")
+                    input#inputSend.weui_input(type="text" placeholder="输入..." value="" name="content")
                 div.weui_cell_hd 
                     button#sendBtn.am-btn.am-btn-secondary.am-btn-lg 发送
                     
-    script(src="/js/app/chatroom.js")
-                
-            
-        
-                
-            
-        
-        
-      
-
-        
-      
-    
-  
-                   
+    script(src='/js/lib/AV.push.js')
+    script(src="/js/app/realtime.js")
+    script(src="/js/lib/require.js" data-main="/js/app/realtime")

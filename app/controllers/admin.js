@@ -1,7 +1,7 @@
 var wx = require('weixin-api')
 var OAuth = require('wechat-oauth')
 var config = require('config')
-var _ = require('underscore');
+var _ = require('underscore')
 var User = require('../models/user')
 var Teacher = require('../models/teacher')
 
@@ -167,6 +167,7 @@ exports.updateStu = function(req,res){
         console.log("ERROR:请求参数中没有id")
     } 
 }
+
 
 
 

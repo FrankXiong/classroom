@@ -36,33 +36,31 @@ exports.callback = function(req,res){
         console.log('openid=' + openid);
 
         User.findByOpenid(openid, function(err, user){
-          console.log('微信回调后，User.find_by_openid(openid) 返回的user = ' + user)
-          if(err || user == null){
-            console.log('user is not exist.')
-            client.getUser(openid, function (err, result) {
-              console.log('use weixin api get user: '+ err)
-              console.log(result)
-              var oauth_user = result;
-              
-              var _user = new User(oauth_user);
-              _user.nickname = oauth_user.nickname;
-              _user.sex = oauth_user.sex;
+            console.log('微信回调后，User.find_by_openid(openid) 返回的user = ' + user)
+            if(err || user == null){
+                console.log('user is not exist.')
+                client.getUser(openid, function (err, result) {
+                    console.log('use weixin api get user: '+ result.nickname)
+                    var oauth_user = result;
+                  
+                    var _user = new User(oauth_user);
+                    console.log(_user)
 
-              _user.save(function(err, user) {
-                if (err) {
-                  console.log('User save error ....' + err);
-                } else {
-                  console.log('User save sucess ....' + err);
-                  req.session.user = user;
-                  res.redirect('/');
-                }
-              });
-              
-            });
-          }else{
-            req.session.user = user
-            res.redirect('/')
-          }
+                    _user.save(function(err, user) {
+                        if (err) {
+                            console.log('User save error ....' + err);
+                        } else {
+                            console.log('User save success ....');
+                            req.session.user = user;
+                            res.redirect('/');
+                        }
+                    });
+                  
+                });
+            }else{
+                req.session.user = user
+                res.redirect('/')
+            }
         });
     });
 

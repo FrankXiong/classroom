@@ -14,7 +14,8 @@ require(['jquery','request'],function($,req){
             $delClass = $('.del-class'),
             $addClassBtn = $('#addClassBtn'),
             $importStuBtn = $('#importStuBtn'),
-            $updateSelfBtn = $('#updateSelfBtn');
+            $updateSelfBtn = $('#updateSelfBtn'),
+            $importStusBtn = $('#importStusBtn');
 
         $delStu.click(function(e){
             var id = $(e.target).data('id'),
@@ -96,6 +97,7 @@ require(['jquery','request'],function($,req){
                 alert(data.msg)
             })
         })
+
     })    
 })
 

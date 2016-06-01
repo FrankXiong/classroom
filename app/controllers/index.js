@@ -16,3 +16,9 @@ exports.renderChatroom = function(req,res){
     })
 }
 
+exports.renderRealtime = function(req,res){
+    res.render('realtime',{
+        title:'即时问答'
+    })
+}
+

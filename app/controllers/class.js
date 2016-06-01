@@ -2,6 +2,7 @@ var _ = require('underscore');
 var Class = require('../models/class')
 var Teacher = require('../models/teacher')
 var User = require('../models/user')
+var parseXlsx = require('excel')
 
 exports.renderAdd = function(req,res){
     var teacher = req.session.teacher
@@ -149,9 +150,17 @@ exports.update = function(req,res){
 exports.importStu = function(req,res){
     var oStu = req.body
     var stuid = oStu.stuid
+    var xlsx = oStu.xlsx
+    console.log(xlsx)
     var classId = oStu.classid
     var _class
     if(classId){
+        if(xlsx){
+            parseXlsx(xlsx, function(err, data) {
+                if(err) throw err;
+                console.log(data)
+            });
+        }
         if(stuid){
             User.findByStuid(stuid,function(err,stu){
                 if(err){

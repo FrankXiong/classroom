@@ -23,6 +23,7 @@ module.exports = function(app){
     app.get('/logout',User.logout)
 
     app.get('/chatroom',User.loginRequired,Index.renderChatroom)
+    app.get('/realtime',User.loginRequired,Index.renderRealtime)
 
 
     // admin start
