@@ -41,6 +41,14 @@ gulp.task('js', function() {
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
+gulp.task('lib', function() {  
+  return gulp.src('src/lib/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/static/js/lib'))
+    .pipe(livereload())
+    .pipe(notify({ message: 'Lib task complete' }));
+});
+
 gulp.task('babel', function() {
   return gulp.src('src/js/app/*.js')
     .pipe(babel({
@@ -164,7 +172,7 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('generate', ['img','sass', 'js', 'font','data']);
+gulp.task('generate', ['img','sass', 'js', 'font','data','lib']);
 
 
 
