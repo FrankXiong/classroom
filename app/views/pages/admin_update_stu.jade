@@ -32,7 +32,23 @@ block content
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
                                     div.am-u-sm-8.am-u-md-4
-                                        input#xzclass(type="text" name="xzclass" value="#{user.xzclass}").am-input-sm
+                                        //- input#xzclass(type="text" name="xzclass" value="#{user.xzclass}").am-input-sm
+                                        select#class(name="xzclass",value="#{user.xzclass}",data-am-selected)
+                                            if user.xzclass = unknown
+                                                option.tr(value="unknown") 请选择
+                                                option.tr(value="计科01班") 计科01班
+                                                option.tr(value="计科02班") 计科02班
+                                                option.tr(value="计科03班") 计科03班
+                                                option.tr(value="计科04班") 计科04班
+                                                option.tr(value="计科05班") 计科05班
+                                                option.tr(value="计科06班") 计科06班 
+                                            else
+                                                option.tr(value="计科01班") 计科01班
+                                                option.tr(value="计科02班") 计科02班
+                                                option.tr(value="计科03班") 计科03班
+                                                option.tr(value="计科04班") 计科04班
+                                                option.tr(value="计科05班") 计科05班
+                                                option.tr(value="计科06班") 计科06班
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
@@ -95,7 +111,15 @@ block content
                                 div.am-g.am-margin-top
                                     div.am-u-sm-4.am-u-md-2.am-text-right 行政班级
                                     div.am-u-sm-8.am-u-md-4
-                                        input#xzclass(type="text" value="").am-input-sm
+                                        //- input#xzclass(type="text" value="").am-input-sm
+                                        select#class(name="xzclass",value="",data-am-selected)
+                                            option.tr(value="unknown") 请选择
+                                            option.tr(value="计科01班") 计科01班
+                                            option.tr(value="计科02班") 计科02班
+                                            option.tr(value="计科03班") 计科03班
+                                            option.tr(value="计科04班") 计科04班
+                                            option.tr(value="计科05班") 计科05班
+                                            option.tr(value="计科06班") 计科06班 
                                     div.am-hide-sm-only.am-u-md-6
 
                                 div.am-g.am-margin-top
