@@ -422,3 +422,7 @@ gallery.html css
 
 .back {
   cursor: pointer; }
+
+.submit-btn {
+  position: fixed;
+  bottom: 1em; }

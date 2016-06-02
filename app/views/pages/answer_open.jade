@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    div.container    
+        div.weui_cells_title 题目:#{question.title}
+        div.weui_cells_title 描述:#{question.desc}
+        div.weui_cells.weui_cells_form
+            div.weui_cell
+                div.weui_cell_bd.weui_cell_primary
+                    textarea#answerContent.weui_textarea(placeholder="请输入你的答案" rows="10")
+            a(href="javascript:;").weui_btn.weui_btn_primary.am-g.submit-btn#answerSubmitBtn 提交

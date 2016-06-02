@@ -2,6 +2,7 @@ var Index = require('../app/controllers/index')
 var User = require('../app/controllers/user')
 var Admin = require('../app/controllers/admin')
 var Class = require('../app/controllers/class')
+var Answer = require('../app/controllers/answer')
 var multer = require('multer')
 
 module.exports = function(app){
@@ -41,6 +42,8 @@ module.exports = function(app){
     app.get('/open',User.loginRequired,Index.renderOpenQuestion)
 
     app.post('/checkin',User.loginRequired,Index.checkin)
+
+    app.get('/open/answer/:id',Answer.renderOpenAnswer)
 
 
     // admin start

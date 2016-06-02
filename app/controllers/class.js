@@ -6,8 +6,6 @@ var parseXlsx = require('excel')
 var AV = require('avoscloud-sdk')
 var config = require('config')
 
-// AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
-
 AV.init({
   appId: config.get('leancloud.appId'),
   appKey: config.get('leancloud.appKey')
@@ -136,7 +134,7 @@ exports.renderOpen = function(req,res){
     if(teacher){
         res.render('admin_open',{
             title:'开放问题',
-            teacher:teacher
+            teacher:teacher,
         }) 
     }else{
         res.redirect('/admin/login')
