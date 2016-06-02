@@ -12,6 +12,7 @@ require(['jquery','request'],function($,req){
         var oTClass = req.getFormData($('#formAddClass'))
         req.post(oTClass,'/admin/class',function(data){
             alert(data.msg)
+            location.href= '/admin/class/list'
         },function(){
             alert('添加教学班失败')
         })
@@ -30,6 +31,7 @@ require(['jquery','request'],function($,req){
 
     $('#singleImportBtn').click(function(){
         var oStu = req.getFormData($('#formSingleImport'))
+        console.log(oStu)
         req.post(oStu,'/admin/class/import/single',function(data){
             alert(data.msg)
         },function(){

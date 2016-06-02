@@ -12,9 +12,7 @@ define(['jquery'],function($){
             $.ajax({
                 type:'POST',
                 url:url,
-                data:data,
-                processData: false, 
-                contentType: false 
+                data:data
             })
             .done(doneCallback)
             .fail(failCallback)

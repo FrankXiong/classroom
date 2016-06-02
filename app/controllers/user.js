@@ -5,12 +5,19 @@ var _ = require('underscore');
 var User = require('../models/user')
 var Teacher = require('../models/teacher')
 var AV = require('avoscloud-sdk')
+var config = require('config')
 
-AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
+// AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
+
+AV.init({
+  appId: config.get('leancloud.appId'),
+  appKey: config.get('leancloud.appKey')
+});
 
 var appid = config.get('wx.app_id')
 var appsecret = config.get('wx.app_secret')
 var domain = config.get('domain')
+
 
 var client = new OAuth(appid,appsecret)
 

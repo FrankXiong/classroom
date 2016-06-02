@@ -2,7 +2,7 @@ define(['jquery','request'],function($,request){
     return {
         checkin:function(){
             var checkinBtn = $('#checkin'),
-                checkinLabel = checkinBtn.find('p')[0], 
+                checkinLabel = $('#checkinLabel'), 
                 uname = $('#uname').val(),
                 stuid = $('#stuid').val(),
                 printWall = $('#printWall'),

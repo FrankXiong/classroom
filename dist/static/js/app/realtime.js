@@ -1,11 +1,12 @@
 require.config({
     baseUrl: '/js',
     paths:{
-        jquery:'lib/jquery',
-        request:'widget/request',
         config:'config',
+        jquery:'lib/jquery',
         AV:'lib/av',
-        AVpush:'lib/AV.push'
+        AVpush:'lib/AV.push',
+        request:'widget/request',
+        checkin:'widget/checkin'
     }
 });
 
@@ -13,6 +14,12 @@ require.config({
 //     "title":"测试标题",
 //     "content":"儿童节快乐！aaa"
 // }
+
+require(['jquery','checkin'],function($,Checkin){
+    $(function(){
+        Checkin.checkin()
+    })
+})
 
 require(['jquery','config'],function($,conf){
     var push;

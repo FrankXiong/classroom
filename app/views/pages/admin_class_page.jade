@@ -10,7 +10,6 @@ block content
                     div.am-fl.am-cf
                         strong.am-text-primary.am-text-lg #{tclass.courseName}
                 hr
-
                 div.am-g
                     div.am-u-sm-12
                         ul.am-avg-sm-6.boxes
@@ -36,14 +35,15 @@ block content
                                     span.action-icon.am-icon-commenting.am-icon-sm
                                     p.action-label 即时问答
                             li.box.box-3
-                                a(href="javascript:;").weui_grid
+                                a(href="/admin/class/#{tclass._id}/ask").weui_grid
                                     div.weui_grid_icon
                                         span.action-icon.am-icon-question.am-icon-sm
                                     p.weui_grid_label 学生提问
                             li.box.box-4
-                                div.weui_grid_icon
-                                    span.action-icon.am-icon-smile-o.am-icon-sm
-                                p.weui_grid_label 开放问题
+                                a(href="/admin/class/#{tclass._id}/open").weui_grid
+                                    div.weui_grid_icon
+                                        span.action-icon.am-icon-smile-o.am-icon-sm
+                                    p.weui_grid_label 开放问题
                             li.box.box-5
                                 div.weui_grid_icon
                                     span.action-icon.am-icon-pencil.am-icon-sm
@@ -53,7 +53,8 @@ block content
                                     div.weui_grid_icon
                                         span.action-icon.am-icon-paper-plane.am-icon-sm
                                     p.weui_grid_label 实时反馈
-
+        else
+            p 请先选择一个教学班级 
                                     
     script(src="/js/lib/require.js" data-main="/js/app/admin")
 

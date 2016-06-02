@@ -3,7 +3,15 @@ var Class = require('../models/class')
 var Teacher = require('../models/teacher')
 var User = require('../models/user')
 var parseXlsx = require('excel')
+var AV = require('avoscloud-sdk')
+var config = require('config')
 
+// AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
+
+AV.init({
+  appId: config.get('leancloud.appId'),
+  appKey: config.get('leancloud.appKey')
+});
 
 exports.renderAdd = function(req,res){
     var teacher = req.session.teacher
@@ -104,6 +112,37 @@ exports.renderRealtime = function(req,res){
     }
 }
 
+exports.renderAsk = function(req,res){
+    var teacher = req.session.teacher
+    var query = new AV.Query('Ask')
+    if(teacher){
+        query.addDescending('createdAt')
+        query.find().then(function(results){
+            res.render('admin_ask',{
+                title:'学生提问',
+                teacher:teacher,
+                asks:results
+            }) 
+        },function(err){
+            console.log('Error: ' + error.code + ' ' + error.message)
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderOpen = function(req,res){
+    var teacher = req.session.teacher
+    if(teacher){
+        res.render('admin_open',{
+            title:'开放问题',
+            teacher:teacher
+        }) 
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
 exports.addTClass = function(req,res){
     var oTClass = req.body
     var tClass = new Class(oTClass)
@@ -148,10 +187,12 @@ exports.update = function(req,res){
     }
 }
 
-exports.singleImportStu = function(req,res,next){
+exports.singleImportStu = function(req,res){
     var oStu = req.body
+    console.log('oStu:'+oStu)
     var stuid = oStu.stuid
     var classid = oStu.classid
+    console.log(classid)
     if(classid){
         if(stuid){
             User.findByStuid(stuid,function(err,stu){
@@ -182,7 +223,6 @@ exports.singleImportStu = function(req,res,next){
     }else{
         res.json({code:0,msg:'classid is empty'})
     }
-    next()
 }
 
 exports.multiImportStu = function(req,res,next){

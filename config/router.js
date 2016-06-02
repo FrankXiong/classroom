@@ -73,6 +73,8 @@ module.exports = function(app){
 
     app.get('/admin/class/:id/chatroom',Class.renderChatroom)
     app.get('/admin/class/:id/realtime',Class.renderRealtime)
+    app.get('/admin/class/:id/ask',Class.renderAsk)
+    app.get('/admin/class/:id/open',Class.renderOpen)
 
     // admin end
 }

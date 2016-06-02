@@ -28,7 +28,7 @@
   "homepage": "https://github.com/FrankXiong/classroom#readme",
   "main": "app.js",
   "dependencies": {
-    "avoscloud-sdk": "^0.6.10",
+    "avoscloud-sdk": "^1.0.0-rc9.1",
     "bcrypt": "^0.8.6",
     "body-parser": "^1.15.0",
     "config": "^1.20.1",

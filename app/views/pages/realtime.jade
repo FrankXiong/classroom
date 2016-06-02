@@ -3,10 +3,10 @@ extends ../layout
 block content
     div.container        
         div.weui_grids
-            a(href="javascript:;").weui_grid
+            a#checkin.weui_grid
                 div.weui_grid_icon
                     span.am-icon-sign-in.am-icon-sm
-                p.weui_grid_label 签到
+                p.weui_grid_label#checkinLabel 签到
             a(href="/realtime").weui_grid.grid-active
                 div.weui_grid_icon
                     span.am-icon-commenting.am-icon-sm

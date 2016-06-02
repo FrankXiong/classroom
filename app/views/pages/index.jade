@@ -39,6 +39,10 @@ block content
         //-             span.am-modal-btn(data-am-modal-confirm) 提交
         //- input#stuid(type="hidden" value="#{user.stuid}")
         div.weui_grids
+            a#checkin.weui_grid
+                div.weui_grid_icon
+                    span.am-icon-sign-in.am-icon-sm
+                p.weui_grid_label#checkinLabel 签到
             a(href="/realtime").weui_grid
                 div.weui_grid_icon
                     span.am-icon-commenting.am-icon-sm
@@ -105,7 +109,7 @@ block content
         //-             p.weui_tabbar_label 我
                 
             
-        script(src="/js/lib/require.js" data-main="/js/app/checkin")
+        script(src="/js/lib/require.js" data-main="/js/app/index")
         
       
 
