@@ -419,3 +419,6 @@ gallery.html css
 
 .boxes .box:hover {
   background: #d9d9d9; }
+
+.back {
+  cursor: pointer; }

@@ -3,18 +3,21 @@ require.config({
     paths:{
         jquery:'lib/jquery',
         request:'widget/request',
-        common:'common'
+        common:'widget/common',
+        moment:'lib/moment'
     }
 });
 
-require(['jquery','request'],function($,req){
+require(['jquery','request','common'],function($,req,common){
     $(function(){
         var $updateStuBtn = $('#updateStuBtn'),
             $delStu = $('.del-stu'),
             $addClassBtn = $('#addClassBtn'),
             $importStuBtn = $('#importStuBtn'),
             $updateSelfBtn = $('#updateSelfBtn'),
-            $importStusBtn = $('#importStusBtn');
+            $importStusBtn = $('#importStusBtn')
+            
+        common.back()
 
         $delStu.click(function(e){
             var id = $(e.target).data('id'),

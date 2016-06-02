@@ -13,8 +13,10 @@ block content
                                 each item in asks
                                     li.am-g.am-list-item-dated
                                         a(href="#").am-list-item-hd #{item.get('from')}: #{item.get('content')}
-                                        span.am-list-date #{item.createdAt}
-                            
+                                        span.am-list-date #{moment(item.createdAt).startOf('hour').fromNow()}
+
+
+
 
       
     

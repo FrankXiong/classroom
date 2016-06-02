@@ -3,10 +3,11 @@ require.config({
     paths:{
         jquery:'lib/jquery',
         request:'widget/request',
-        common:'common'
+        common:'widget/common'
     }
 });
-require(['jquery','request'],function($,req){
+require(['jquery','request','common'],function($,req,common){
+    common.back()
 
     $('#addClassBtn').click(function(){
         var oTClass = req.getFormData($('#formAddClass'))

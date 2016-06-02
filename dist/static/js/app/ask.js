@@ -6,7 +6,8 @@ require.config({
         AV:'lib/av',
         AVpush:'lib/AV.push',
         request:'widget/request',
-        checkin:'widget/checkin'
+        checkin:'widget/checkin',
+        moment:'lib/moment'
     }
 });
 

@@ -72,8 +72,8 @@ var libs = {
         "vendor/assets/requirejs/require.js",
         "vendor/assets/jquery/dist/jquery.js",
         "vendor/assets/amazeui/dist/js/amazeui.js",
-        "vendor/assets/leancloud-push.js/src/AV.push.js"
-
+        "vendor/assets/leancloud-push.js/src/AV.push.js",
+        "vendor/assets/moment/moment.js"
     ],
     css:[
         "vendor/assets/normalize-css/normalize.css",

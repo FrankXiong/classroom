@@ -6,10 +6,7 @@ block content
     div.admin-content
         if tclass
             div.admin-content-body
-                div.am-cf.am-padding.am-padding-bottom-0
-                    div.am-fl.am-cf
-                        strong.am-text-primary.am-text-lg #{tclass.courseName}
-                hr
+                include ../includes/admin_content_header
                 div.am-g
                     div.am-u-sm-12
                         ul.am-avg-sm-6.boxes

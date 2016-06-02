@@ -7,10 +7,7 @@ block content
     div.admin-content
         if teacher
             div.admin-content-body
-                div.am-cf.am-padding.am-padding-bottom-0
-                    div.am-fl.am-cf
-                        strong.am-text-primary.am-text-lg 学生列表
-                hr
+                include ../includes/admin_content_header   
 
                 div.am-g
                     div.am-u-sm-12.am-u-md-6
@@ -55,7 +52,7 @@ block content
                                                 when 1: td 男
                                                 when 2: td 女 
 
-                                            td.am-hide-sm-only #{item.meta.createAt}
+                                            td.am-hide-sm-only #{moment(item.meta.createAt).format()}
                                             td 
                                                 div.am-btn-toolbar
                                                     div.am-btn-group.am-btn-group-xs
