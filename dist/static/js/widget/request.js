@@ -13,7 +13,8 @@ define(['jquery'],function($){
                 type:'POST',
                 url:url,
                 data:data,
-                dataType:'json'
+                processData: false, 
+                contentType: false 
             })
             .done(doneCallback)
             .fail(failCallback)

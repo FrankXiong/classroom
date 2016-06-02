@@ -4,6 +4,7 @@ var Teacher = require('../models/teacher')
 var User = require('../models/user')
 var parseXlsx = require('excel')
 
+
 exports.renderAdd = function(req,res){
     var teacher = req.session.teacher
     if(teacher){
@@ -147,20 +148,11 @@ exports.update = function(req,res){
     }
 }
 
-exports.importStu = function(req,res){
+exports.singleImportStu = function(req,res,next){
     var oStu = req.body
     var stuid = oStu.stuid
-    var xlsx = oStu.xlsx
-    console.log(xlsx)
-    var classId = oStu.classid
-    var _class
-    if(classId){
-        if(xlsx){
-            parseXlsx(xlsx, function(err, data) {
-                if(err) throw err;
-                console.log(data)
-            });
-        }
+    var classid = oStu.classid
+    if(classid){
         if(stuid){
             User.findByStuid(stuid,function(err,stu){
                 if(err){
@@ -168,7 +160,7 @@ exports.importStu = function(req,res){
                 }else if(!stu){
                     res.json({code:0,msg:'此学生未注册'})
                 }else{
-                    Class.findById(classId,function(err,tclass){
+                    Class.findById(classid,function(err,tclass){
                         if(err){
                             console.log(err)
                         }else{
@@ -186,11 +178,15 @@ exports.importStu = function(req,res){
                     })
                 }
             })
-        }else{
-            res.json({code:0,msg:'stuid is empty'})
         }
     }else{
         res.json({code:0,msg:'classid is empty'})
     }
+    next()
+}
+
+exports.multiImportStu = function(req,res,next){
+    console.log('multiImportStu...')
+    next()
 }
 

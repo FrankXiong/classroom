@@ -17,17 +17,27 @@ require(['jquery','request'],function($,req){
         })
     })
 
-    $('#importStuBtn').click(function(){
-        var oStu = req.getFormData($('#formImportStu'))
-        console.log(oStu)
-        req.post(oStu,'/admin/class/add',function(data){
+    $('#multiImportBtn').click(function(){
+        var oData = new FormData(document.forms.namedItem("formMultiImport"));
+        console.log(oData)
+
+        req.post(oData,'/admin/class/import/multi',function(data){
             alert(data.msg)
         },function(){
-            alert(data.msg)
+            alert('导入失败')
         })
     })
 
-    $('.del').click(function(e){
+    $('#singleImportBtn').click(function(){
+        var oStu = req.getFormData($('#formSingleImport'))
+        req.post(oStu,'/admin/class/import/single',function(data){
+            alert(data.msg)
+        },function(){
+            alert('导入失败')
+        })
+    })
+
+    $('.del-class').click(function(e){
         var id = $(e.target).data('id'),
             tr = $('.item-id-' + id)
             url = '/admin/class/?id=' + id;

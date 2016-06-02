@@ -37,14 +37,8 @@ block content
         //-         div.am-modal-footer 
         //-             span.am-modal-btn(data-am-modal-cancel) 取消
         //-             span.am-modal-btn(data-am-modal-confirm) 提交
-        input#stuid(type="hidden" value="#{user.stuid}")
+        //- input#stuid(type="hidden" value="#{user.stuid}")
         div.weui_grids
-            if(user)
-                //- a(href="/checkin/?id=#{user.stuid}").weui_grid
-                a(href="").weui_grid#checkin    
-                    div.weui_grid_icon
-                        span.am-icon-sign-in.am-icon-sm
-                    p.weui_grid_label 签到
             a(href="/realtime").weui_grid
                 div.weui_grid_icon
                     span.am-icon-commenting.am-icon-sm

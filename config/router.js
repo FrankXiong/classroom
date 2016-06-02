@@ -2,6 +2,7 @@ var Index = require('../app/controllers/index')
 var User = require('../app/controllers/user')
 var Admin = require('../app/controllers/admin')
 var Class = require('../app/controllers/class')
+var multer = require('multer')
 
 module.exports = function(app){
    
@@ -10,6 +11,18 @@ module.exports = function(app){
         app.locals.user = _user
         return next()
     })
+
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb){
+            cb(null, './uploads')
+        },
+        filename: function (req, file, cb){
+            cb(null, file.originalname)
+        }
+    });
+    var upload = multer({
+        storage: storage
+    });
 
     app.get('/',Index.index)
     app.get('/oauth',User.oauth)
@@ -55,7 +68,8 @@ module.exports = function(app){
     app.post('/admin/class/',Class.addTClass)
     app.delete('/admin/class',Class.del)
     app.get('/admin/class/update/:id',Class.update)
-    app.post('/admin/class/add',Class.importStu)
+    app.post('/admin/class/import/single',Class.singleImportStu)
+    app.post('/admin/class/import/multi',Class.multiImportStu)
 
     app.get('/admin/class/:id/chatroom',Class.renderChatroom)
     app.get('/admin/class/:id/realtime',Class.renderRealtime)

@@ -40,9 +40,10 @@ app.set('view engine','jade')
 
 app.use(express.static(path.join(__dirname,'dist/static')))
 app.use(cookieParser())
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-// app.use(multer()) // for parsing multipart/form-data
+app.use(bodyParser.json()) 
+app.use(bodyParser.urlencoded({ extended: true }))
+var upload = multer({ dest: 'uploads/' })
+
 
 app.use(session({
     secret:'classroom',
