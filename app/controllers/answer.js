@@ -13,10 +13,10 @@ exports.renderOpenAnswer = function(req,res){
     if(id){
         query.equalTo('qid',id)
         query.first().then(function(result){
-            console.log(result.attributes)
+            console.log(result)
             res.render('answer_open',{
                 title:'回答',
-                question:result.attributes
+                question:result
             })
         },function(err){
             console.log('question is not exit:'+err)

@@ -11,11 +11,6 @@ require.config({
     }
 });
 
-// {
-//     "title":"测试标题",
-//     "content":"儿童节快乐！aaa"
-// }
-
 require(['jquery','checkin'],function($,Checkin){
     $(function(){
         Checkin.checkin()
