@@ -426,3 +426,6 @@ gallery.html css
 .submit-btn {
   position: fixed;
   bottom: 1em; }
+
+.open-answer-item {
+  padding: 1rem 2rem; }

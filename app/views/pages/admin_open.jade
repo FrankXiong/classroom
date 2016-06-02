@@ -34,7 +34,24 @@ block content
                                             button#addQuestionBtn(type="button").am-btn.am-btn-primary.am-fr.am-btn-lg 发布 
 
                                 div.am-tab-panel.am-fade.am-in.am-active#tab2
-                                    span 回答情况
+                                    ul.am-list.admin-sidebar-list#openAnswerList
+                                        each item in questions
+                                            li.am-panel
+                                                a(data-am-collapse="{parent: '#openAnswerList', target: '#user-nav'}")
+                                                    span #{item.attributes.title} 
+                                                    i.am-icon-angle-right.am-fr.am-margin-right
+                                            
+                                                //- ul.am-list.am-collapse.admin-sidebar-sub#user-nav
+                                                //-     li.am-cf
+                                                //-         a(href="").am-fl 
+                                                //-             span.am-margin-left-sm  添加人员
+                                                //-         p.am-fl.open-answer-item 很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长
+
+                                                //-     li.am-cf
+                                                //-         a(href="").am-fl 
+                                                //-             span.am-margin-left-sm  人员列表 
+                                                //-         p.am-fl.open-answer-item 很长很长很长很长很长很长很
+
 
     script(src='/js/lib/AV.push.js')
     script(src="/js/lib/require.js" data-main="/js/app/admin_open")

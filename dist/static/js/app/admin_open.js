@@ -60,7 +60,8 @@ require(['jquery','request','common','config'],function($,req,common,conf){
         data = {
             'title': qTitle.val(),
             'desc':qDesc.val(),
-            'qid':Date.now().toString()
+            'qid':Date.now().toString(),
+            'type':0
         }
         push.send({
             channels: ['open'],

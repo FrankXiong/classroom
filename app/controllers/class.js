@@ -131,11 +131,18 @@ exports.renderAsk = function(req,res){
 
 exports.renderOpen = function(req,res){
     var teacher = req.session.teacher
+    var query = new AV.Query('Question')
     if(teacher){
-        res.render('admin_open',{
-            title:'开放问题',
-            teacher:teacher,
-        }) 
+        query.addDescending('createdAt')
+        query.find().then(function(results){
+            res.render('admin_open',{
+                title:'开放问题',
+                teacher:teacher,
+                questions:results
+            }) 
+        },function(err){
+            console.log('Error: ' + error.code + ' ' + error.message)
+        })
     }else{
         res.redirect('/admin/login')
     }
