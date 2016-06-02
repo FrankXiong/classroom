@@ -32,16 +32,11 @@ block content
             div.am-list-news-hd.am-cf
                 a(href="###")
                     h2 开放问题
+
             div.am-list-news-bd
                 ul.am-list#printWall
 
-        div.weui_cells.weui_cells_form.input-answer
-            div.weui_cell 
-                div.weui_cell_bd.weui_cell_primary 
-                    input#inputSend.weui_input(type="text" placeholder="输入..." value="" name="content")
-                div.weui_cell_hd 
-                    button#sendBtn.am-btn.am-btn-secondary.am-btn-lg 发送
                     
     script(src='/js/lib/AV.push.js')
     script(src="/js/app/realtime.js")
-    script(src="/js/lib/require.js" data-main="/js/app/realtime")
+    script(src="/js/lib/require.js" data-main="/js/app/open")
