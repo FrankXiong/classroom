@@ -26,3 +26,12 @@ div.am-tabs {
 
 #printWall {
   margin-bottom: 5em; }
+
+label {
+  font-weight: 400; }
+
+.weui_cells_title {
+  font-size: 16px; }
+
+.weui_cells {
+  font-size: 16px; }

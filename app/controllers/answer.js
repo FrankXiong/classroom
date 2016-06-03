@@ -23,3 +23,21 @@ exports.renderOpenAnswer = function(req,res){
         })
     }
 }
+
+exports.renderRealtimeAnswer = function(req,res){
+    var id = req.params.id
+    var query = new AV.Query('Question')
+    console.log(id)
+    if(id){
+        query.equalTo('qid',id)
+        query.first().then(function(result){
+            console.log(result)
+            res.render('answer_realtime',{
+                title:'回答',
+                question:result
+            })
+        },function(err){
+            console.log('question is not exit:'+err)
+        })
+    }
+}

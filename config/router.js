@@ -44,6 +44,7 @@ module.exports = function(app){
     app.post('/checkin',User.loginRequired,Index.checkin)
 
     app.get('/open/answer/:id',Answer.renderOpenAnswer)
+    app.get('/realtime/answer/:id',Answer.renderRealtimeAnswer)
 
 
     // admin start
