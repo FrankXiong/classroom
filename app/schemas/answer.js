@@ -8,7 +8,7 @@ var AnswerSchema = new mongoose.Schema({
         ref:Answer
     },
     // 题目ID
-    questionId:{
+    qObjectId:{
         type:ObjectId,
         ref:Question
     },

@@ -34,12 +34,15 @@ block content
                                             button#addQuestionBtn(type="button").am-btn.am-btn-primary.am-fr.am-btn-lg 发布 
 
                                 div.am-tab-panel.am-fade.am-in.am-active#tab2
-                                    ul.am-list.admin-sidebar-list#openAnswerList
-                                        each item in questions
-                                            li.am-panel
-                                                a(data-am-collapse="{parent: '#openAnswerList', target: '#user-nav'}")
-                                                    span #{item.attributes.title} 
-                                                    i.am-icon-angle-right.am-fr.am-margin-right
+                                    ul.am-list.am-list-static.am-list-border.am-list-striped#openAnswerList
+                                        each item in answers
+                                            li
+                                                a 问题：#{item.attributes.qTitle}
+                                                span.answer-from #{item.attributes.from}:
+                                                span.answer-content #{item.attributes.content}
+                                                //- a(data-am-collapse="{parent: '#openAnswerList', target: '#user-nav'}")
+                                                //-     span #{item.attributes.title} 
+                                                //-     i.am-icon-angle-right.am-fr.am-margin-right
                                             
                                                 //- ul.am-list.am-collapse.admin-sidebar-sub#user-nav
                                                 //-     li.am-cf

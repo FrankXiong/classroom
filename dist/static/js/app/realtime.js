@@ -10,11 +10,6 @@ require.config({
     }
 });
 
-// {
-//     "title":"测试标题",
-//     "content":"儿童节快乐！aaa"
-// }
-
 require(['jquery','checkin'],function($,Checkin){
     $(function(){
         Checkin.checkin()
@@ -50,25 +45,23 @@ require(['jquery','config'],function($,conf){
             alert('网络中断正在重试');
         });
 
-        sendBtn.click(function(){
-            oAnswer.set({
-                from: $('#uname').val(),
-                content: $('#inputSend').val()
-            });
-            oAnswer.save().then(() => {
-                alert('已收到你的答案')
-                console.log('success');
-            }).catch((err) => {
-                alert('提价失败，请检查你的网络...')
-                console.log('failed');
-                console.log(err);
-            });
-        })
+        push.subscribe(['realtime'], function(data) {
+            console.log('已关注即时应答频道');
+        });
 
     })
     function showLog(data,area,timestamp) {
         if (data) {
-            question = '<li class="am-g am-list-item-desced"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.content+'</div></li>';
+            if(data.type === 1){
+                question = '<li class="am-g am-list-item-desced"><div class="am-fl"><div><button type="button" class="am-btn am-btn-secondary am-round am-btn-xs">单选</button><p class="question-title am-list-item-hd">'+data.title+'</p></div><div class="option am-list-item-text">A:'+data.optionA+'</div><div class="option am-list-item-text">B:'+data.optionB+'</div><div class="option am-list-item-text">C:'+data.optionC+'</div><div class="option am-list-item-text">D:'+data.optionD+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
+            }
+            if(data.type === 2){
+                question = '<li class="am-g am-list-item-desced"><div class="am-fl"><div><button type="button" class="am-btn am-btn-success am-round am-btn-xs">多选</button><p class="question-title am-list-item-hd">'+data.title+'</p></div><div class="option am-list-item-text">A:'+data.optionA+'</div><div class="option am-list-item-text">B:'+data.optionB+'</div><div class="option am-list-item-text">C:'+data.optionC+'</div><div class="option am-list-item-text">D:'+data.optionD+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
+            }
+            if(data.type === 3){
+                question = '<li class="am-g am-list-item-desced"><div><button type="button" class="am-btn am-btn-warning am-round am-btn-xs">填空</button><p class="question-title am-list-item-hd">'+data.title+'</p></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
+            }
+            
         }
         time = '<p class="time">' + timestamp + '</p>';
         if(timestamp){

@@ -53,7 +53,7 @@ require(['jquery','config'],function($,conf){
     })
     function showLog(data,area,timestamp) {
         if (data) {
-            question = '<li class="am-g am-list-item-desced am-cf"><div class="am-fl"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.desc+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</button></div></li>';
+            question = '<li class="am-g am-list-item-desced am-cf"><div class="am-fl"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.desc+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
         }
 
         time = '<p class="time">' + timestamp + '</p>';

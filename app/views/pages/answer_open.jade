@@ -6,6 +6,7 @@ block content
         div.weui_cells_title 描述:#{question.attributes.desc}
         input#qid(type="hidden" value="#{question.attributes.qid}")
         input#qObjectId(type="hidden" value="#{question.id}")
+        input#qTitle(type="hidden" value="#{question.attributes.title}")
         div.weui_cells.weui_cells_form
             div.weui_cell
                 div.weui_cell_bd.weui_cell_primary

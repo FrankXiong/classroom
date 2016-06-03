@@ -7,9 +7,116 @@ block content
             div.admin-content-body
                 include ../includes/admin_content_header                    
                 div.am-g
-                    div 
-                        p
+                    div.am-u-sm-12 
+                        div.am-tabs(data-am-tabs="{noSwipe: 1}")
+                            ul.am-tabs-nav.am-nav.am-nav-tabs
+                                li.am-active 
+                                    a(href="#tab1") 单选题
+                                li
+                                    a(href="#tab2") 多选题
+                                li
+                                    a(href="#tab3") 填空题
+                                li
+                                    a(href="#tab4") 统计
 
+                            div.am-tabs-bd
+                                div.am-tab-panel.am-fade.am-in.am-active#tab1
+                                    form.am-form#formAddSingleSelect
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 问题名称
+                                            div.am-u-sm-8.am-u-md-6
+                                                input#qTitle(type="text" value="" name="title").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 正确答案
+                                            div.am-u-sm-8.am-u-md-6
+                                                select#rightAnswer(name="rightAnswer",value="",data-am-selected)
+                                                        option(value="A") A
+                                                        option(value="B") B
+                                                        option(value="C") C
+                                                        option(value="D") D
+                                            div.am-hide-sm-only.am-u-md-4
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项A
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionA(type="text" value="" name="optionA").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项B
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionB(type="text" value="" name="optionB").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项C
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionC(type="text" value="" name="optionC").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项D
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionD(type="text" value="" name="optionD").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4  
+                                        div.am-margin
+                                            button#addSingleSelectBtn(type="button").am-btn.am-btn-primary.am-fr.am-btn-lg 发布 
+
+                                div.am-tab-panel.am-fade.am-in.am-active#tab2
+                                    form.am-form#formAddMultiSelect
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 问题名称
+                                            div.am-u-sm-8.am-u-md-6
+                                                input#qTitle(type="text" value="" name="title").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 正确答案
+                                            div.am-u-sm-8.am-u-md-6
+                                                select#rightAnswer(name="rightAnswer",value="",multiple,data-am-selected)
+                                                        option(value="A") A
+                                                        option(value="B") B
+                                                        option(value="C") C
+                                                        option(value="D") D
+                                            div.am-hide-sm-only.am-u-md-4
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项A
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionA(type="text" value="" name="optionA").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项B
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionB(type="text" value="" name="optionB").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项C
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionC(type="text" value="" name="optionC").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 选项D
+                                            div.am-u-sm-8.am-u-md-6.am-u-end.col-end
+                                                input#optionD(type="text" value="" name="optionD").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4  
+                                        div.am-margin
+                                            button#addMultiSelectBtn(type="button").am-btn.am-btn-primary.am-fr.am-btn-lg 发布 
+
+                                div.am-tab-panel.am-fade.am-in.am-active#tab3
+                                    form.am-form#formAddFillBlank
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 问题名称
+                                            div.am-u-sm-8.am-u-md-6
+                                                input#qTitle(type="text" value="" name="title").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4 
+
+                                        div.am-g.am-margin-top
+                                            div.am-u-sm-4.am-u-md-2.am-text-right 正确答案
+                                            div.am-u-sm-8.am-u-md-6
+                                                input#rightAnswer(type="text" value="" name="rightAnswer").am-input-sm
+                                            div.am-hide-sm-only.am-u-md-4
+                                         
+                                        div.am-margin
+                                            button#addFillBlankBtn(type="button").am-btn.am-btn-primary.am-fr.am-btn-lg 发布 
+
+                                
     script(src='/js/lib/AV.push.js')
-    script(src='/js/app/admin_push.js')
-    script(src="/js/lib/require.js" data-main="/js/app/admin")
+    script(src="/js/lib/require.js" data-main="/js/app/admin_realtime")

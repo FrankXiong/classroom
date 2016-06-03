@@ -429,3 +429,16 @@ gallery.html css
 
 .open-answer-item {
   padding: 1rem 2rem; }
+
+.answer-from {
+  padding-left: 1rem; }
+
+.option {
+  display: inline !important;
+  margin-right: 1rem; }
+
+.am-list .am-list-item-desced a, .am-list .am-list-item-thumbed a {
+  padding-right: 1rem; }
+
+.question-title {
+  display: inline; }

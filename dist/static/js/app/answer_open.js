@@ -21,6 +21,7 @@ require(['config'],function(conf){
         var qObjectId = $('#qObjectId').val()
         var from = $('#uname').val()
         var stuid = $('#stuid').val()
+        var qTitle = $('#qTitle').val()
         var Answer = AV.Object.extend('Answer');
 
 
@@ -29,7 +30,8 @@ require(['config'],function(conf){
                     from: from,
                     content: $('#answerContent').val(),
                     stuid:stuid,
-                    qObjectId:qObjectId
+                    qObjectId:qObjectId,
+                    qTitle:qTitle
                 }
 
                 var oAnswer = new Answer()
