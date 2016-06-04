@@ -3,6 +3,7 @@ var User = require('../app/controllers/user')
 var Admin = require('../app/controllers/admin')
 var Class = require('../app/controllers/class')
 var Answer = require('../app/controllers/answer')
+var Question = require('../app/controllers/question')
 var multer = require('multer')
 
 module.exports = function(app){
@@ -85,4 +86,7 @@ module.exports = function(app){
     app.get('/admin/analysis/fillblank',Admin.renderFillblankAnalysis)
 
     // admin end
+    
+    app.post('/answer/add',Answer.addAnswer)
+    app.post('/question/add',Question.addQuestion)
 }

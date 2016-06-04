@@ -103,35 +103,47 @@ exports.renderUpdateStu = function(req,res){
 
 exports.renderSingleAnalysis = function(req,res){
     var teacher = req.session.teacher
-    var query = new AV.Query('Answer')
+    var query = new AV.Query('Question')
+    var queryAnswer = new AV.Query('Question')
+    
     var arrA=[],arrB=[],arrC=[],arrD=[]
     if(teacher){
-        query.equalTo('qType',1)
-        query.find().then(function(results){
-            for(var i = 0,len = results.length;i < len;i++){
-                var content = results[i].attributes.content
-                switch(content){
-                    case 'A':
-                        arrA.push(content)
-                    case 'B':
-                        arrB.push(content)
-                    case 'C':
-                        arrC.push(content)
-                    case 'D':
-                        arrD.push(content)
-                }
+        query.equalTo('type',1)
+        query.find().then(function(questions){
+
+            for(var i = 0,len = questions.length;i < len;i++){
+                var targetQuestion = AV.Object.createWithoutData('Question',questions[i].id)
+                query.equalTo('targetQuestion',targetQuestion)
+                query.find().then((answers)=>{
+                    console.log("Answers:"+answers)
+                    // for(var j=0,len=answers.length;j<len;j++){
+                    //     var content = answers[i].attributes.content
+                    //     switch(content){
+                    //         case 'A':
+                    //             arrA.push(content)
+                    //             break
+                    //         case 'B':
+                    //             arrB.push(content)
+                    //             break
+                    //         case 'C':
+                    //             arrC.push(content)
+                    //             break
+                    //         case 'D':
+                    //             arrD.push(content)
+                    //             break
+                    //     }
+                    // }
+                }).catch((err)=>{
+                    console.log('Error: ' + error.code + ' ' + error.message)
+                })
             }
-            res.render('admin_analysis',{
+
+            res.render('admin_single_analysis',{
                 title:'单选题',
                 teacher:teacher,
-                answers:results,
-                count:[
-                    arrA.length,
-                    arrB.length,
-                    arrC.length,
-                    arrD.length
-                ]
+                questions:questions
             })
+            console.log(questions[0])
         },function(err){
             console.log(err)
         })
@@ -146,7 +158,7 @@ exports.renderMultiAnalysis = function(req,res){
     if(teacher){
         query.equalTo('qType',2)
         query.find().then(function(results){
-            res.render('admin_analysis',{
+            res.render('admin_multi_analysis',{
                 title:'多选题',
                 teacher:teacher,
                 answers:results
@@ -165,7 +177,7 @@ exports.renderFillblankAnalysis = function(req,res){
     if(teacher){
         query.equalTo('qType',3)
         query.find().then(function(results){
-            res.render('admin_analysis',{
+            res.render('admin_fillblank_analysis',{
                 title:'填空题',
                 teacher:teacher,
                 answers:results

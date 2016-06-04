@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
 // 题目Schema
-var CheckinSchema = new mongoose.Schema({
+var QuestionSchema = new mongoose.Schema({
     // 主键
     id:{
         type:String,
@@ -13,10 +15,13 @@ var CheckinSchema = new mongoose.Schema({
     },
     // 题目类型
     // 1:单选  2:多选 3:填空 4:开放问题,没有固定答案 5:程序阅读题
-    qType:{
+    type:{
         type:Number,
         default:1
     }, 
+    qid:{
+        type:String
+    },
     // 应答模式
     // 2:单题即兴应答模式 3:微试卷模式 4:开放问题模式 5:学生提问模式 6:实时反馈模式
     qMode:{
@@ -34,7 +39,7 @@ var CheckinSchema = new mongoose.Schema({
     // 课堂ID
     lessonId:{
         type:ObjectId,
-        ref:Lesson
+        ref:'Lesson'
     },
     // 图片路径，如果题目需要图片，则是图片路径
     picPath:{
@@ -67,7 +72,7 @@ var CheckinSchema = new mongoose.Schema({
     // 题目所属课程ID，关联到课程表
     courseId:{
         type:String,
-        ref:Course
+        ref:'Course'
     },
     // 课程所属知识点，保留，未用
     coursePointer:{

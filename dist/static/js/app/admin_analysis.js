@@ -38,44 +38,46 @@
 //     // 为echarts对象加载数据 
 //     myChart.setOption(option); 
 // });
+require.config({
+    baseUrl: '/js',
+    paths:{
+        config:'config',
+        jquery:'lib/jquery',
+        AV:'lib/av',
+        AVpush:'lib/AV.push',
+        request:'widget/request',
+        checkin:'widget/checkin'
+    }
+});
 
+require(['jquery','config'],function($,conf){
+    $(function(){
+        AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
 
+        var query = new AV.Query('Question')
+        var myEcharts = $('.echart')
+        var qObjectId = $('.qObjectId')
+        var questions = []
+        var countA,countB,countC,countD
 
-var myChart = echarts.init(document.getElementById('echart')); 
-var countA = parseInt($('#countA').val()),
-    countB = parseInt($('#countB').val()),
-    countC = parseInt($('#countC').val()),
-    countD = parseInt($('#countD').val());
+        for(var i in myEcharts){
+            questions[i] = AV.Object.createWithoutData('Question',qObjectId[i])
+            query.equalTo('targetQuestion',questions[i])
+            query.find().then((results)=>{
+                countA = results.length
+                console.log(countA)
+            }).catch((err)=>{
+                console.log(err)
+            })
+            var myChart = echarts.init(myEcharts[i]); 
+            myChart.setOption(conf.echarts_single); 
+        }
+
+    })
+})
+
+// var countA = parseInt($('#countA').val()),
+//     countB = parseInt($('#countB').val()),
+//     countC = parseInt($('#countC').val()),
+//     countD = parseInt($('#countD').val());
         
-var option = {
-    title:{
-        text:'答案分布'
-    },
-    tooltip: {
-        show: true
-    },
-    legend: {
-        data:['人数']
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : ["A","B","C","D"]
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            "name":"人数",
-            "type":"bar",
-            "data":[countA, countB, countC, countD]
-        }
-    ]
-};
-
-// 为echarts对象加载数据 
-myChart.setOption(option); 

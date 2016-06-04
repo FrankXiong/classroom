@@ -73,11 +73,16 @@ require(['jquery','request','common','config'],function($,req,common,conf){
                     console.log('failed');
                     console.log(err);
                 });
-
             } else {
                 alert('error');
             }
         });
+
+        req.post(data,'/question/add',function(data){
+            alert(data.msg)
+        },function(){
+            alert('问题发布失败')
+        })
     })
 
     // 发布多选问题

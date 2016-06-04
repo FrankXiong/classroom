@@ -1,0 +1,21 @@
+extends ../admin_layout
+
+block content
+    
+    include ../includes/admin_sidebar
+    div.admin-content
+            div.admin-content-body
+                include ../includes/admin_content_header                    
+                div.am-g
+                    div.am-u-sm-12
+                        ul.am-list
+                        each item in questions
+                            li
+                                div 题目：#{item.attributes.title}
+                                input.qObjectId(type="hidden" value="#{item.id}")
+                                div.am-panel
+                                    div.echart
+
+    script(src="http://echarts.baidu.com/build/dist/echarts-all.js")
+    script(src="/js/lib/require.js" data-main="/js/app/admin_analysis")
+    // script(src="/js/app/admin_analysis.js")

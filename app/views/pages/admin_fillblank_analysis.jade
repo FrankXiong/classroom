@@ -1,0 +1,19 @@
+extends ../admin_layout
+
+block content
+    
+    include ../includes/admin_sidebar
+    div.admin-content
+            div.admin-content-body
+                include ../includes/admin_content_header                    
+                div.am-g
+                    div.am-u-sm-12
+                        each item in answers
+                            div.am-tabs(data-am-tabs="{noSwipe: 1}")
+                                div #{item.qTitle}
+                                div.am-tabs-bd
+                                    div.am-tab-panel.am-fade.am-in.am-active#tab1
+                                        div#echart
+
+    script(src="http://echarts.baidu.com/build/dist/echarts-all.js")
+    script(src="/js/app/admin_analysis.js")

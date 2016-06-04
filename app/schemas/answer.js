@@ -1,23 +1,32 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
 // 学生回答情况Schema:学生回答某一个问题的情况
 var AnswerSchema = new mongoose.Schema({
-    // 学生学号，关联到学生表主键
-    sid:{
-        type:ObjectId,
-        ref:Answer
+    stuid:{
+        type:String
     },
     // 题目ID
     qObjectId:{
         type:ObjectId,
-        ref:Question
+        ref:'Question'
+    },
+    qTitle:{
+        type:String
+    },
+    from:{
+        type:String
+    },
+    qType:{
+        type:Number
     },
     // 使用题目的课堂ID
     lessonId:{
         type:String
     }, 
     // 学生答案
-    answer:{
+    content:{
         type:String
     },
     // 是否正确标识
