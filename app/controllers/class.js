@@ -134,6 +134,7 @@ exports.renderOpen = function(req,res){
     var query = new AV.Query('Answer')
     if(teacher){
         query.addDescending('createdAt')
+        query.equalTo('qType',0)
         query.find().then(function(results){
             res.render('admin_open',{
                 title:'开放问题',

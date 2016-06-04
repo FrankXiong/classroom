@@ -1,0 +1,24 @@
+extends ../admin_layout
+
+block content
+    
+    include ../includes/admin_sidebar
+    div.admin-content
+            input#countA(type="hidden" value="#{count[0]}")
+            input#countB(type="hidden" value="#{count[1]}")
+            input#countC(type="hidden" value="#{count[2]}")
+            input#countD(type="hidden" value="#{count[3]}")
+            div.admin-content-body
+                include ../includes/admin_content_header                    
+                div.am-g
+                    div.am-u-sm-12
+                        div.am-tabs(data-am-tabs="{noSwipe: 1}")
+                            //- ul.am-tabs-nav.am-nav.am-nav-tabs
+                            //-     li.am-active 
+                            //-         a(href="#tab1") #{title}
+                            div.am-tabs-bd
+                                div.am-tab-panel.am-fade.am-in.am-active#tab1
+                                    div#echart
+
+    script(src="http://echarts.baidu.com/build/dist/echarts-all.js")
+    script(src="/js/app/admin_analysis.js")

@@ -82,7 +82,8 @@ var libs = {
         "vendor/assets/amazeui/dist/js/amazeui.js",
         "vendor/assets/leancloud-push.js/src/AV.push.js",
         "vendor/assets/moment/moment.js",
-        "vendor/assets/bcrypt/bcrypt.js"
+        "vendor/assets/bcrypt/bcrypt.js",
+        "vendor/assets/echarts/dist/echarts.common.js"
     ],
     css:[
         "vendor/assets/normalize-css/normalize.css",

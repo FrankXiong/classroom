@@ -4,6 +4,13 @@ var config = require('config')
 var _ = require('underscore')
 var User = require('../models/user')
 var Teacher = require('../models/teacher')
+var AV = require('avoscloud-sdk')
+var config = require('config')
+
+AV.init({
+  appId: config.get('leancloud.appId'),
+  appKey: config.get('leancloud.appKey')
+});
 
 exports.renderIndex = function(req,res){
     var teacher = req.session.teacher
@@ -92,6 +99,83 @@ exports.renderUpdateStu = function(req,res){
     }else{
         res.redirect('/admin/login')
     }    
+}
+
+exports.renderSingleAnalysis = function(req,res){
+    var teacher = req.session.teacher
+    var query = new AV.Query('Answer')
+    var arrA=[],arrB=[],arrC=[],arrD=[]
+    if(teacher){
+        query.equalTo('qType',1)
+        query.find().then(function(results){
+            for(var i = 0,len = results.length;i < len;i++){
+                var content = results[i].attributes.content
+                switch(content){
+                    case 'A':
+                        arrA.push(content)
+                    case 'B':
+                        arrB.push(content)
+                    case 'C':
+                        arrC.push(content)
+                    case 'D':
+                        arrD.push(content)
+                }
+            }
+            res.render('admin_analysis',{
+                title:'单选题',
+                teacher:teacher,
+                answers:results,
+                count:[
+                    arrA.length,
+                    arrB.length,
+                    arrC.length,
+                    arrD.length
+                ]
+            })
+        },function(err){
+            console.log(err)
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderMultiAnalysis = function(req,res){
+    var teacher = req.session.teacher
+    var query = new AV.Query('Answer')
+    if(teacher){
+        query.equalTo('qType',2)
+        query.find().then(function(results){
+            res.render('admin_analysis',{
+                title:'多选题',
+                teacher:teacher,
+                answers:results
+            })
+        },function(err){
+            console.log(err)
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
+}
+
+exports.renderFillblankAnalysis = function(req,res){
+    var teacher = req.session.teacher
+    var query = new AV.Query('Answer')
+    if(teacher){
+        query.equalTo('qType',3)
+        query.find().then(function(results){
+            res.render('admin_analysis',{
+                title:'填空题',
+                teacher:teacher,
+                answers:results
+            })
+        },function(err){
+            console.log(err)
+        })
+    }else{
+        res.redirect('/admin/login')
+    }
 }
 
 exports.delStu = function(req,res){

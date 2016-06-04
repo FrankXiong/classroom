@@ -23,7 +23,19 @@ require(['config'],function(conf){
         var stuid = $('#stuid').val()
         var qTitle = $('#qTitle').val()
         var Answer = AV.Object.extend('Answer')
-        var qType = $('#qType').val()
+        var qType = parseInt($('#qType').val())
+
+        function getCheckBoxValue(){
+            var values = []
+            $('input[type="checkbox"]:checked').each(function(){
+                values.push($(this).val())
+            })
+            if(values.length === 0){
+                alert('你还没有选择任何一项')
+                return;
+            }
+            return values.join(',');
+        }
         
 
         $answerSubmitBtn.click(function(){
@@ -33,25 +45,28 @@ require(['config'],function(conf){
                     content: $('#answerContent').val(),
                     stuid:stuid,
                     qObjectId:qObjectId,
-                    qTitle:qTitle
+                    qTitle:qTitle,
+                    qType:qType
                 }
             }
             if(qType == 1){
                 var data = {
                     from: from,
-                    content: 'A',
+                    content: $('input[type="radio"]:checked').val(),
                     stuid:stuid,
                     qObjectId:qObjectId,
-                    qTitle:qTitle
+                    qTitle:qTitle,
+                    qType:qType
                 }
                 console.log(data)
             }else if(qType == 2){
                 var data = {
                     from: from,
-                    content: $('#answerContent').val(),
+                    content: getCheckBoxValue(),
                     stuid:stuid,
                     qObjectId:qObjectId,
-                    qTitle:qTitle
+                    qTitle:qTitle,
+                    qType:qType
                 }
             }else if(qType == 3){
                 var data = {
@@ -59,7 +74,8 @@ require(['config'],function(conf){
                     content: $('#answerContent').val(),
                     stuid:stuid,
                     qObjectId:qObjectId,
-                    qTitle:qTitle
+                    qTitle:qTitle,
+                    qType:qType
                 }
             }
 

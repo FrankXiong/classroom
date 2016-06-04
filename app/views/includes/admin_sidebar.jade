@@ -39,21 +39,26 @@ div#admin-offcanvas.admin-sidebar.am-offcanvas
                     
             li
                 a(href="/admin/class/list")
-                    span.am-icon-user 
+                    span.am-icon-leanpub 
                     span 教学班管理
-                //- a.am-cf(data-am-collapse="{target: '#class-nav'}")
-                //-     span.am-icon-flask
-                //-     span 教学班管理
-                //-     span.am-icon-angle-right.am-fr.am-margin-right
-                //- ul#class-nav.am-list.am-collapse.admin-sidebar-sub.am-in
-                //-     li
-                //-         a(href="/admin/class/list")
-                //-             span.am-icon-list-ul
-                //-             span 教学班列表
-                //-     li
-                //-         a(href="/admin/class/add")
-                //-             span.am-icon-clipboard
-                //-             span 创建教学班
+            li
+                a.am-cf(data-am-collapse="{target: '#analysis-nav'}")
+                    span.am-icon-line-chart 
+                    span 统计分析
+                    span.am-icon-angle-right.am-fr.am-margin-right
+                ul#analysis-nav.am-list.am-collapse.admin-sidebar-sub.am-in
+                    li
+                        a(href="/admin/analysis/single")
+                            span.am-icon-list-ul
+                            span 单选题
+                    li
+                        a(href="/admin/analysis/multi")
+                            span.am-icon-clipboard
+                            span 多选题
+                    li
+                        a(href="/admin/analysis/fillblank")
+                            span.am-icon-clipboard
+                            span 填空题
   
             //- li
             //-     a.am-cf(data-am-collapse="{target: '#lesson-nav'}")

@@ -442,3 +442,7 @@ gallery.html css
 
 .question-title {
   display: inline; }
+
+#echart {
+  width: 100%;
+  height: 400px; }

@@ -21,7 +21,8 @@
     "socket.io": "^1.4.6",
     "leancloud-push.js": "leancloud-push#^2.0.4",
     "moment": "^2.13.0",
-    "bcrypt": "*"
+    "bcrypt": "*",
+    "echarts": "^3.1.10"
   },
   "description": "a website base on wechat",
   "main": "",

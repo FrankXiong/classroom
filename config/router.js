@@ -80,5 +80,9 @@ module.exports = function(app){
     app.get('/admin/class/:id/ask',Class.renderAsk)
     app.get('/admin/class/:id/open',Class.renderOpen)
 
+    app.get('/admin/analysis/single',Admin.renderSingleAnalysis)
+    app.get('/admin/analysis/multi',Admin.renderMultiAnalysis)
+    app.get('/admin/analysis/fillblank',Admin.renderFillblankAnalysis)
+
     // admin end
 }
