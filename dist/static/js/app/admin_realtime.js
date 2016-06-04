@@ -79,7 +79,7 @@ require(['jquery','request','common','config'],function($,req,common,conf){
         });
 
         req.post(data,'/question/add',function(data){
-            alert(data.msg)
+            console.log(data.msg)
         },function(){
             alert('问题发布失败')
         })
