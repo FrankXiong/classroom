@@ -55,6 +55,7 @@ require(['jquery','request','common','config'],function($,req,common,conf){
             'optionB':$formAddSingleSelect.find('#optionB').val(),
             'optionC':$formAddSingleSelect.find('#optionC').val(),
             'optionD':$formAddSingleSelect.find('#optionD').val(),
+            'desc':$formAddSingleSelect.find('#desc').val(),
             'type':1,
             'qid':Date.now().toString()
         }
@@ -94,6 +95,7 @@ require(['jquery','request','common','config'],function($,req,common,conf){
             'optionB':$formAddMultiSelect.find('#optionB').val(),
             'optionC':$formAddMultiSelect.find('#optionC').val(),
             'optionD':$formAddMultiSelect.find('#optionD').val(),
+            'desc':$formAddSingleSelect.find('#desc').val(),
             'type':2,
             'qid':Date.now().toString()
         }
@@ -123,6 +125,7 @@ require(['jquery','request','common','config'],function($,req,common,conf){
         data = {
             'title': $formAddFillBlank.find('#qTitle').val(),
             'rightAnswer':$formAddFillBlank.find('#rightAnswer').val(),
+            'desc':$formAddSingleSelect.find('#desc').val(),
             'type':3,
             'qid':Date.now().toString()
         }
