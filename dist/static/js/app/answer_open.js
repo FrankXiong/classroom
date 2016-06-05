@@ -121,9 +121,8 @@ require(['config','request'],function(conf,req){
             //     console.log('Error: ' + error.code + ' ' + error.message)
             // })
 
-            // var targetQuestion = AV.Object.createWithoutData('Question',qObjectId)
-            // oAnswer.set('targetQuestion',targetQuestion)
-            // console.log(oAnswer.attributes)
+            var targetQuestion = AV.Object.createWithoutData('Question',qObjectId)
+            oAnswer.set('targetQuestion',targetQuestion)
             console.log(oAnswer.attributes)
             oAnswer.save().then(() => {
                 alert('已收到你的答案')

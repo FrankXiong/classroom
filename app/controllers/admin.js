@@ -108,6 +108,7 @@ exports.renderSingleAnalysis = function(req,res){
     
     var arrA=[],arrB=[],arrC=[],arrD=[]
     if(teacher){
+        query.descending('createdAt');
         query.equalTo('type',1)
         query.find().then(function(questions){
 
@@ -141,7 +142,7 @@ exports.renderSingleAnalysis = function(req,res){
             res.render('admin_single_analysis',{
                 title:'单选题',
                 teacher:teacher,
-                questions:questions
+                question:questions[0]
             })
             console.log(questions[0])
         },function(err){
