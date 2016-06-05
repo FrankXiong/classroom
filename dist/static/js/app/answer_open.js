@@ -26,6 +26,10 @@ require(['config','request','amaze'],function(conf,req,amaze){
         var qType = parseInt($('#qType').val())
         var rightAnswer
 
+        $('.back').click(function(){
+            history.back()
+        })
+
         function getCheckBoxValue(){
             var values = []
             $('input[type="checkbox"]:checked').each(function(){
@@ -100,6 +104,9 @@ require(['config','request','amaze'],function(conf,req,amaze){
                 if(oAnswer.attributes.content == rightAnswer){
                     $msgContent.innerText = '答对了'
                     $modal.modal() 
+                }else if(oAnswer.attributes.qType == 0){
+                    $msgContent.innerText = '老师已收到你的答案~'
+                    $modal.modal()   
                 }else{
                     $msgContent.innerText = '答错了哟~'
                     $modal.modal()   

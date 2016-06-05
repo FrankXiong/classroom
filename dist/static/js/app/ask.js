@@ -5,6 +5,7 @@ require.config({
         jquery:'lib/jquery',
         AV:'lib/av',
         AVpush:'lib/AV.push',
+        amaze:'lib/amazeui',
         request:'widget/request',
         checkin:'widget/checkin',
         moment:'lib/moment'
@@ -17,14 +18,16 @@ require(['jquery','checkin'],function($,Checkin){
     })
 })
 
-require(['jquery','config'],function($,conf){
+require(['jquery','config','amaze'],function($,conf){
     var push;
     
     $(function(){
 
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
 
-        var sendBtn = $('#sendBtn'),
+        var $modal = $('#msgModal'),
+            $msgContent = $('#msgContent')[0],
+            sendBtn = $('#sendBtn'),
             uname = $('#uname').val(),
             printWall = $('#printWall');
 
@@ -38,12 +41,12 @@ require(['jquery','config'],function($,conf){
             });
             oAsk.save().then(() => {
                 console.log('success');
-                alert('老师已收到你的提问！')
-                // showLog({'title':'提示','content':'提问成功'},printWall)
+                $msgContent.innerText = '老师已收到你的提问！'
+                $modal.modal() 
             }).catch((err) => {
-                console.log('failed');
                 console.log(err);
-                alert('提问失败！检查一下你的网络...')
+                $msgContent.innerText = '提问失败！检查一下你的网络...'
+                $modal.modal() 
             });
         })
 
