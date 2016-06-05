@@ -5,12 +5,13 @@ require.config({
         jquery:'lib/jquery',
         AV:'lib/av',
         AVpush:'lib/AV.push',
+        amaze:'lib/amazeui',
         request:'widget/request',
         checkin:'widget/checkin'
     }
 });
 
-require(['config','request'],function(conf,req){
+require(['config','request','amaze'],function(conf,req,amaze){
     $(function(){
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
 
@@ -23,6 +24,7 @@ require(['config','request'],function(conf,req){
         var Answer = AV.Object.extend('Answer')
         var Question = AV.Object.extend('Question')
         var qType = parseInt($('#qType').val())
+        var rightAnswer
 
         function getCheckBoxValue(){
             var values = []
@@ -83,50 +85,26 @@ require(['config','request'],function(conf,req){
             }
 
             var oAnswer = new Answer()
+            var $modal = $('#msgModal')
+            var $msgContent = $('#msgContent')[0]
             oAnswer.set(data)
             
-            // queryQuestion.equalTo('objectId',qObjectId)
-            // queryQuestion.first().then((result)=>{
-            //     var question = AV.Object.createWithoutData('Question',qObjectId)
-            //     var answers = result.attributes.answers || []
-            //     answers.push(oAnswer)
-            //     question.set('answers',answers)
-            //     console.log(question)
-            //     question.save().then(()=>{
-            //         console.log('回答已保存到问题answers数组中')
-            //     }).catch((err)=>{
-            //         console.log('Error: ' + error.code + ' ' + error.message)
-            //     })
-            // })
-            // query.equalTo('qObjectId',qObjectId)
-            // query.first().then((result)=>{
-            //     var question = AV.Object.createWithoutData('Question',qObjectId)
-            //     console.log(question)
-            //     AV.Object.saveAll(localAnswer).then((results)=>{
-            //         var relation = oQuestion.relation('answers')
-            //         console.log(results)
-            //         for(var i =0;i<results.length;i++){
-            //             relation.add(results[i])
-            //         }
-            //         console.log(relation)
-            //         oQuestion.save().then(()=>{
-            //             alert('已收到你的答案')
-            //         }).catch((err)=>{
-            //             console.log('Error: ' + error.code + ' ' + error.message)
-            //         })
-            //     }).catch((err)=>{
-            //         console.log('Error: ' + error.code + ' ' + error.message)
-            //     })
-            // }).catch((err)=>{
-            //     console.log('Error: ' + error.code + ' ' + error.message)
-            // })
-
             var targetQuestion = AV.Object.createWithoutData('Question',qObjectId)
+            queryQuestion.equalTo('objectId',qObjectId) 
+            queryQuestion.first().then((result)=>{
+                rightAnswer = result.attributes.rightAnswer
+            })
             oAnswer.set('targetQuestion',targetQuestion)
-            console.log(oAnswer.attributes)
+            console.log(oAnswer.attributes.content)
             oAnswer.save().then(() => {
-                alert('已收到你的答案')
-                history.back()
+                if(oAnswer.attributes.content == rightAnswer){
+                    $msgContent.innerText = '答对了'
+                    $modal.modal() 
+                }else{
+                    $msgContent.innerText = '答错了哟~'
+                    $modal.modal()   
+                }
+                // history.back()
             }).catch((err) => {
                 alert('提交失败，请检查你的网络...')
                 console.log('Error: ' + error.code + ' ' + error.message)

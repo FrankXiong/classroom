@@ -47,7 +47,11 @@ var UserSchema = new mongoose.Schema({
         type:String,
         default:'unknown'
     },
-    
+    // 平时成绩
+    score:{
+        type:Number,
+        default:0
+    },
     // 以下信息由微信认证后提供
     openid:{
         type:String    

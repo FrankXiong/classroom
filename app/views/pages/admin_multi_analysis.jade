@@ -9,7 +9,16 @@ block content
                 div.am-g
                     div.am-u-sm-12
                         div.am-panel
-                            div#echart
+                            input#type(type="hidden" value="#{question.attributes.type}")
+                            input.qObjectId(type="hidden" value="#{question.id}")
+                            div 题目：#{question.attributes.title}
+                                div 选项：
+                                    span.analysis-option A.#{question.attributes.optionA}
+                                    span.analysis-option B.#{question.attributes.optionB}
+                                    span.analysis-option C.#{question.attributes.optionC}
+                                    span.analysis-option D.#{question.attributes.optionD}
+                                div 正确答案：#{question.attributes.rightAnswer}
+                            div.echart
 
     script(src="http://echarts.baidu.com/build/dist/echarts-all.js")
-    script(src="/js/app/admin_analysis.js")
+    script(src="/js/lib/require.js" data-main="/js/app/admin_analysis_multi")

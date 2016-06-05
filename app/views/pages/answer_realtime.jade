@@ -7,6 +7,12 @@ block content
         input#qObjectId(type="hidden" value="#{question.id}")
         input#qTitle(type="hidden" value="#{question.attributes.title}")
         input#qType(type="hidden" value="#{question.attributes.type}")
+        div#msgModal.am-modal.am-modal-alert(tabindex="-1")
+            div.am-modal-dialog
+                div#msgContent.am-modal-bd Hello world！
+                div.am-modal-footer
+                  span.am-modal-btn 确定
+        
         case question.attributes.type
             when 1
                 div.weui_cells.weui_cells_radio

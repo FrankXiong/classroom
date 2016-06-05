@@ -104,7 +104,6 @@ exports.renderUpdateStu = function(req,res){
 exports.renderSingleAnalysis = function(req,res){
     var teacher = req.session.teacher
     var query = new AV.Query('Question')
-    var queryAnswer = new AV.Query('Question')
     
     var arrA=[],arrB=[],arrC=[],arrD=[]
     if(teacher){
@@ -117,23 +116,6 @@ exports.renderSingleAnalysis = function(req,res){
                 query.equalTo('targetQuestion',targetQuestion)
                 query.find().then((answers)=>{
                     console.log("Answers:"+answers)
-                    // for(var j=0,len=answers.length;j<len;j++){
-                    //     var content = answers[i].attributes.content
-                    //     switch(content){
-                    //         case 'A':
-                    //             arrA.push(content)
-                    //             break
-                    //         case 'B':
-                    //             arrB.push(content)
-                    //             break
-                    //         case 'C':
-                    //             arrC.push(content)
-                    //             break
-                    //         case 'D':
-                    //             arrD.push(content)
-                    //             break
-                    //     }
-                    // }
                 }).catch((err)=>{
                     console.log('Error: ' + error.code + ' ' + error.message)
                 })
@@ -155,15 +137,20 @@ exports.renderSingleAnalysis = function(req,res){
 
 exports.renderMultiAnalysis = function(req,res){
     var teacher = req.session.teacher
-    var query = new AV.Query('Answer')
+    var query = new AV.Query('Question')
     if(teacher){
-        query.equalTo('qType',2)
-        query.find().then(function(results){
-            res.render('admin_multi_analysis',{
-                title:'多选题',
-                teacher:teacher,
-                answers:results
-            })
+        query.descending('createdAt');
+        query.equalTo('type',2)
+        query.first().then(function(question){
+            if(question){
+                res.render('admin_multi_analysis',{
+                    title:'多选题',
+                    teacher:teacher,
+                    question:question
+                })
+            }else{
+                res.send('暂无多选题')
+            }
         },function(err){
             console.log(err)
         })
@@ -174,15 +161,20 @@ exports.renderMultiAnalysis = function(req,res){
 
 exports.renderFillblankAnalysis = function(req,res){
     var teacher = req.session.teacher
-    var query = new AV.Query('Answer')
+    var query = new AV.Query('Question')
     if(teacher){
-        query.equalTo('qType',3)
-        query.find().then(function(results){
-            res.render('admin_fillblank_analysis',{
-                title:'填空题',
-                teacher:teacher,
-                answers:results
-            })
+        query.descending('createdAt');
+        query.equalTo('type',3)
+        query.first().then(function(question){
+            if(question){
+                res.render('admin_fillblank_analysis',{
+                    title:'填空题',
+                    teacher:teacher,
+                    question:question
+                })
+            }else{
+                res.send('暂无填空题')
+            }
         },function(err){
             console.log(err)
         })
