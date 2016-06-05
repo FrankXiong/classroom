@@ -1,22 +1,27 @@
 require.config({
     baseUrl: '/js',
     paths:{
+        config:'config',
         jquery:'lib/jquery',
         request:'widget/request',
         common:'widget/common',
-        moment:'lib/moment'
+        moment:'lib/moment',
+        AV:'lib/av',
+        AVpush:'lib/AV.push'
     }
 });
 
-require(['jquery','request','common'],function($,req,common){
+require(['jquery','request','common','config'],function($,req,common,conf){
     $(function(){
+        AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+
         var $updateStuBtn = $('#updateStuBtn'),
             $delStu = $('.del-stu'),
             $addClassBtn = $('#addClassBtn'),
             $importStuBtn = $('#importStuBtn'),
             $updateSelfBtn = $('#updateSelfBtn'),
-            $importStusBtn = $('#importStusBtn')
-            
+            $importStusBtn = $('#importStusBtn');
+
         common.back()
 
         $delStu.click(function(e){

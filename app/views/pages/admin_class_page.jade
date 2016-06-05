@@ -37,14 +37,15 @@ block content
                                         span.action-icon.am-icon-question.am-icon-sm
                                     p.weui_grid_label 学生提问
                             li.box.box-4
-                                a(href="/admin/class/#{tclass._id}/open").weui_grid
+                                a(href="/admin/class/#{tclass._id}/open")
                                     div.weui_grid_icon
                                         span.action-icon.am-icon-smile-o.am-icon-sm
                                     p.weui_grid_label 开放问题
                             li.box.box-5
-                                div.weui_grid_icon
-                                    span.action-icon.am-icon-pencil.am-icon-sm
-                                p.weui_grid_label 测验
+                                div.weui_grid#checkinBtn
+                                    div.weui_grid_icon
+                                        span.action-icon.am-icon-check.am-icon-sm
+                                    p.weui_grid_label 签到
                             li.box.box-6
                                 a(href="/admin/class/#{tclass._id}/chatroom")
                                     div.weui_grid_icon
@@ -53,6 +54,6 @@ block content
         else
             p 请先选择一个教学班级 
                                     
-    script(src="/js/lib/require.js" data-main="/js/app/admin")
+    script(src="/js/lib/require.js" data-main="/js/app/admin_class")
 
                             

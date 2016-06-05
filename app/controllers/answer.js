@@ -43,6 +43,12 @@ exports.renderRealtimeAnswer = function(req,res){
     }
 }
 
+exports.renderExplain = function(req,res){
+    res.render('explain',{
+        title:'答案解析'
+    })
+}
+
 exports.addAnswer = function(req,res){
     var answer = req.body
     var _answer = new Answer(answer)
@@ -55,3 +61,4 @@ exports.addAnswer = function(req,res){
         }
     })
 }
+

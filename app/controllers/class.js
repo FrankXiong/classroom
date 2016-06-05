@@ -149,6 +149,13 @@ exports.renderOpen = function(req,res){
     }
 }
 
+exports.renderCheckin = function(req,res){
+    var teacher = req.session.teacher
+    res.render('admin_checkin',{
+        title:'签到'
+    })
+}
+
 exports.addTClass = function(req,res){
     var oTClass = req.body
     var tClass = new Class(oTClass)

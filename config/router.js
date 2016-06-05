@@ -88,5 +88,6 @@ module.exports = function(app){
     // admin end
     
     app.post('/answer/add',Answer.addAnswer)
+    app.get('/explain',Answer.renderExplain)
     app.post('/question/add',Question.addQuestion)
 }

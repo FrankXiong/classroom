@@ -1,12 +1,22 @@
 require.config({
     baseUrl: '/js',
     paths:{
+        config:'config',
         jquery:'lib/jquery',
         request:'widget/request',
-        common:'widget/common'
+        common:'widget/common',
+        AV:'lib/av',
+        AVpush:'lib/AV.push'
     }
 });
-require(['jquery','request','common'],function($,req,common){
+require(['jquery','request','common','config','AVpush'],function($,req,common,conf){
+    AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+    var Checkin = AV.Object.extend('Checkin')
+    var push = AV.push({
+        appId: conf.leancloud.appId,
+        appKey: conf.leancloud.appKey
+    })
+
     common.back()
 
     $('#addClassBtn').click(function(){
@@ -61,5 +71,25 @@ require(['jquery','request','common'],function($,req,common){
         }
     })
 
+    $('#checkinBtn').click(function(){
+        push.send({
+            data:{title:'系统消息',content:'现在开始签到...',type:10}
+        },function(result){
+            if(result){
+                console.log('签到：推送发送成功')
+            }else{
+                console.log('签到：推送发送失败')
+            }
+        })
+        push.on('reuse', function() {
+            console.log('网络中断正在重试。。。');
+        });
+        var oCheckin = new Checkin()
 
+        oCheckin.save().then((result)=>{
+            console.log(result.id)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    })
 })

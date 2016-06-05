@@ -9,7 +9,7 @@ require.config({
         AVpush:'lib/AV.push',
     }
 });
-require(['jquery','request','common','config'],function($,req,common,conf){
+require(['jquery','request','common','config','AVpush'],function($,req,common,conf){
     AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
 
     var push,qid,
