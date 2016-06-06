@@ -284,6 +284,11 @@ function showLog(msg, data,timestamp,isBefore) {
     if (data) {
         console.log(msg, data);
         msg = '<p class="msgText">' +msg +  data + '</p>';
+        if(data.type == 10){
+            $('#msgTitle')[0].innerText = data.title
+            $('#msgContent')[0].innerText = data.content
+            $('#msgModal').modal()
+        }
         
     }
     time = '<p class="time">' + timestamp + '</p>';

@@ -17,6 +17,8 @@ require(['jquery','request','common','config','AVpush'],function($,req,common,co
         appKey: conf.leancloud.appKey
     })
 
+    var printWall = $('#printWall')
+
     common.back()
 
     $('#addClassBtn').click(function(){
@@ -71,25 +73,49 @@ require(['jquery','request','common','config','AVpush'],function($,req,common,co
         }
     })
 
+    push.open(function() {
+        console.log('可以接收推送');
+    });
+    push.on('reuse', function() {
+        console.log('网络中断正在重试。。。');
+    });
+    push.receive(function(data) {
+        showLog(data,printWall);
+    });
+    push.subscribe(['checkin'], function(data) {
+        console.log('已关注签到频道');
+    });
     $('#checkinBtn').click(function(){
         push.send({
             data:{title:'系统消息',content:'现在开始签到...',type:10}
         },function(result){
-            if(result){
-                console.log('签到：推送发送成功')
-            }else{
-                console.log('签到：推送发送失败')
-            }
+            console.log('签到：推送发送成功')
+            var oCheckin = new Checkin()
+            oCheckin.set('creater',$('#uname').val())
+            oCheckin.save().then((result)=>{
+                console.log(result.id)
+                var objectId = result.id
+                location.href="/admin/checkin/"+objectId
+            }).catch((err)=>{
+                console.log(err)
+            })
+        },function(err){
+            console.log('签到：推送发送失败')
         })
-        push.on('reuse', function() {
-            console.log('网络中断正在重试。。。');
-        });
-        var oCheckin = new Checkin()
-
-        oCheckin.save().then((result)=>{
-            console.log(result.id)
-        }).catch((err)=>{
-            console.log(err)
-        })
+        
     })
+
+    function showLog(data,area,timestamp) {
+        if (data) {
+            if(data.type == 10){
+                msg = '<li class="am-g am-list-item-desced"><div><p class="question-title am-list-item-hd">'+data.uname+':已签到'+'</p></div></li>';
+            }
+
+            time = '<p class="time">' + timestamp + '</p>';
+            if(timestamp){
+                area.append(time);
+            }
+            area.append(msg);
+        }
+    }
 })

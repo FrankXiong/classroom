@@ -3,20 +3,7 @@ extends ../layout
 block content
     
     div.container
-        
-        
-        //- 弹窗组件
-        //- div.weui_dialog_confirm 
-        //-     div.weui_mask 
-        //-     div.weui_dialog 
-        //-         div.weui_dialog_hd 
-        //-             strong.weui_dialog_title 会话标题
-        //-         div.weui_dialog_bd 自定义弹窗内容 ...
-        //-         div.weui_dialog_ft 
-        //-             a(href="javascript:;").weui_btn_dialog.default 取消
-        //-             a(href="javascript:;").weui_btn_dialog.primary 确定
-                
-            
+        include ../includes/msg_modal
         //- div.weui_cells
         //-     div.weui_cell
         //-         div.weui_cell_bd.weui_cell_primary
@@ -64,52 +51,7 @@ block content
                     span.am-icon-paper-plane.am-icon-sm
                 p.weui_grid_label 实时反馈
 
-
-        //- 输入框组件
-        div.weui_cells.weui_cells_form.input-answer
-            div.weui_cell 
-                div.weui_cell_bd.weui_cell_primary 
-                    input#inputSend.weui_input(type="text" placeholder="输入...")
-                div.weui_cell_hd 
-                    button#sendBtn.am-btn.am-btn-secondary.am-btn-lg 发送
-                
-            
-        
-        //- div.weui_tab.ctr_bar
-        //-     div.weui_tab_bd
-        //-         div.weui_tab_bd_item
-        //-             h3 微信
-                
-        //-         div.weui_tab_bd_item
-        //-             h3 通讯录
-                
-        //-         div.weui_tab_bd_item
-        //-             h3 发现
-                
-        //-         div.weui_tab_bd_item
-        //-             h3 我
-                
-        //-     div.weui_tabbar
-        //-         a.weui_tabbar_item(href="javascript:;"))
-        //-   .        dieui_tabbar_icon
-        //-                 img(src="http://weui.github.io/weui/images/icon_nav_dialog.png" alt="")
-                    
-        //-             p.weui_tabbar_label 答题
-                
-        //-         a.weui_tabbar_item(href="javascript:;"))
-        //-   .        dieui_tabbar_icon
-        //-                 img(src="http://weui.github.io/weui/images/icon_nav_search_bar.png" alt="")
-                    
-        //-             p.weui_tabbar_label 发现
-                
-        //-         a.weui_tabbar_item(href="/user/:openid)")
-        //-  .         dweui_tabbar_icon
-        //-                 img(src="http://weui.github.io/weui/images/icon_nav_cell.png" alt="")
-                    
-        //-             p.weui_tabbar_label 我
-                
-            
-        script(src="/js/lib/require.js" data-main="/js/app/index")
+        script(src="/js/lib/require.js" data-main="/js/app/client")
         
       
 

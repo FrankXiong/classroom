@@ -3,12 +3,19 @@ require.config({
     paths:{
         jquery:'lib/jquery',
         request:'widget/request',
-        common:'common'
+        common:'common',
+        checkin:'widget/checkin',
+        AV:'lib/AV',
+        AVpush:'lib/AV.push',
+        amaze:'lib/amazeui',
+        config:'config'
     }
 });
 
-require(['jquery','request'],function($,req){
+require(['jquery','request','checkin','config','AV','AVpush'],function($,req,Checkin,conf){
     $(function(){
+        AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+        Checkin.checkin()
         var $updateSelfBtn = $('#btn_save'),
             $stuLoginBtn = $('#stuLoginBtn'),
             $teacherLoginBtn = $('#teacherLoginBtn');

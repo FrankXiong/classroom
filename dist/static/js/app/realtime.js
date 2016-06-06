@@ -63,7 +63,6 @@ require(['jquery','config','amaze'],function($,conf){
                 question = '<li class="am-g am-list-item-desced"><div><button type="button" class="am-btn am-btn-warning am-round am-btn-xs">填空</button><p class="question-title am-list-item-hd">'+data.title+'</p></div><div class="am-fr"><a href='+'"/realtime/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
             }
             if(data.type === 10){
-                console.log(data)
                 $('#msgTitle')[0].innerText = data.title
                 $('#msgContent')[0].innerText = data.content
                 $('#msgModal').modal()

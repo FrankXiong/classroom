@@ -151,9 +151,24 @@ exports.renderOpen = function(req,res){
 
 exports.renderCheckin = function(req,res){
     var teacher = req.session.teacher
-    res.render('admin_checkin',{
-        title:'签到'
-    })
+    var objectId = req.params.id
+    console.log('objectId:'+objectId)
+    var query = new AV.Query('Checkin')
+    if(teacher){
+        query.addDescending('createdAt')
+        query.equalTo('objectId',objectId)
+        query.first().then((result)=>{
+            console.log(result.attributes)
+            res.render('admin_checkin',{
+                title:'签到',
+                teacher:teacher,
+                checkinList:result.attributes.checkinList
+            })
+        }).catch((err)=>{
+            console(err)
+        })
+    }
+    
 }
 
 exports.addTClass = function(req,res){
