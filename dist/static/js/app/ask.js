@@ -19,11 +19,13 @@ require(['jquery','checkin'],function($,Checkin){
 })
 
 require(['jquery','config','amaze'],function($,conf){
-    var push;
-    
     $(function(){
 
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+        var push = AV.push({
+            appId: conf.leancloud.appId,
+            appKey: conf.leancloud.appKey
+        });
 
         var $modal = $('#msgModal'),
             $msgContent = $('#msgContent')[0],
@@ -33,6 +35,20 @@ require(['jquery','config','amaze'],function($,conf){
 
         const Ask = AV.Object.extend('Ask');
         
+        push.open(function() {
+            console.log('可以接收推送');
+        });
+        push.receive(function(data) {
+            showLog(data,printWall);
+        });
+        push.on('reuse', function() {
+            alert('网络中断正在重试');
+        });
+
+        push.subscribe(['public'], function(data) {
+            console.log('已关注public频道');
+        });
+
         sendBtn.click(function(){
             const oAsk = new Ask();
             oAsk.set({
@@ -52,14 +68,12 @@ require(['jquery','config','amaze'],function($,conf){
 
     })
     function showLog(data,area,timestamp) {
-        if (data) {
-            question = '<li class="am-g am-list-item-desced"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.content+'</div></li>';
+        if(data.type == 10){
+            $('#msgTitle')[0].innerText = data.title
+            $('#msgContent')[0].innerText = data.content
+            $('#msgModal').modal()
         }
-        time = '<p class="time">' + timestamp + '</p>';
-        if(timestamp){
-            area.append(time);
-        }
-        area.append(question);
+
     }
 })
 

@@ -6,7 +6,8 @@ require.config({
         AV:'lib/av',
         AVpush:'lib/AV.push',
         request:'widget/request',
-        checkin:'widget/checkin'
+        checkin:'widget/checkin',
+        amaze:'lib/amazeui'
     }
 });
 
@@ -16,7 +17,7 @@ require(['jquery','checkin'],function($,Checkin){
     })
 })
 
-require(['jquery','config'],function($,conf){
+require(['jquery','config','amaze'],function($,conf){
     var push;
     
     $(function(){
@@ -53,7 +54,13 @@ require(['jquery','config'],function($,conf){
     })
     function showLog(data,area,timestamp) {
         if (data) {
-            question = '<li class="am-g am-list-item-desced am-cf"><div class="am-fl"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.desc+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
+            if(data.type == 0){
+                question = '<li class="am-g am-list-item-desced am-cf"><div class="am-fl"><p class="question-title am-list-item-hd">'+data.title+'</p><div class="question-content am-list-item-text">'+data.desc+'</div></div><div class="am-fr"><a href='+'"/open/answer/'+data.qid+'"'+'class="am-btn am-btn-primary">回答</a></div></li>';
+            }else if(data.type == 10){
+                $('#msgTitle')[0].innerText = data.title
+                $('#msgContent')[0].innerText = data.content
+                $('#msgModal').modal()
+            }
         }
 
         time = '<p class="time">' + timestamp + '</p>';
