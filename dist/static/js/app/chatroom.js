@@ -109,7 +109,6 @@ console.log(inputName.val());
 var msgTime;
 
 $(function () {
-    main();
     var room = main();
     sendBtn.click(sendMsg(room));
     $(document.body).keydown(function (e) {
