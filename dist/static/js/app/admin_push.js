@@ -1,3 +1,5 @@
+'use strict';
+
 // 请换成自己的 appId 和 appKey
 var appId = 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz';
 var appKey = 'tPHW2xTOAFFxVn6krhF56NVe';
@@ -13,32 +15,32 @@ function createNew() {
     });
 
     // 可以链式调用
-    push.open(function() {
+    push.open(function () {
         showLog('可以接收推送');
     });
 
     // 监听推送消息
-    push.on('message', function(data) {
+    push.on('message', function (data) {
         showLog('message');
         showLog(JSON.stringify(data));
     });
 
     // receive 方法是监听 message 的快捷方法
-    push.receive(function(data) {
+    push.receive(function (data) {
         showLog('Receive 方法显示和监听 message 事件一致');
         showLog(JSON.stringify(data));
     });
 
     // 监听网络异常
-    push.on('reuse', function() {
+    push.on('reuse', function () {
         showLog('网络中断正在重试');
     });
 
     // 发送一条推送
     push.send({
         // channels: ['aaa'],
-        data: {title: '标题',content:'正文内容...'}
-    }, function(result) {
+        data: { title: '标题', content: '正文内容...' }
+    }, function (result) {
         if (result) {
             showLog('推送成功发送');
         } else {
@@ -46,31 +48,30 @@ function createNew() {
         }
     });
 
-    push.subscribe(['realtime'], function(data) {
+    push.subscribe(['realtime'], function (data) {
         showLog('关注新的频道');
     });
 
     push.send({
         channels: ['realtime'],
-        data: {realtime: 123}
+        data: { realtime: 123 }
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
 
         // 如果不加 channels，可以简单的使用 send 方法发送一个 json
         push.send({
             abc: 123
         });
 
-        push.unsubscribe(['realtime'], function(data) {
+        push.unsubscribe(['realtime'], function (data) {
             showLog('取消关注新的频道');
 
             push.send({
                 channels: ['realtime'],
-                data: {realtime: 123}
+                data: { realtime: 123 }
             });
         });
-
     }, 5000);
 }
 

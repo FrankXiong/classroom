@@ -1,3 +1,5 @@
+"use strict";
+
 // require.config({
 //     baseUrl: '/js',
 //     paths:{
@@ -40,15 +42,13 @@
 //     })
 // })
 
-
-
 var config = {
-    "leancloud":{
-        "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
-        "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
-        "roomId":"575668cd5bbb50006453fc0c"
+    "leancloud": {
+        "appId": "BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
+        "appKey": "tPHW2xTOAFFxVn6krhF56NVe",
+        "roomId": "575668cd5bbb50006453fc0c"
     }
-}
+};
 
 AV.initialize(config.leancloud.appId, config.leancloud.appKey);
 
@@ -76,19 +76,12 @@ localStorage.setItem('debug', 'LC*');
 //   });
 // }).catch(console.error);
 
-
-
-
-
-
-
-
 // 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
 var roomId = config.leancloud.roomId;
 
 // 每个客户端自定义的 id
 var clientId = $('#uname').val();
-console.log(clientId)
+console.log(clientId);
 
 var realtime;
 var client;
@@ -109,133 +102,126 @@ var sendBtn = $('#sendBtn'),
     printWall = $('#printWall'),
     msgErrorBox = $('.msg-error');
 
-console.log(inputName.val())
+console.log(inputName.val());
 
 // 拉取历史相关
 // 最早一条消息的时间戳
 var msgTime;
 
-$(function(){
+$(function () {
     main();
-    sendBtn.click(sendMsg)
-    $(document.body).keydown(function(e){
+    sendBtn.click(sendMsg);
+    $(document.body).keydown(function (e) {
         if (e.keyCode === 13) {
             if (firstFlag) {
                 main();
-            }else{
+            } else {
                 sendMsg();
             }
         }
-    })
-    // 拉取历史
-    printWall.scroll(function(e) {
-      if (printWall.scrollTop < 20) {
-        getLog();
-      }
     });
-})
+    // 拉取历史
+    printWall.scroll(function (e) {
+        if (printWall.scrollTop < 20) {
+            getLog();
+        }
+    });
+});
 
 function main() {
-    showAlert('正在连接服务器，请等待。。。','secondary');
-  var val = inputName.val();
-  if (val) {
-    clientId = val;
-  }
-  if (!firstFlag) {
-    client.close();
-  }
+    showAlert('正在连接服务器，请等待。。。', 'secondary');
+    var val = inputName.val();
+    if (val) {
+        clientId = val;
+    }
+    if (!firstFlag) {
+        client.close();
+    }
 
-  // 创建实时通信实例
-  realtime = new AV.Realtime({
-    appId: config.leancloud.appId,
-    appKey: config.leancloud.appKey,
-  });
-  // 注册文件类型消息  
-  // realtime.register(AV.FileMessage);
-  // 创建聊天客户端  
-  realtime.createIMClient(clientId)
-  .then(function(c) {
-    showAlert('服务器连接成功！','success');
-    firstFlag = false;
-    client = c;
-    client.on('disconnect', function() {
-      showAlert('服务器正在重连，请耐心等待。。。','warning');
+    // 创建实时通信实例
+    realtime = new AV.Realtime({
+        appId: config.leancloud.appId,
+        appKey: config.leancloud.appKey
     });
-    // 获取对话
-    return c.getConversation(roomId);
-  })
-  .then(function(conversation) {
-    if (conversation) {
-      return conversation;
-    } else {
-      // 如果服务器端不存在这个 conversation
-      showLog('服务器不存在这个 conversation，创建一个。');
-      return client.createConversation({
-        name: 'LeanCloud-Conversation',
-        members: [
-          // 默认包含当前用户
-          currUser
-        ],
-        // 创建暂态的聊天室（暂态聊天室支持无限人员聊天，但是不支持存储历史）
-        // transient: true,
-        // 默认的数据，可以放 conversation 属性等
-        attributes: {
-          test: 'demo2'
+    // 注册文件类型消息 
+    // realtime.register(AV.FileMessage);
+    // 创建聊天客户端 
+    realtime.createIMClient(clientId).then(function (c) {
+        showAlert('服务器连接成功！', 'success');
+        firstFlag = false;
+        client = c;
+        client.on('disconnect', function () {
+            showAlert('服务器正在重连，请耐心等待。。。', 'warning');
+        });
+        // 获取对话
+        return c.getConversation(roomId);
+    }).then(function (conversation) {
+        if (conversation) {
+            return conversation;
+        } else {
+            // 如果服务器端不存在这个 conversation
+            showLog('服务器不存在这个 conversation，创建一个。');
+            return client.createConversation({
+                name: 'LeanCloud-Conversation',
+                members: [
+                // 默认包含当前用户
+                currUser],
+                // 创建暂态的聊天室（暂态聊天室支持无限人员聊天，但是不支持存储历史）
+                // transient: true,
+                // 默认的数据，可以放 conversation 属性等
+                attributes: {
+                    test: 'demo2'
+                }
+            }).then(function (conversation) {
+                showLog('创建新 Room 成功，id 是：', roomId);
+                roomId = conversation.id;
+                return conversation;
+            });
         }
-      }).then(function(conversation) {
-        showLog('创建新 Room 成功，id 是：', roomId);
-        roomId = conversation.id;
+    }).then(function (conversation) {
+        showLog('当前会话的成员列表：', conversation.members);
+        if (conversation.members.length > 490) {
+            return conversation.remove(conversation.members[30]).then(function (conversation) {
+                showLog('人数过多，踢掉： ', conversation.members[30]);
+                return conversation;
+            });
+        }
         return conversation;
-      });
-    }
-  })
-  .then(function(conversation) {
-    showLog('当前会话的成员列表：', conversation.members);
-    if (conversation.members.length > 490) {
-      return conversation.remove(conversation.members[30]).then(function(conversation) {
-        showLog('人数过多，踢掉： ', conversation.members[30]);
-        return conversation;
-      });
-    }
-    return conversation;
-  })
-    .then(function(conversation) {
+    }).then(function (conversation) {
         return conversation.join();
-    })
-    .then(function(conversation) {
+    }).then(function (conversation) {
         // 获取聊天历史
         room = conversation;
         messageIterator = conversation.createMessagesIterator();
-        getLog(function() {
-        printWall.scrollTop = printWall.scrollHeight;
+        getLog(function () {
+            printWall.scrollTop = printWall.scrollHeight;
             showLog('已经加入，可以开始聊天。');
         });
         // 房间接受消息
-        conversation.on('message', function(message) {
+        conversation.on('message', function (message) {
             if (!msgTime) {
-            // 存储下最早的一个消息时间戳
+                // 存储下最早的一个消息时间戳
                 msgTime = message.timestamp;
             }
             showMsg(message);
         });
-    })
-    .catch(function(err) {
+    }).catch(function (err) {
         console.error(err);
-    })
+    });
 }
 
 function sendMsg() {
     var val = inputSend.val();
-    console.log(val)
+    console.log(val);
     // 不让发送空字符
     if (!String(val).replace(/^\s+/, '').replace(/\s+$/, '')) {
         alert('发送内容不能为空！');
-    }else{
-    // 向这个房间发送消息，这段代码是兼容多终端格式的，包括 iOS、Android、Window Phone
-        room.send(new AV.TextMessage(val)).then(function(message) {
-        // 发送成功之后的回调
+    } else {
+        // 向这个房间发送消息，这段代码是兼容多终端格式的，包括 iOS、Android、Window Phone
+        room.send(new AV.TextMessage(val)).then(function (message) {
+            // 发送成功之后的回调
             inputSend.value = '';
-            showLog('自己： ', encodeHTML(message.text),formatTime(message.timestamp));
+            showLog('自己： ', encodeHTML(message.text), formatTime(message.timestamp));
             printWall.scrollTop = printWall.scrollHeight;
         });
     }
@@ -264,11 +250,10 @@ function sendMsg() {
 // }
 
 function b64EncodeUnicode(str) {
-    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
         return String.fromCharCode('0x' + p1);
     }));
 }
-
 
 // 显示接收到的信息
 function showMsg(message, isBefore) {
@@ -279,69 +264,65 @@ function showMsg(message, isBefore) {
     }
     if (message instanceof AV.TextMessage) {
         if (String(text).replace(/^\s+/, '').replace(/\s+$/, '')) {
-            showLog(encodeHTML(from) + '： ', encodeHTML(message.text),formatTime(message.timestamp), isBefore);
+            showLog(encodeHTML(from) + '： ', encodeHTML(message.text), formatTime(message.timestamp), isBefore);
         }
-        } else if (message instanceof AV.FileMessage) {
-            showLog(encodeHTML(from) + '： ', createLink(message.getFile().url()),formatTime(message.timestamp), isBefore);
+    } else if (message instanceof AV.FileMessage) {
+        showLog(encodeHTML(from) + '： ', createLink(message.getFile().url()), formatTime(message.timestamp), isBefore);
     }
 }
-
-
 
 // 获取消息历史
 function getLog(callback) {
-  var height = printWall.scrollHeight;
-  if (logFlag) {
+    var height = printWall.scrollHeight;
+    if (logFlag) {
         return;
-  } else {
+    } else {
         // 标记正在拉取
         logFlag = true;
-  }
-  messageIterator.next().then(function(result) {
-    var data = result.value;
-    logFlag = false;
-    // 存储下最早一条的消息时间戳
-    var l = data.length;
-    if (l) {
-        msgTime = data[0].timestamp;
     }
-    for (var i = l - 1; i >= 0; i--) {
-        showMsg(data[i], true);
-    }
-    if (l) {
-        printWall.scrollTop = printWall.scrollHeight - height;
-    }
-    if (callback) {
-        callback();
-    }
-  })
-  // .catch(function(err) {
-  //   console.error(err);
-  // });
+    messageIterator.next().then(function (result) {
+        var data = result.value;
+        logFlag = false;
+        // 存储下最早一条的消息时间戳
+        var l = data.length;
+        if (l) {
+            msgTime = data[0].timestamp;
+        }
+        for (var i = l - 1; i >= 0; i--) {
+            showMsg(data[i], true);
+        }
+        if (l) {
+            printWall.scrollTop = printWall.scrollHeight - height;
+        }
+        if (callback) {
+            callback();
+        }
+    });
+    // .catch(function(err) {
+    //   console.error(err);
+    // });
 }
 
 // demo 中输出代码
-function showLog(msg, data,timestamp,isBefore) {
+function showLog(msg, data, timestamp, isBefore) {
     if (data) {
         console.log(msg, data);
-        msg = '<p class="msgText">' +msg +  data + '</p>';
-        if(data.type == 10){
-            $('#msgTitle')[0].innerText = data.title
-            $('#msgContent')[0].innerText = data.content
-            $('#msgModal').modal()
+        msg = '<p class="msgText">' + msg + data + '</p>';
+        if (data.type == 10) {
+            $('#msgTitle')[0].innerText = data.title;
+            $('#msgContent')[0].innerText = data.content;
+            $('#msgModal').modal();
         }
-        
     }
     time = '<p class="time">' + timestamp + '</p>';
 
     if (isBefore) {
-        if(timestamp){
+        if (timestamp) {
             printWall.insertBefore(time, printWall.childNodes[0]);
         }
         printWall.insertBefore(p, printWall.childNodes[0]);
-        
     } else {
-        if(timestamp){
+        if (timestamp) {
             printWall.append(time);
         }
         printWall.append(msg);
@@ -349,13 +330,7 @@ function showLog(msg, data,timestamp,isBefore) {
 }
 
 function encodeHTML(source) {
-    return String(source)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\\/g,'&#92;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#39;');
+    return String(source).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\\/g, '&#92;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 function formatTime(time) {
@@ -372,20 +347,19 @@ function createLink(url) {
     return '<a target="_blank" href="' + encodeHTML(url) + '">' + encodeHTML(url) + '</a>';
 }
 
-function showAlert(msg,type){
-    msgErrorBox[0].innerText = msg
-    if(type === 'success'){
-        msgErrorBox.addClass('am-alert-success')
-    }else if(type === 'warning'){
-        msgErrorBox.addClass('am-alert-warning')
-    }else if(type === 'error'){
-        msgErrorBox.addClass('am-alert-danger')
-    }else if(type === 'secondary'){
-        msgErrorBox.addClass('am-alert-secondary')
+function showAlert(msg, type) {
+    msgErrorBox[0].innerText = msg;
+    if (type === 'success') {
+        msgErrorBox.addClass('am-alert-success');
+    } else if (type === 'warning') {
+        msgErrorBox.addClass('am-alert-warning');
+    } else if (type === 'error') {
+        msgErrorBox.addClass('am-alert-danger');
+    } else if (type === 'secondary') {
+        msgErrorBox.addClass('am-alert-secondary');
     }
-    msgErrorBox.css('display','block')
-    setTimeout(function(){
-        msgErrorBox.css('display','none')
-    },3000)
+    msgErrorBox.css('display', 'block');
+    setTimeout(function () {
+        msgErrorBox.css('display', 'none');
+    }, 3000);
 }
-

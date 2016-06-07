@@ -1,39 +1,33 @@
-define(['jquery'],function($){
+'use strict';
+
+define(['jquery'], function ($) {
     return {
-        get:function(url,doneCallback,failCallback){
+        get: function get(url, doneCallback, failCallback) {
             $.ajax({
-                type:'GET',
-                url:url
-            })
-            .done(doneCallback)
-            .fail(failCallback)
+                type: 'GET',
+                url: url
+            }).done(doneCallback).fail(failCallback);
         },
-        post:function(data,url,doneCallback,failCallback){
+        post: function post(data, url, doneCallback, failCallback) {
             $.ajax({
-                type:'POST',
-                url:url,
-                data:data
-            })
-            .done(doneCallback)
-            .fail(failCallback)
+                type: 'POST',
+                url: url,
+                data: data
+            }).done(doneCallback).fail(failCallback);
         },
-        put:function(data,url,doneCallback,failCallback){
+        put: function put(data, url, doneCallback, failCallback) {
             $.ajax({
-                type:'PUT',
-                url:url,
-                data:data,
-                dataType:'json'
-            })
-            .done(doneCallback)
-            .fail(failCallback)
+                type: 'PUT',
+                url: url,
+                data: data,
+                dataType: 'json'
+            }).done(doneCallback).fail(failCallback);
         },
-        delete:function(url,doneCallback,failCallback){
+        delete: function _delete(url, doneCallback, failCallback) {
             $.ajax({
-                type:'DELETE',
-                url:url
-            })
-            .done(doneCallback)
-            .fail(failCallback)
+                type: 'DELETE',
+                url: url
+            }).done(doneCallback).fail(failCallback);
         },
         // getFormData : function(form){
         //     var form = $('form'),
@@ -46,16 +40,16 @@ define(['jquery'],function($){
         //     });
         //     return formData;
         // },
-        getFormData : function(form){
+        getFormData: function getFormData(form) {
             var pairs = form.serialize().split(/&/gi),
                 formData = {};
 
-            pairs.forEach(function(pair) {
+            pairs.forEach(function (pair) {
                 pair = pair.split('=');
                 formData[pair[0]] = decodeURIComponent(pair[1] || '');
             });
             return formData;
         }
 
-    }
-})
+    };
+});

@@ -51,5 +51,8 @@
     "weixin-api": "^0.1.7",
     "wx_jsapi_sign": "^1.0.3"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0"
+  }
 }

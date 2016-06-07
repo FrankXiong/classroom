@@ -1,7 +1,11 @@
-/*global define:false*/
+"use strict";
 
-import moment from "../lib/moment";
+var _moment = require("../lib/moment");
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 define([], function () {
-    return moment;
-});
+    return _moment2.default;
+}); /*global define:false*/

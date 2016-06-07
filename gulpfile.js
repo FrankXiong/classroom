@@ -36,6 +36,9 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {  
   return gulp.src('src/js/**/*.*')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .pipe(gulp.dest('dist/static/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));
@@ -49,15 +52,15 @@ gulp.task('lib', function() {
     .pipe(notify({ message: 'Lib task complete' }));
 });
 
-gulp.task('babel', function() {
-  return gulp.src('src/js/app/*.js')
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(gulp.dest('dist/static/js'))
-    .pipe(livereload())
-    .pipe(notify({ message: 'Babel task complete' }));
-});
+// gulp.task('babel', function() {
+//   return gulp.src('src/js/app/*.js')
+//     .pipe(babel({
+//       presets: ['es2015']
+//     }))
+//     .pipe(gulp.dest('dist/static/js'))
+//     .pipe(livereload())
+//     .pipe(notify({ message: 'Babel task complete' }));
+// });
 
 gulp.task('img', function() {  
   return gulp.src('src/img/**/*')
