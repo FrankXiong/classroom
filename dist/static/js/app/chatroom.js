@@ -348,6 +348,7 @@ function createLink(url) {
 }
 
 function showAlert(msg, type) {
+    var msgErrorBox = $('.msg-error');
     msgErrorBox[0].innerText = msg;
     if (type === 'success') {
         msgErrorBox.addClass('am-alert-success');
