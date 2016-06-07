@@ -4,27 +4,6 @@ block content
     
     div.container
         include ../includes/msg_modal
-        //- div.weui_cells
-        //-     div.weui_cell
-        //-         div.weui_cell_bd.weui_cell_primary
-        //-             p 标题文字
-                
-        //-         div.weui_cell_ft 说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字
-        //-     div.weui_cell
-        //-         div.weui_cell_bd.weui_cell_primary
-        //-             p 标题文字
-                
-        //-         div.weui_cell_ft 说明文字
-        
-        //- div#my-prompt.am-modal.am-modal-prompt(tabindex="-1") 
-        //-     div.am-modal-dialog 
-        //-         div.am-modal-hd Amaze UI
-        //-         div.am-modal-bd 来来来，吐槽点啥吧
-        //-             input(type="text").am-modal-prompt-input 
-        //-         div.am-modal-footer 
-        //-             span.am-modal-btn(data-am-modal-cancel) 取消
-        //-             span.am-modal-btn(data-am-modal-confirm) 提交
-        //- input#stuid(type="hidden" value="#{user.stuid}")
         div.weui_grids
             a#checkin.weui_grid
                 div.weui_grid_icon
@@ -42,7 +21,7 @@ block content
                 div.weui_grid_icon
                     span.am-icon-smile-o.am-icon-sm
                 p.weui_grid_label 开放问题
-            a(href="/test").weui_grid
+            div#test.weui_grid
                 div.weui_grid_icon
                     span.am-icon-pencil.am-icon-sm
                 p.weui_grid_label 测验

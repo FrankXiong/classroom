@@ -3,7 +3,7 @@ require.config({
     paths:{
         jquery:'lib/jquery',
         request:'widget/request',
-        common:'common',
+        common:'widget/common',
         checkin:'widget/checkin',
         AV:'lib/AV',
         AVpush:'lib/AV.push',
@@ -12,7 +12,7 @@ require.config({
     }
 });
 
-require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,conf){
+require(['jquery','request','checkin','config','common','amaze'],function($,req,Checkin,conf,Common){
     $(function(){
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
         Checkin.checkin()
@@ -26,6 +26,7 @@ require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,c
         push.open(function() {
             console.log('可以接收推送');
             msgErrorBox[0].innerText = '可以接收推送'
+            msgErrorBox.addClass('am-alert-success')
             msgErrorBox.css('display','block')
             setTimeout(function(){
                 msgErrorBox.css('display','none')
@@ -34,7 +35,7 @@ require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,c
         push.on('reuse', function() {
             console.log('网络中断正在重试')
             msgErrorBox[0].innerText = '网络中断正在重试'
-            msgErrorBox.toggleClass('am-alert-warning')
+            msgErrorBox.addClass('am-alert-warning')
             msgErrorBox.css('display','block')
             setTimeout(function(){
                 msgErrorBox.css('display','none')
@@ -62,7 +63,8 @@ require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,c
 
             console.log(formData)
             req.put(formData,'/user',function(data){
-                alert(data.msg)
+                console.log(data.msg)
+                Common.showAlert(data.msg,'success')
             })
         })
 

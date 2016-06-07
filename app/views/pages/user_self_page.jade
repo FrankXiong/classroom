@@ -6,6 +6,7 @@ block content
         include ../includes/msg_modal
         if user
             form#formSelfInfo
+                input(type="hidden",value="#{user.sex}")
                 if user._id
                     input(type="hidden",name="_id",value="#{user._id}")
                 div.weui_cells_title 个人信息
@@ -61,33 +62,84 @@ block content
                             p 行政班级
                         div.weui_cell_ft.weui_cell_bd
                             select#class.weui_select(name="xzclass",value=user.xzclass)
-                                if user.xzclass = unknown
-                                    option.tr(value="unknown") 请选择
-                                    option.tr(value="计科01班") 计科01班
-                                    option.tr(value="计科02班") 计科02班
-                                    option.tr(value="计科03班") 计科03班
-                                    option.tr(value="计科04班") 计科04班
-                                    option.tr(value="计科05班") 计科05班
-                                    option.tr(value="计科06班") 计科06班 
-                                else
-                                    option.tr(value="计科01班") 计科01班
-                                    option.tr(value="计科02班") 计科02班
-                                    option.tr(value="计科03班") 计科03班
-                                    option.tr(value="计科04班") 计科04班
-                                    option.tr(value="计科05班") 计科05班
-                                    option.tr(value="计科06班") 计科06班
+                                case user.xzclass
+                                    when "unknown"
+                                        option.tr(value="unknown") 请选择
+                                        option.tr(value="计科01班") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班 
+                                    when "计科01班" 
+                                        option.tr(value="计科01班" selected="selected") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班
+                                    when "计科02班" 
+                                        option.tr(value="计科01班") 计科01班
+                                        option.tr(value="计科02班" selected="selected") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班
+                                    when "计科03班" 
+                                        option.tr(value="计科01班") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班" selected="selected") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班
+                                    when "计科04班" 
+                                        option.tr(value="计科01班") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班" selected="selected") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班
+                                    when "计科05班" 
+                                        option.tr(value="计科01班" selected="selected") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班") 计科06班 
+                                    when "计科06班" 
+                                        option.tr(value="计科01班") 计科01班
+                                        option.tr(value="计科02班") 计科02班
+                                        option.tr(value="计科03班") 计科03班
+                                        option.tr(value="计科04班") 计科04班
+                                        option.tr(value="计科05班") 计科05班
+                                        option.tr(value="计科06班" selected="selected") 计科06班
+                                //- if user.xzclass = unknown
+                                //-     option.tr(value="unknown") 请选择
+                                //-     option.tr(value="计科01班") 计科01班
+                                //-     option.tr(value="计科02班") 计科02班
+                                //-     option.tr(value="计科03班") 计科03班
+                                //-     option.tr(value="计科04班") 计科04班
+                                //-     option.tr(value="计科05班") 计科05班
+                                //-     option.tr(value="计科06班") 计科06班 
+                                //- else
+                                //-     option.tr(value="计科01班") 计科01班
+                                //-     option.tr(value="计科02班") 计科02班
+                                //-     option.tr(value="计科03班") 计科03班
+                                //-     option.tr(value="计科04班") 计科04班
+                                //-     option.tr(value="计科05班") 计科05班
+                                //-     option.tr(value="计科06班") 计科06班
                                 
                 
-                div.weui_cells_title 地区
-                div.weui_cells
-                    div.weui_cell
-                        div.weui_cell_bd.weui_cell_primary
-                            p 省份                    
-                        div.weui_cell_ft #{user.province}
-                    div.weui_cell
-                        div.weui_cell_bd.weui_cell_primary
-                            p 城市                    
-                        div.weui_cell_ft #{user.city}
+                //- div.weui_cells_title 地区
+                //- div.weui_cells
+                //-     div.weui_cell
+                //-         div.weui_cell_bd.weui_cell_primary
+                //-             p 省份                    
+                //-         div.weui_cell_ft #{user.province}
+                //-     div.weui_cell
+                //-         div.weui_cell_bd.weui_cell_primary
+                //-             p 城市                    
+                //-         div.weui_cell_ft #{user.city}
 
                 div.weui_cells_title 其他
                 div.weui_cells

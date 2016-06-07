@@ -103,10 +103,11 @@ var firstFlag = true;
 // 用来标记历史消息获取状态
 var logFlag = false;
 
-var sendBtn = $('#sendBtn');
-var inputName = $('#uname');
-var inputSend = $('#inputSend');
-var printWall = $('#printWall');
+var sendBtn = $('#sendBtn'),
+    inputName = $('#uname'),
+    inputSend = $('#inputSend'),
+    printWall = $('#printWall'),
+    msgErrorBox = $('.msg-error');
 
 console.log(inputName.val())
 
@@ -135,7 +136,7 @@ $(function(){
 })
 
 function main() {
-  showLog('正在连接服务器，请等待。。。');
+    showAlert('正在连接服务器，请等待。。。','secondary');
   var val = inputName.val();
   if (val) {
     clientId = val;
@@ -154,11 +155,11 @@ function main() {
   // 创建聊天客户端  
   realtime.createIMClient(clientId)
   .then(function(c) {
-    showLog('服务器连接成功！');
+    showAlert('服务器连接成功！','success');
     firstFlag = false;
     client = c;
     client.on('disconnect', function() {
-      showLog('服务器正在重连，请耐心等待。。。');
+      showAlert('服务器正在重连，请耐心等待。。。','warning');
     });
     // 获取对话
     return c.getConversation(roomId);
@@ -369,5 +370,22 @@ function formatTime(time) {
 
 function createLink(url) {
     return '<a target="_blank" href="' + encodeHTML(url) + '">' + encodeHTML(url) + '</a>';
+}
+
+function showAlert(msg,type){
+    msgErrorBox[0].innerText = msg
+    if(type === 'success'){
+        msgErrorBox.addClass('am-alert-success')
+    }else if(type === 'warning'){
+        msgErrorBox.addClass('am-alert-warning')
+    }else if(type === 'error'){
+        msgErrorBox.addClass('am-alert-danger')
+    }else if(type === 'secondary'){
+        msgErrorBox.addClass('am-alert-secondary')
+    }
+    msgErrorBox.css('display','block')
+    setTimeout(function(){
+        msgErrorBox.css('display','none')
+    },3000)
 }
 

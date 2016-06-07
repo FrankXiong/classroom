@@ -1,4 +1,4 @@
-define(['jquery','request','config','AV','AVpush'],function($,request,conf){
+define(['jquery','request','config','common','AV','AVpush'],function($,request,conf,Common){
     return {
         checkin:function(){
             var checkinBtn = $('#checkin'),
@@ -9,6 +9,8 @@ define(['jquery','request','config','AV','AVpush'],function($,request,conf){
                 msgTitle = $('#msgTitle')[0],
                 msgContent = $('#msgContent')[0],
                 msgModal = $('#msgModal'),
+                msgErrorBox = $('.msg-error'),
+                testBtn = $('#test'),
                 push = AV.push({
                     appId: conf.leancloud.appId,
                     appKey: conf.leancloud.appKey
@@ -16,6 +18,10 @@ define(['jquery','request','config','AV','AVpush'],function($,request,conf){
                 checkinList;
 
             var Checkin = AV.Object.extend('Checkin');
+
+            testBtn.click(function(){
+                Common.showAlert('此功能正在开发中...','warning')
+            })
             
             checkinBtn.click(function(){
                 var postData = {
@@ -32,21 +38,25 @@ define(['jquery','request','config','AV','AVpush'],function($,request,conf){
                         var oCheckin = new Checkin();
                         var query = new AV.Query('Checkin')
                         var checkinid = $('#checkinid').val()
-
-                        query.get(checkinid).then((result)=>{
-                            result.add('checkinList',postData)
-                            console.log(result)
-                            result.save().then((result)=>{
-                                alert('签到成功~')
-                                console.log('checkin success')
-                            }).catch((err)=>{
-                                console.log(err)
-                                alert('签到失败...')
+                        if(checkinid){
+                            query.get(checkinid).then((result)=>{
+                                result.add('checkinList',postData)
+                                console.log(result)
+                                result.save().then((result)=>{
+                                    Common.showAlert('签到成功','success')
+                                    console.log('checkin success')
+                                }).catch((err)=>{
+                                    console.log(err)
+                                    Common.showAlert('签到失败','error')
+                                })
                             })
-                        })
+                        }else{
+                            console.log('当前不能签到')
+                            Common.showAlert('当前不能签到','warning')
+                        }
                     } else {
                         console.log('ERROR:签到推送发送失败')
-                        alert('签到失败...')
+                        Common.showAlert('签到失败','error')
                     }
                 })
             })

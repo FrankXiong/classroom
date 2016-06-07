@@ -112,15 +112,17 @@ exports.callback = function(req,res){
 
 // 查看用户信息页
 exports.renderSelfPage = function(req,res){
-    var openid = req.params.openid
-    console.log(openid)
-    if(openid){
-        User.findByOpenid(openid,function(err,user){
+    var id = req.params.openid
+    console.log(id)
+    if(id){
+        User.findById(id,function(err,user){
             if(err){
                 console.log('findUserError:' + err)
             }
+            console.log(user)
             res.render('user_self_page',{
-                title:'个人信息'
+                title:'个人信息',
+                user:user
             })
         })        
     }else{
@@ -235,10 +237,12 @@ exports.login = function(req,res){
             console.log('error:用户名不存在！')
             return res.redirect('/user/login')
         }
+        console.log('user input password:'+password)
         //调用comparePassword方法比对密码
         user.comparePassword(password,function(err,isMatch){
-            if(err) console.log(err)
-            if(isMatch){
+            if(err){
+                console.log(err)
+            }else if(isMatch){
                 // session存储登录信息
                 req.session.user = user
                 AV.User.logIn(stuid, password)

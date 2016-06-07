@@ -7,7 +7,8 @@ require.config({
         AVpush:'lib/AV.push',
         request:'widget/request',
         checkin:'widget/checkin',
-        amaze:'lib/amazeui'
+        amaze:'lib/amazeui',
+        common:'widget/common'
     }
 });
 
@@ -35,6 +36,7 @@ require(['jquery','config','checkin','amaze'],function($,conf,Checkin){
         push.open(function() {
             console.log('可以接收推送');
             msgErrorBox[0].innerText = '可以接收推送'
+            msgErrorBox.addClass('am-alert-success')
             msgErrorBox.css('display','block')
             setTimeout(function(){
                 msgErrorBox.css('display','none')
@@ -43,7 +45,7 @@ require(['jquery','config','checkin','amaze'],function($,conf,Checkin){
         push.on('reuse', function() {
             console.log('网络中断正在重试')
             msgErrorBox[0].innerText = '网络中断正在重试'
-            msgErrorBox.toggleClass('am-alert-warning')
+            msgErrorBox.addClass('am-alert-warning')
             msgErrorBox.css('display','block')
             setTimeout(function(){
                 msgErrorBox.css('display','none')
