@@ -126,7 +126,7 @@ $(function () {
 
 function main() {
     showAlert('正在连接服务器，请等待。。。', 'secondary');
-    var val = inputName.val();
+    var val = $('#uname').val();
     if (val) {
         clientId = val;
     }
@@ -187,7 +187,7 @@ function main() {
         return conversation.join();
     }).then(function (conversation) {
         // 获取聊天历史
-        room = conversation;
+        var room = conversation;
         messageIterator = conversation.createMessagesIterator();
         getLog(function () {
             printWall.scrollTop = printWall.scrollHeight;
@@ -208,6 +208,7 @@ function main() {
 }
 
 function sendMsg(room) {
+    var inputSend = $('#inputSend');
     var val = inputSend.val();
     // 不让发送空字符
     if (!String(val).replace(/^\s+/, '').replace(/\s+$/, '')) {
