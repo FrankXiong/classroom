@@ -76,7 +76,7 @@ require(['jquery', 'config', 'checkin', 'amaze'], function ($, conf, Checkin) {
                 $('#msgModal').modal();
             }
 
-            time = '<p class="time">' + timestamp + '</p>';
+            var time = '<p class="time">' + timestamp + '</p>';
             if (timestamp) {
                 area.append(time);
             }
