@@ -51,7 +51,7 @@ require(['jquery', 'request', 'common', 'config', 'AVpush'], function ($, req, c
 
     // 发布单选问题
     $addSingleSelectBtn.click(function () {
-        data = {
+        var data = {
             'title': $formAddSingleSelect.find('#qTitle').val(),
             'rightAnswer': $formAddSingleSelect.find('#rightAnswer').val(),
             'optionA': $formAddSingleSelect.find('#optionA').val(),
