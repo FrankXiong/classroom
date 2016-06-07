@@ -26,18 +26,30 @@ require(['jquery','config','checkin','amaze'],function($,conf,Checkin){
             $msgContent = $('#msgContent')[0],
             sendBtn = $('#sendBtn'),
             uname = $('#uname').val(),
-            printWall = $('#printWall');
+            printWall = $('#printWall'),
+            msgErrorBox = $('.msg-error');
 
         const Ask = AV.Object.extend('Ask');
         
         push.open(function() {
             console.log('可以接收推送');
+            msgErrorBox[0].innerText = '可以接收推送'
+            msgErrorBox.css('display','block')
+            setTimeout(function(){
+                msgErrorBox.css('display','none')
+            },3000)
+        });
+        push.on('reuse', function() {
+            console.log('网络中断正在重试')
+            msgErrorBox[0].innerText = '网络中断正在重试'
+            msgErrorBox.toggleClass('am-alert-warning')
+            msgErrorBox.css('display','block')
+            setTimeout(function(){
+                msgErrorBox.css('display','none')
+            },3000)
         });
         push.receive(function(data) {
             showLog(data,printWall);
-        });
-        push.on('reuse', function() {
-            alert('网络中断正在重试');
         });
 
         push.subscribe(['public'], function(data) {

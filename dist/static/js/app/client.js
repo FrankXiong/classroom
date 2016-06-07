@@ -21,15 +21,27 @@ require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,c
             appId: conf.leancloud.appId,
             appKey: conf.leancloud.appKey
         });
+        var msgErrorBox = $('.msg-error');
 
         push.open(function() {
             console.log('可以接收推送');
+            msgErrorBox[0].innerText = '可以接收推送'
+            msgErrorBox.css('display','block')
+            setTimeout(function(){
+                msgErrorBox.css('display','none')
+            },3000)
+        });
+        push.on('reuse', function() {
+            console.log('网络中断正在重试')
+            msgErrorBox[0].innerText = '网络中断正在重试'
+            msgErrorBox.toggleClass('am-alert-warning')
+            msgErrorBox.css('display','block')
+            setTimeout(function(){
+                msgErrorBox.css('display','none')
+            },3000)
         });
         push.receive(function(data) {
             showLog(data);
-        });
-        push.on('reuse', function() {
-            console.log('网络中断正在重试');
         });
 
         function showLog(data,area,timestamp) {

@@ -450,6 +450,12 @@ gallery.html css
 .analysis-option {
   margin-right: 1rem; }
 
+.am-alert {
+  background-color: #5eb95e;
+  border-color: #4bad4b;
+  color: #fff;
+  padding: 1.3em; }
+
 .msg-error {
   display: none;
   position: fixed;
