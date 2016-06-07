@@ -11,7 +11,7 @@ define(function () {
             });
         },
         showAlert: function showAlert(msg, type) {
-            msgErrorBox = this.msgErrorBox;
+            var msgErrorBox = this.msgErrorBox;
             msgErrorBox[0].innerText = msg;
             if (type === 'success') {
                 msgErrorBox.addClass('am-alert-success');
