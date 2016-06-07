@@ -110,13 +110,14 @@ var msgTime;
 
 $(function () {
     main();
-    sendBtn.click(sendMsg);
+    var room = main();
+    sendBtn.click(sendMsg(room));
     $(document.body).keydown(function (e) {
         if (e.keyCode === 13) {
             if (firstFlag) {
                 main();
             } else {
-                sendMsg();
+                sendMsg(room);
             }
         }
     });
@@ -205,14 +206,14 @@ function main() {
             }
             showMsg(message);
         });
+        return room;
     }).catch(function (err) {
-        console.error(err);
+        console.log(err);
     });
 }
 
-function sendMsg() {
+function sendMsg(room) {
     var val = inputSend.val();
-    console.log(val);
     // 不让发送空字符
     if (!String(val).replace(/^\s+/, '').replace(/\s+$/, '')) {
         alert('发送内容不能为空！');
@@ -314,7 +315,7 @@ function showLog(msg, data, timestamp, isBefore) {
             $('#msgModal').modal();
         }
     }
-    time = '<p class="time">' + timestamp + '</p>';
+    var time = '<p class="time">' + timestamp + '</p>';
 
     if (isBefore) {
         if (timestamp) {
