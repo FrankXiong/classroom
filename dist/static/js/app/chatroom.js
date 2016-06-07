@@ -1,11 +1,52 @@
-// var config = require('./config.json');
-// var appId = 'BoXslRV8OngKWN18wvltH7tq-gzGzoHsz';
-// var appKey = 'tPHW2xTOAFFxVn6krhF56NVe';
+// require.config({
+//     baseUrl: '/js',
+//     paths:{
+//         jquery:'lib/jquery',
+//         request:'widget/request',
+//         common:'common',
+//         checkin:'widget/checkin',
+//         AV:'lib/AV',
+//         AVpush:'lib/AV.push',
+//         amaze:'lib/amazeui',
+//         config:'config',
+//         realtime:'lib/realtime.browser'
+//     }
+// });
+
+// require(['jquery','request','checkin','config'],function($,req,Checkin,conf){
+//     $(function(){
+//         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+//         Checkin.checkin()
+//         var Realtime = AV.Realtime;
+//         var realtime = new AV.Realtime({
+//             appId:conf.leancloud.appId
+//         });
+//         realtime.createIMClient('翘课吧').then(function(stu) {
+//             return stu.createConversation({
+//                 members: [],
+//                 name: '实时反馈',
+//             });
+//         }).then(function(conversation) {
+//             return conversation.send(new AV.TextMessage('耗子，起床！'));
+//         }).then(function(message) {
+//             console.log('Stu & Teacher', '发送成功！');
+//         }).catch(console.error);
+
+//         realtime.createIMClient('20134970').then(function(jerry) {
+//             jerry.on('message', function(message, conversation) {
+//                 console.log('Message received: ' + message.text);
+//           });
+//         }).catch(console.error);
+//     })
+// })
+
+
+
 var config = {
     "leancloud":{
         "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
         "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
-        "roomId":"574eaaae71cfe4006b031703"
+        "roomId":"575668cd5bbb50006453fc0c"
     }
 }
 
@@ -13,42 +54,41 @@ AV.initialize(config.leancloud.appId, config.leancloud.appKey);
 
 localStorage.setItem('debug', 'LC*');
 
-// // 初始化实时通讯 SDK
 // var Realtime = AV.Realtime;
 // var realtime = new Realtime({
 //     appId:config.leancloud.appId
 // });
 
-// // Stu 用自己的名字作为 clientId，获取 IMClient 对象实例
-// realtime.createIMClient('teacher').then(function(stu) {
-//   // 创建与Teacher之间的对话
-//   return stu.createConversation({
-//     members: [],
-//     name: '实时反馈',
-//   });
+// realtime.createIMClient('翘课吧').then(function(stu) {
+//     return stu.createConversation({
+//         members: [],
+//         name: '实时反馈',
+//     });
 // }).then(function(conversation) {
-//   // 发送消息
-//   return conversation.send(new AV.TextMessage('耗子，起床！'));
+//     return conversation.send(new AV.TextMessage('耗子，起床！'));
 // }).then(function(message) {
-//   console.log('Stu & Teacher', '发送成功！');
+//     console.log('Stu & Teacher', '发送成功！');
 // }).catch(console.error);
 
 // realtime.createIMClient('20134970').then(function(jerry) {
-//   jerry.on('message', function(message, conversation) {
-//     console.log('Message received: ' + message.text);
+//     jerry.on('message', function(message, conversation) {
+//         console.log('Message received: ' + message.text);
 //   });
 // }).catch(console.error);
+
+
+
+
+
 
 
 
 // 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
-// var roomId = '574204e149830c00614b220e';
 var roomId = config.leancloud.roomId;
 
 // 每个客户端自定义的 id
 var clientId = $('#uname').val();
 console.log(clientId)
-// var clientId = $('#uname').value;
 
 var realtime;
 var client;

@@ -8,6 +8,8 @@ header.am-header.am-header-default(data-am-widget="header")
         if user
             input#uname(type="hidden" value="#{user.name}")
             input#stuid(type="hidden" value="#{user.stuid}")
+            input#checkinid(type="hidden")
+            
             li.am-dropdown(data-am-dropdown)
                 a.am-dropdown-toggle.user-dropdown(data-am-dropdown-toggle href="javascript:;")
                     if user.name

@@ -12,10 +12,35 @@ require.config({
     }
 });
 
-require(['jquery','request','checkin','config','AV','AVpush'],function($,req,Checkin,conf){
+require(['jquery','request','checkin','config','amaze'],function($,req,Checkin,conf){
     $(function(){
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
         Checkin.checkin()
+
+        var push = AV.push({
+            appId: conf.leancloud.appId,
+            appKey: conf.leancloud.appKey
+        });
+
+        push.open(function() {
+            console.log('可以接收推送');
+        });
+        push.receive(function(data) {
+            showLog(data);
+        });
+        push.on('reuse', function() {
+            console.log('网络中断正在重试');
+        });
+
+        function showLog(data,area,timestamp) {
+            if(data.type == 10){
+                $('#msgTitle')[0].innerText = data.title
+                $('#msgContent')[0].innerText = data.content
+                $('#checkinid').val(data.id)
+                $('#msgModal').modal()
+            }
+        }
+
         var $updateSelfBtn = $('#btn_save'),
             $stuLoginBtn = $('#stuLoginBtn'),
             $teacherLoginBtn = $('#teacherLoginBtn');

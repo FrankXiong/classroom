@@ -3,6 +3,7 @@ extends ../layout
 block content
     
     div.container
+        include ../includes/msg_modal
         if user
             form#formSelfInfo
                 if user._id

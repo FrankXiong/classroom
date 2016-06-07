@@ -449,3 +449,16 @@ gallery.html css
 
 .analysis-option {
   margin-right: 1rem; }
+
+.msg-error {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%; }
+
+.checkin-list-item {
+  padding: .5rem 0; }
+  .checkin-list-item .time {
+    font-size: 12px;
+    color: #999; }

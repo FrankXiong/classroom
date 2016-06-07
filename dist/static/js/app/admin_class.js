@@ -80,42 +80,32 @@ require(['jquery','request','common','config','AVpush'],function($,req,common,co
         console.log('网络中断正在重试。。。');
     });
     push.receive(function(data) {
-        showLog(data,printWall);
+        console.log(data)
     });
     push.subscribe(['checkin'], function(data) {
         console.log('已关注签到频道');
     });
     $('#checkinBtn').click(function(){
-        push.send({
-            data:{title:'系统消息',content:'现在开始签到...',type:10}
-        },function(result){
-            console.log('签到：推送发送成功')
-            var oCheckin = new Checkin()
-            oCheckin.set('creater',$('#uname').val())
-            oCheckin.save().then((result)=>{
-                console.log(result.id)
-                var objectId = result.id
+        var oCheckin = new Checkin()
+        oCheckin.set('creater',$('#uname').val())
+        // 设置用户访问权限
+        var acl = new AV.ACL();
+        acl.setPublicReadAccess(true);
+        acl.setPublicWriteAccess(true);
+        oCheckin.setACL(acl)
+        oCheckin.save().then((result)=>{
+            console.log(result.id)
+            var objectId = result.id
+            push.send({
+                data:{title:'系统消息',content:'现在开始签到...',type:10,id:objectId}
+            },function(result){
                 location.href="/admin/checkin/"+objectId
-            }).catch((err)=>{
+            },function(err){
                 console.log(err)
             })
-        },function(err){
-            console.log('签到：推送发送失败')
+        }).catch((err)=>{
+            console.log(err)
         })
-        
+
     })
-
-    function showLog(data,area,timestamp) {
-        if (data) {
-            if(data.type == 10){
-                msg = '<li class="am-g am-list-item-desced"><div><p class="question-title am-list-item-hd">'+data.uname+':已签到'+'</p></div></li>';
-            }
-
-            time = '<p class="time">' + timestamp + '</p>';
-            if(timestamp){
-                area.append(time);
-            }
-            area.append(msg);
-        }
-    }
 })

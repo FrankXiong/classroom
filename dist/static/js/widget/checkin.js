@@ -1,4 +1,4 @@
-define(['jquery','request','config','AV','AVpush','amaze'],function($,request,conf){
+define(['jquery','request','config','AV','AVpush'],function($,request,conf){
     return {
         checkin:function(){
             var checkinBtn = $('#checkin'),
@@ -9,21 +9,20 @@ define(['jquery','request','config','AV','AVpush','amaze'],function($,request,co
                 msgTitle = $('#msgTitle')[0],
                 msgContent = $('#msgContent')[0],
                 msgModal = $('#msgModal'),
-                postData = {
-                    stuid:stuid,
-                    uname:uname,
-                    type:10
-                },
                 push = AV.push({
                     appId: conf.leancloud.appId,
                     appKey: conf.leancloud.appKey
                 }),
                 checkinList;
 
-
             var Checkin = AV.Object.extend('Checkin');
             
             checkinBtn.click(function(){
+                var postData = {
+                    stuid:stuid,
+                    uname:uname,
+                    time:new Date().toLocaleString()
+                }
                 push.send({
                     channels: ['checkin'],
                     data: postData
@@ -32,26 +31,22 @@ define(['jquery','request','config','AV','AVpush','amaze'],function($,request,co
                         console.log(result);
                         var oCheckin = new Checkin();
                         var query = new AV.Query('Checkin')
-                        query.get('5755a6d479bc440063be1149').then((result)=>{
+                        var checkinid = $('#checkinid').val()
+
+                        query.get(checkinid).then((result)=>{
                             result.add('checkinList',postData)
                             console.log(result)
                             result.save().then((result)=>{
-                                console.log(result)
-                                msgTitle.innerText = '提示'
-                                msgContent.innerText = '签到成功'
-                                msgModal.modal()
+                                alert('签到成功~')
+                                console.log('checkin success')
                             }).catch((err)=>{
                                 console.log(err)
-                                msgTitle.innerText = '提示'
-                                msgContent.innerText = '签到失败'
-                                msgModal.modal()
+                                alert('签到失败...')
                             })
                         })
-                        
                     } else {
-                        msgTitle.innerText = '提示'
-                        msgContent.innerText = '出了一点问题...'
-                        msgModal.modal()
+                        console.log('ERROR:签到推送发送失败')
+                        alert('签到失败...')
                     }
                 })
             })

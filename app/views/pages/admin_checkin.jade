@@ -2,16 +2,18 @@ extends ../admin_layout
 
 block content
     include ../includes/admin_sidebar
-    link(href="/css/page/admin_chatroom.css",rel="stylesheet")
     div.admin-content
             div.admin-content-body
                 include ../includes/admin_content_header                    
                 div.am-g
                     div.am-u-sm-12
-                        ul.am-list
+                        ul.am-list.checkin-list
                             if checkinList
                                 each item in checkinList
-                                    li #{item.uname}:已签到
+                                    li.checkin-list-item.am-cf 
+                                        span.am-fl #{item.uname}:已签到
+                                        span.am-fr.time #{item.time}
+                                span 已签到人数:#{checkinList.length}
                             else
                                 span 还没有人签到 
 

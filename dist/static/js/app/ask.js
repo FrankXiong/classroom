@@ -12,16 +12,11 @@ require.config({
     }
 });
 
-require(['jquery','checkin'],function($,Checkin){
-    $(function(){
-        Checkin.checkin()
-    })
-})
-
-require(['jquery','config','amaze'],function($,conf){
+require(['jquery','config','checkin','amaze'],function($,conf,Checkin){
     $(function(){
 
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
+        Checkin.checkin()
         var push = AV.push({
             appId: conf.leancloud.appId,
             appKey: conf.leancloud.appKey
@@ -71,6 +66,7 @@ require(['jquery','config','amaze'],function($,conf){
         if(data.type == 10){
             $('#msgTitle')[0].innerText = data.title
             $('#msgContent')[0].innerText = data.content
+            $('#checkinid').val(data.id)
             $('#msgModal').modal()
         }
 

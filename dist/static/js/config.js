@@ -24,7 +24,7 @@ define(function(){
         "leancloud":{
             "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
             "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
-            "roomId":"574204e149830c00614b220e"
+            "roomId":"575668cd5bbb50006453fc0c"
         },
         "echarts_single":{
             "tooltip": {
