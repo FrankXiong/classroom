@@ -13,7 +13,7 @@ require.config({
     }
 });
 
-require(['config', 'request', 'amaze'], function (conf, req, amaze) {
+require(['jquery', 'config', 'request', 'amaze'], function ($, conf, req) {
     $(function () {
         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
 
