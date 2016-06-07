@@ -95,20 +95,16 @@ var firstFlag = true;
 
 // 用来标记历史消息获取状态
 var logFlag = false;
-
-var sendBtn = $('#sendBtn'),
-    inputName = $('#uname'),
-    inputSend = $('#inputSend'),
-    printWall = $('#printWall'),
-    msgErrorBox = $('.msg-error');
-
-console.log(inputName.val());
-
 // 拉取历史相关
 // 最早一条消息的时间戳
 var msgTime;
 
 $(function () {
+    var sendBtn = $('#sendBtn'),
+        inputName = $('#uname'),
+        inputSend = $('#inputSend'),
+        printWall = $('#printWall'),
+        msgErrorBox = $('.msg-error');
     var room = main();
     sendBtn.click(sendMsg(room));
     $(document.body).keydown(function (e) {
