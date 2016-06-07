@@ -7,7 +7,7 @@ require.config({
         request: 'widget/request',
         common: 'widget/common',
         checkin: 'widget/checkin',
-        AV: 'lib/AV',
+        AV: 'lib/av',
         AVpush: 'lib/AV.push',
         amaze: 'lib/amazeui',
         config: 'config'
