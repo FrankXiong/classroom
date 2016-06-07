@@ -17,6 +17,7 @@ require(['jquery', 'request', 'common', 'config'], function ($, req, common, con
 
     var push,
         qid,
+        data,
         $addQuestionBtn = $("#addQuestionBtn"),
         qTitle = $('#questionTitle'),
         qDesc = $('#questionDesc');

@@ -20,8 +20,7 @@ require(['jquery', 'config', 'common'], function ($, conf, common) {
         var query = new AV.Query('Answer');
         var myEcharts = $('.echart')[0];
         var qObjectId = $('.qObjectId')[0];
-        var question;
-        var id;
+        var question, id;
         var qType = $('#type').val();
 
         question = AV.Object.createWithoutData('Question', qObjectId.value);

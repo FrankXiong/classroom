@@ -20,14 +20,12 @@ require(['jquery', 'config', 'common'], function ($, conf, common) {
         var query = new AV.Query('Answer');
         var myEcharts = $('.echart')[0];
         var qObjectId = $('.qObjectId')[0];
-        var question;
-        var countA, countB, countC, countD;
-        var options = [];
-        var optionA = [],
+        var question, id, countA, countB, countC, countD;
+        var options = [],
+            optionA = [],
             optionB = [],
             optionC = [],
             optionD = [];
-        var id;
         var qType = $('#type').val();
         var echarts_conf = [];
 

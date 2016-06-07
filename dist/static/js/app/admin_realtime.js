@@ -16,6 +16,7 @@ require(['jquery', 'request', 'common', 'config', 'AVpush'], function ($, req, c
 
     var push,
         qid,
+        data,
         $addSingleSelectBtn = $("#addSingleSelectBtn"),
         $addMultiSelectBtn = $("#addMultiSelectBtn"),
         $addFillBlankBtn = $("#addFillBlankBtn"),
@@ -51,7 +52,7 @@ require(['jquery', 'request', 'common', 'config', 'AVpush'], function ($, req, c
 
     // 发布单选问题
     $addSingleSelectBtn.click(function () {
-        var data = {
+        data = {
             'title': $formAddSingleSelect.find('#qTitle').val(),
             'rightAnswer': $formAddSingleSelect.find('#rightAnswer').val(),
             'optionA': $formAddSingleSelect.find('#optionA').val(),

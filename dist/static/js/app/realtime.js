@@ -59,6 +59,7 @@ require(['jquery', 'config', 'checkin', 'amaze'], function ($, conf, Checkin) {
         });
     });
     function showLog(data, area, timestamp) {
+        var question;
         if (data) {
             if (data.type === 1) {
                 question = '<li class="am-g am-list-item-desced"><div class="am-fl"><div><button type="button" class="am-btn am-btn-secondary am-round am-btn-xs">单选</button><p class="question-title am-list-item-hd">' + data.title + '</p></div><div class="option am-list-item-text">A:' + data.optionA + '</div><div class="option am-list-item-text">B:' + data.optionB + '</div><div class="option am-list-item-text">C:' + data.optionC + '</div><div class="option am-list-item-text">D:' + data.optionD + '</div></div><div class="am-fr"><a href=' + '"/realtime/answer/' + data.qid + '"' + 'class="am-btn am-btn-primary">回答</a></div></li>';
