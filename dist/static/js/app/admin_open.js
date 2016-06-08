@@ -68,7 +68,7 @@ require(['jquery', 'request', 'common', 'config'], function ($, req, common, con
             'qid': Date.now().toString()
         };
         push.send({
-            channels: ['open'],
+            // channels: ['open'],
             data: data
         }, function (result) {
             if (result) {

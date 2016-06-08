@@ -64,7 +64,7 @@ require(['jquery', 'request', 'common', 'config', 'AVpush'], function ($, req, c
             'qid': Date.now().toString()
         };
         push.send({
-            channels: ['realtime'],
+            // channels: ['realtime'],
             data: data
         }, function (result) {
             if (result) {
