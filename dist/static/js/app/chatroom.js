@@ -1,88 +1,154 @@
 "use strict";
 
-// require.config({
-//     baseUrl: '/js',
-//     paths:{
-//         jquery:'lib/jquery',
-//         request:'widget/request',
-//         common:'common',
-//         checkin:'widget/checkin',
-//         AV:'lib/AV',
-//         AVpush:'lib/AV.push',
-//         amaze:'lib/amazeui',
-//         config:'config',
-//         realtime:'lib/realtime.browser'
-//     }
-// });
-
-// require(['jquery','request','checkin','config'],function($,req,Checkin,conf){
-//     $(function(){
-//         AV.initialize(conf.leancloud.appId, conf.leancloud.appKey);
-//         Checkin.checkin()
-//         var Realtime = AV.Realtime;
-//         var realtime = new AV.Realtime({
-//             appId:conf.leancloud.appId
-//         });
-//         realtime.createIMClient('翘课吧').then(function(stu) {
-//             return stu.createConversation({
-//                 members: [],
-//                 name: '实时反馈',
-//             });
-//         }).then(function(conversation) {
-//             return conversation.send(new AV.TextMessage('耗子，起床！'));
-//         }).then(function(message) {
-//             console.log('Stu & Teacher', '发送成功！');
-//         }).catch(console.error);
-
-//         realtime.createIMClient('20134970').then(function(jerry) {
-//             jerry.on('message', function(message, conversation) {
-//                 console.log('Message received: ' + message.text);
-//           });
-//         }).catch(console.error);
-//     })
-// })
-
 var config = {
     "leancloud": {
         "appId": "BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
         "appKey": "tPHW2xTOAFFxVn6krhF56NVe",
-        "roomId": "575668cd5bbb50006453fc0c"
+        "roomId": "575ced852077030063b5faa6"
     }
 };
 
 AV.initialize(config.leancloud.appId, config.leancloud.appKey);
-
 localStorage.setItem('debug', 'LC*');
 
+var checkinBtn = $('#checkin');
+var Checkin = AV.Object.extend('Checkin');
+
+var push = AV.push({
+    appId: config.leancloud.appId,
+    appKey: config.leancloud.appKey
+});
+
+var msgErrorBox = $('.msg-error');
+
+push.open(function () {
+    console.log('可以接收推送');
+    msgErrorBox[0].innerText = '可以接收推送';
+    msgErrorBox.addClass('am-alert-success');
+    msgErrorBox.css('display', 'block');
+    setTimeout(function () {
+        msgErrorBox.css('display', 'none');
+    }, 3000);
+});
+push.on('reuse', function () {
+    console.log('网络中断正在重试');
+    msgErrorBox[0].innerText = '网络中断正在重试...';
+    msgErrorBox.addClass('am-alert-warning');
+    msgErrorBox.css('display', 'block');
+    setTimeout(function () {
+        msgErrorBox.css('display', 'none');
+    }, 3000);
+});
+push.receive(function (data) {
+    showModal(data);
+});
+
+function showModal(data, area, timestamp) {
+    if (data.type == 10) {
+        $('#msgTitle')[0].innerText = data.title;
+        $('#msgContent')[0].innerText = data.content;
+        $('#checkinid').val(data.id);
+        $('#msgModal').modal();
+    }
+}
+
+checkinBtn.click(function () {
+    var postData = {
+        stuid: stuid,
+        uname: uname,
+        time: new Date().toLocaleString()
+    };
+    push.send({
+        channels: ['checkin'],
+        data: postData
+    }, function (result) {
+        if (result) {
+            console.log(result);
+            var oCheckin = new Checkin();
+            var query = new AV.Query('Checkin');
+            var checkinid = $('#checkinid').val();
+            if (checkinid) {
+                query.get(checkinid).then(function (result) {
+                    var checkinList = result.attributes.checkinList;
+                    console.log(result);
+                    for (var i in checkinList) {
+                        if (checkinList[i].stuid == postData.stuid) {
+                            showAlert('你已经签过到了', 'error');
+                            console.log('checkin error');
+                            return;
+                        }
+                    }
+                    result.add('checkinList', postData);
+                    console.log(result);
+                    result.save().then(function (result) {
+                        showAlert('签到成功', 'success');
+                        console.log('checkin success');
+                    }).catch(function (err) {
+                        console.log(err);
+                        showAlert('签到失败', 'error');
+                    });
+                });
+            } else {
+                console.log('当前不能签到');
+                showAlert('当前不能签到', 'warning');
+            }
+        } else {
+            console.log('ERROR:签到推送发送失败');
+            showAlert('签到失败', 'error');
+        }
+    });
+});
+
+function showAlert(msg, type) {
+    var msgErrorBox = $('.msg-error');
+    msgErrorBox[0].innerText = msg;
+    if (type === 'success') {
+        msgErrorBox.addClass('am-alert-success');
+    } else if (type === 'warning') {
+        msgErrorBox.addClass('am-alert-warning');
+    } else if (type === 'error') {
+        msgErrorBox.addClass('am-alert-danger');
+    } else if (type === 'secondary') {
+        msgErrorBox.addClass('am-alert-secondary');
+    }
+    msgErrorBox.css('display', 'block');
+    setTimeout(function () {
+        msgErrorBox.css('display', 'none');
+    }, 3000);
+}
+
+// /* 生成roomId开始 */
+// // 初始化实时通讯 SDK
 // var Realtime = AV.Realtime;
 // var realtime = new Realtime({
 //     appId:config.leancloud.appId
 // });
 
+// // Stu 用自己的名字作为 clientId，获取 IMClient 对象实例
 // realtime.createIMClient('翘课吧').then(function(stu) {
-//     return stu.createConversation({
-//         members: [],
-//         name: '实时反馈',
-//     });
+//   // 创建与Teacher之间的对话
+//   return stu.createConversation({
+//     members: [],
+//     name: '实时反馈',
+//   });
 // }).then(function(conversation) {
-//     return conversation.send(new AV.TextMessage('耗子，起床！'));
+//   // 发送消息
+//   return conversation.send(new AV.TextMessage('耗子，起床！'));
 // }).then(function(message) {
-//     console.log('Stu & Teacher', '发送成功！');
+//   console.log('Stu & Teacher', '发送成功！');
 // }).catch(console.error);
 
 // realtime.createIMClient('20134970').then(function(jerry) {
-//     jerry.on('message', function(message, conversation) {
-//         console.log('Message received: ' + message.text);
+//   jerry.on('message', function(message, conversation) {
+//     console.log('Message received: ' + message.text);
 //   });
 // }).catch(console.error);
+// /* 生成roomId结束 */
 
-// 请换成你自己的一个房间的 conversation id（这是服务器端生成的）
 var roomId = config.leancloud.roomId;
 
 // 每个客户端自定义的 id
 var clientId = $('#uname').val();
-console.log(clientId);
-
 var realtime;
 var client;
 var messageIterator;
@@ -90,29 +156,29 @@ var messageIterator;
 // 用来存储创建好的 roomObject
 var room;
 
-// 监听是否服务器连接成功
-var firstFlag = true;
-
 // 用来标记历史消息获取状态
 var logFlag = false;
+
+var sendBtn = $('#sendBtn');
+var inputName = $('#uname');
+var inputSend = $('#inputSend');
+var printWall = $('#printWall');
+
+console.log(inputName.val());
+
 // 拉取历史相关
 // 最早一条消息的时间戳
 var msgTime;
 
 $(function () {
-    var sendBtn = $('#sendBtn'),
-        inputName = $('#uname'),
-        inputSend = $('#inputSend'),
-        printWall = $('#printWall'),
-        msgErrorBox = $('.msg-error');
-    var room = main();
-    sendBtn.click(sendMsg(room));
+    main();
+    sendBtn.click(sendMsg);
     $(document.body).keydown(function (e) {
         if (e.keyCode === 13) {
             if (firstFlag) {
                 main();
             } else {
-                sendMsg(room);
+                sendMsg();
             }
         }
     });
@@ -125,8 +191,10 @@ $(function () {
 });
 
 function main() {
-    showAlert('正在连接服务器，请等待。。。', 'secondary');
-    var val = $('#uname').val();
+    showLog('正在连接服务器，请等待。。。');
+    var val = inputName.val();
+    // 监听是否服务器连接成功
+    var firstFlag = true;
     if (val) {
         clientId = val;
     }
@@ -143,11 +211,11 @@ function main() {
     // realtime.register(AV.FileMessage);
     // 创建聊天客户端 
     realtime.createIMClient(clientId).then(function (c) {
-        showAlert('服务器连接成功！', 'success');
+        showLog('服务器连接成功！');
         firstFlag = false;
         client = c;
         client.on('disconnect', function () {
-            showAlert('服务器正在重连，请耐心等待。。。', 'warning');
+            showLog('服务器正在重连，请耐心等待。。。');
         });
         // 获取对话
         return c.getConversation(roomId);
@@ -187,7 +255,7 @@ function main() {
         return conversation.join();
     }).then(function (conversation) {
         // 获取聊天历史
-        var room = conversation;
+        room = conversation;
         messageIterator = conversation.createMessagesIterator();
         getLog(function () {
             printWall.scrollTop = printWall.scrollHeight;
@@ -201,15 +269,14 @@ function main() {
             }
             showMsg(message);
         });
-        return room;
     }).catch(function (err) {
-        console.log(err);
+        console.error(err);
     });
 }
 
-function sendMsg(room) {
-    var inputSend = $('#inputSend');
+function sendMsg() {
     var val = inputSend.val();
+    console.log(val);
     // 不让发送空字符
     if (!String(val).replace(/^\s+/, '').replace(/\s+$/, '')) {
         alert('发送内容不能为空！');
@@ -271,6 +338,7 @@ function showMsg(message, isBefore) {
 // 获取消息历史
 function getLog(callback) {
     var height = printWall.scrollHeight;
+    var msgTime;
     if (logFlag) {
         return;
     } else {
@@ -300,15 +368,15 @@ function getLog(callback) {
     // });
 }
 
-// demo 中输出代码
 function showLog(msg, data, timestamp, isBefore) {
     if (data) {
-        console.log(msg, data);
-        msg = '<p class="msgText">' + msg + data + '</p>';
         if (data.type == 10) {
             $('#msgTitle')[0].innerText = data.title;
             $('#msgContent')[0].innerText = data.content;
+            $('#checkinid').val(data.id);
             $('#msgModal').modal();
+        } else {
+            msg = '<p class="msgText">' + msg + data + '</p>';
         }
     }
     var time = '<p class="time">' + timestamp + '</p>';
@@ -342,22 +410,4 @@ function formatTime(time) {
 
 function createLink(url) {
     return '<a target="_blank" href="' + encodeHTML(url) + '">' + encodeHTML(url) + '</a>';
-}
-
-function showAlert(msg, type) {
-    var msgErrorBox = $('.msg-error');
-    msgErrorBox[0].innerText = msg;
-    if (type === 'success') {
-        msgErrorBox.addClass('am-alert-success');
-    } else if (type === 'warning') {
-        msgErrorBox.addClass('am-alert-warning');
-    } else if (type === 'error') {
-        msgErrorBox.addClass('am-alert-danger');
-    } else if (type === 'secondary') {
-        msgErrorBox.addClass('am-alert-secondary');
-    }
-    msgErrorBox.css('display', 'block');
-    setTimeout(function () {
-        msgErrorBox.css('display', 'none');
-    }, 3000);
 }

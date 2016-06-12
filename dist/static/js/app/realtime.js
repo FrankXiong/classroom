@@ -61,6 +61,9 @@ require(['jquery', 'config', 'checkin', 'amaze'], function ($, conf, Checkin) {
     function showLog(data, area, timestamp) {
         var question;
         if (data) {
+            if (data.type == 0) {
+                question = '<li class="am-g am-list-item-desced am-cf"><div class="am-fl"><div><button type="button" class="am-btn am-btn-secondary am-round am-btn-xs">开放</button><p class="question-title am-list-item-hd">' + data.title + '</p></div><div class="question-content am-list-item-text">' + data.desc + '</div></div><div class="am-fr"><a href=' + '"/open/answer/' + data.qid + '"' + 'class="am-btn am-btn-primary">回答</a></div></li>';
+            }
             if (data.type === 1) {
                 question = '<li class="am-g am-list-item-desced"><div class="am-fl"><div><button type="button" class="am-btn am-btn-secondary am-round am-btn-xs">单选</button><p class="question-title am-list-item-hd">' + data.title + '</p></div><div class="option am-list-item-text">A:' + data.optionA + '</div><div class="option am-list-item-text">B:' + data.optionB + '</div><div class="option am-list-item-text">C:' + data.optionC + '</div><div class="option am-list-item-text">D:' + data.optionD + '</div></div><div class="am-fr"><a href=' + '"/realtime/answer/' + data.qid + '"' + 'class="am-btn am-btn-primary">回答</a></div></li>';
             }
@@ -85,93 +88,3 @@ require(['jquery', 'config', 'checkin', 'amaze'], function ($, conf, Checkin) {
         }
     }
 });
-
-// var config = {
-//     "leancloud":{
-//         "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
-//         "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
-//         "roomId":"574204e149830c00614b220e"
-//     }
-// }
-// var push;
-// var AV = AV || {}
-// AV.initialize(config.leancloud.appId, config.leancloud.appKey);
-// // 每次调用生成一个聊天实例
-// createPush();
-
-// var sendBtn = $('#sendBtn');
-// var uname = $('#uname').val();
-// var answerContent = $('#inputSend').val();
-// var printWall = $('#printWall');
-// var answer = {
-//     from: uname,
-//     content: answerContent
-// }
-
-// function createPush() {
-//     push = AV.push({
-//         appId: config.leancloud.appId,
-//         appKey: config.leancloud.appKey
-//     });
-
-//     // 可以链式调用
-//     push.open(function() {
-//         console.log('可以接收推送');
-//     });
-
-//     // // 监听推送消息
-//     // push.on('message', function(data) {
-//     //     // showLog('message');
-//     //     showLog('回答：',JSON.stringify(data));
-//     // });
-
-//     // receive 方法是监听 message 的快捷方法
-//     push.receive(function(data) {
-//         // showLog('Receive 方法显示和监听 message 事件一致');
-//         showLog(data);
-//     });
-
-//     // 监听网络异常
-//     push.on('reuse', function() {
-//         alert('网络中断正在重试');
-//     });
-
-//     // // 发送一条推送
-//     // push.send({
-//     //     channels: ['realtime'],
-//     //     data: {title: '标题',content:'正文内容...'}
-//     // }, function(result) {
-//     //     if (result) {
-//     //         showLog('推送成功发送');
-//     //     } else {
-//     //         showLog('error');
-//     //     }
-//     // });
-
-//     // push.subscribe(['realtime'], function(data) {
-//     //     showLog('关注新的频道');
-//     // });
-
-//     // push.send({
-//     //     channels: ['realtime'],
-//     //     data: {realtime: 123}
-//     // });
-
-//     // setTimeout(function() {
-
-//     //     // 如果不加 channels，可以简单的使用 send 方法发送一个 json
-//     //     push.send({
-//     //         abc: 123
-//     //     });
-
-//     //     // push.unsubscribe(['realtime'], function(data) {
-//     //     //     showLog('取消关注新的频道');
-
-//     //     //     push.send({
-//     //     //         channels: ['realtime'],
-//     //     //         data: {realtime: 123}
-//     //     //     });
-//     //     // });
-
-//     // }, 5000);
-// }

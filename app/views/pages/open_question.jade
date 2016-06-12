@@ -3,31 +3,7 @@ extends ../layout
 block content
     div.container
         include ../includes/msg_modal        
-        div.weui_grids
-            a#checkin.weui_grid
-                div.weui_grid_icon
-                    span.am-icon-sign-in.am-icon-sm
-                p.weui_grid_label#checkinLabel 签到
-            a(href="/realtime").weui_grid
-                div.weui_grid_icon
-                    span.am-icon-commenting.am-icon-sm
-                p.weui_grid_label 即时问答
-            a(href="/ask").weui_grid
-                div.weui_grid_icon
-                    span.am-icon-question.am-icon-sm
-                p.weui_grid_label 学生提问
-            a(href="/open").weui_grid.grid-active
-                div.weui_grid_icon
-                    span.am-icon-smile-o.am-icon-sm
-                p.weui_grid_label 开放问题
-            a(href="javascript:;").weui_grid#test
-                div.weui_grid_icon
-                    span.am-icon-pencil.am-icon-sm
-                p.weui_grid_label 测验
-            a(href="/chatroom").weui_grid
-                div.weui_grid_icon
-                    span.am-icon-paper-plane.am-icon-sm
-                p.weui_grid_label 实时反馈
+        include ../includes/ctrl_panel
 
         div(data-am-widget="list_news").am-list-news.am-list-news-default
             div.am-list-news-hd.am-cf

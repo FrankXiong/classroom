@@ -42,6 +42,15 @@ define(['jquery', 'request', 'config', 'common', 'AV', 'AVpush'], function ($, r
                         var checkinid = $('#checkinid').val();
                         if (checkinid) {
                             query.get(checkinid).then(function (result) {
+                                var checkinList = result.attributes.checkinList;
+                                console.log(result);
+                                for (var i in checkinList) {
+                                    if (checkinList[i].stuid == postData.stuid) {
+                                        Common.showAlert('你已经签过到了', 'error');
+                                        console.log('checkin error');
+                                        return;
+                                    }
+                                }
                                 result.add('checkinList', postData);
                                 console.log(result);
                                 result.save().then(function (result) {
