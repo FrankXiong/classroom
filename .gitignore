@@ -1,9 +1,4 @@
-logs
-npm-debug.log*
-
-coverage
 node_modules
-
 vendor
 src
 app.js
