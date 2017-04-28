@@ -7,8 +7,6 @@ var Teacher = require('../models/teacher')
 var AV = require('avoscloud-sdk')
 var config = require('config')
 
-// AV.initialize('BoXslRV8OngKWN18wvltH7tq-gzGzoHsz', 'tPHW2xTOAFFxVn6krhF56NVe');
-
 AV.init({
   appId: config.get('leancloud.appId'),
   appKey: config.get('leancloud.appKey')

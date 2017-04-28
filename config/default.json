@@ -1,25 +1,25 @@
 {
-    "domain": "wenxin.info",
+    "domain": "example.com",
     "is_debug": true,
     "mongodb": {
-    "host": "121.42.189.247",
+    "host": "127.0.0.1",
     "port": "27017",
     "db": "classroom"
     },
     "sms": {
-        "host": "121.42.189.247",
+        "host": "127.0.0.1",
         "port": "5001"
     },
     "wx": {
-        "app_id": "wx77385a01a23c3f6a",
-        "app_secret": "bee389d07fe2cae904be642a8cfa9c39",
+        "app_id": "appId",
+        "app_secret": "appSecret",
         "token": "classroom",
         "wx_menu": {
             "button": [
                 {
                     "type": "view",
                     "name": "进入课堂",
-                    "url": "http://wenxin.info"
+                    "url": "http://example.com"
                 },
                 {
                     "name": "更多",
@@ -52,7 +52,7 @@
         }
     },
     "leancloud":{
-        "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
-        "appKey":"tPHW2xTOAFFxVn6krhF56NVe"
+        "appId":"appid",
+        "appKey":"appKey"
     }
 }

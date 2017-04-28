@@ -4,8 +4,8 @@
         "port" : "3000"
     },
     "leancloud":{
-        "appId":"BoXslRV8OngKWN18wvltH7tq-gzGzoHsz",
-        "appKey":"tPHW2xTOAFFxVn6krhF56NVe",
+        "appId":"填写leancloud appId",
+        "appKey":"填写leancloud appKey",
         "roomId":"574204e149830c00614b220e"
     }
 }
